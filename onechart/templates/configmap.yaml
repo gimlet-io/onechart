@@ -7,5 +7,5 @@ metadata:
     {{- include "helm-chart.labels" . | nindent 4 }}
 data:
 {{- range $key, $val := .Values.vars }}
-  {{ $key }}: {{ $val }}
+  {{ $key }}: {{ $val | quote }}
 {{- end }}
