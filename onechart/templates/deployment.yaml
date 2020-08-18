@@ -35,6 +35,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "helm-chart.fullname" . }}
+            - secretRef:
+                name: {{ include "helm-chart.fullname" . }}
           ports:
             - name: http
               containerPort: {{ .Values.containerPort }}
