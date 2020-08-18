@@ -1,4 +1,3 @@
-{{- $fullName := include "helm-chart.fullname" . -}}
 {{- $labels := include "helm-chart.labels" . -}}
 
 {{- with .Values.ingress -}}
@@ -9,7 +8,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $.Release.Name }}
   namespace: {{ $.Release.Namespace }}
   labels:
     {{- $labels | nindent 4 }}
@@ -27,6 +26,6 @@ spec:
       http:
         paths:
         - backend:
-            serviceName: {{ $fullName }}
+            serviceName: {{ $.Release.Name }}
             servicePort: {{ $.Values.containerPort }}
 {{- end }}

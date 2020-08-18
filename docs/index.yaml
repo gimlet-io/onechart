@@ -2,7 +2,16 @@ apiVersion: v1
 entries:
   onechart:
   - apiVersion: v2
-    created: "2020-08-18T15:46:46.547507954+02:00"
+    created: "2020-08-18T15:52:56.971257345+02:00"
+    description: A generic Helm chart for your application deployments
+    digest: c79cef21eceab948144a289298cdf1e20e77a0782a883d7d65f9e709ccbbc271
+    name: onechart
+    type: application
+    urls:
+    - https://onechart.github.io/onechart/onechart-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    created: "2020-08-18T15:52:56.971013911+02:00"
     description: A generic Helm chart for your application deployments
     digest: dd814ac5d08d5e6163a1b769df6803f5cb0f09d906045086dfcc5be522bb1ec3
     name: onechart
@@ -11,7 +20,7 @@ entries:
     - https://onechart.github.io/onechart/onechart-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
-    created: "2020-08-18T15:46:46.547240449+02:00"
+    created: "2020-08-18T15:52:56.970770019+02:00"
     description: A generic Helm chart for your application deployments
     digest: e46062df8053840cbfbba26c0a66a843a79f15a0b43a145ed019327513bd5098
     name: onechart
@@ -20,7 +29,7 @@ entries:
     - https://onechart.github.io/onechart/onechart-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
-    created: "2020-08-18T15:46:46.546990077+02:00"
+    created: "2020-08-18T15:52:56.970506425+02:00"
     description: A generic Helm chart for your application deployments
     digest: a7bbc8b7dcc008e89156cd1830282b7d39c0592e82ccdcefb77a25a42eca2a3d
     name: onechart
@@ -29,7 +38,7 @@ entries:
     - https://onechart.github.io/onechart/onechart-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
-    created: "2020-08-18T15:46:46.546713484+02:00"
+    created: "2020-08-18T15:52:56.970270755+02:00"
     description: A generic Helm chart for your application deployments
     digest: 1ed8c0645abdae6c950526e9c5410dc056847a11700dc7def5f1c55eb7de0cd4
     name: onechart
@@ -37,4 +46,4 @@ entries:
     urls:
     - https://onechart.github.io/onechart/onechart-0.1.0.tgz
     version: 0.1.0
-generated: "2020-08-18T15:46:46.54634692+02:00"
+generated: "2020-08-18T15:52:56.969941698+02:00"

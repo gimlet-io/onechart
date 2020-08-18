@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "helm-chart.fullname" . }}
+  name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "helm-chart.labels" . | nindent 4 }}
@@ -34,9 +34,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - configMapRef:
-                name: {{ include "helm-chart.fullname" . }}
+                name: {{ .Release.Name }}
             - secretRef:
-                name: {{ include "helm-chart.fullname" . }}
+                name: {{ .Release.Name }}
           ports:
             - name: http
               containerPort: {{ .Values.containerPort }}
