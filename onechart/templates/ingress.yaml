@@ -1,0 +1,32 @@
+{{- $fullName := include "helm-chart.fullname" . -}}
+{{- $labels := include "helm-chart.labels" . -}}
+
+{{- with .Values.ingress -}}
+{{- if semverCompare ">=1.14-0" $.Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- $labels | nindent 4 }}
+  {{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  tls:
+    - hosts:
+        - {{ .host | quote }}
+      secretName: {{ printf "tls-%s" $.Release.Name }}
+  rules:
+    - host: {{ .host | quote }}
+      http:
+        paths:
+        - backend:
+            serviceName: {{ $fullName }}
+            servicePort: {{ $.Values.containerPort }}
+{{- end }}

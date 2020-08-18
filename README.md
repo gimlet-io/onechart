@@ -1,3 +1,3 @@
-# Helm chart for Gimlet
+# Onechart
 
-Created based on the https://github.com/technosophos/tscharts chart.# onechart
+A generic Helm chart for your application deployments
