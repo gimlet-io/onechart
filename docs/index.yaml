@@ -2,12 +2,12 @@ apiVersion: v1
 entries:
   onechart:
   - apiVersion: v2
-    created: "2020-08-18T14:43:16.767812118+02:00"
+    created: "2020-08-18T15:04:22.585819651+02:00"
     description: A generic Helm chart for your application deployments
-    digest: 69b5b48044729fda2d6a57f184387bfa623f3a480301d206ab813677dd2c8dca
+    digest: 1ed8c0645abdae6c950526e9c5410dc056847a11700dc7def5f1c55eb7de0cd4
     name: onechart
     type: application
     urls:
-    - https://onechart.github.io/onecharts/onechart-0.1.0.tgz
+    - https://onechart.github.io/onechart/onechart-0.1.0.tgz
     version: 0.1.0
-generated: "2020-08-18T14:43:16.767421313+02:00"
+generated: "2020-08-18T15:04:22.58546976+02:00"
