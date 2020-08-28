@@ -2,7 +2,16 @@ apiVersion: v1
 entries:
   onechart:
   - apiVersion: v2
-    created: "2020-08-18T15:56:59.512708998+02:00"
+    created: "2020-08-28T10:03:23.18225248+02:00"
+    description: A generic Helm chart for your application deployments
+    digest: fbaf6139e0ef8ad9a87cc1e41a97c7d25fdcf7ea17fa6364952f1a851a87480a
+    name: onechart
+    type: application
+    urls:
+    - https://onechart.github.io/onechart/onechart-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v2
+    created: "2020-08-28T10:03:23.182023673+02:00"
     description: A generic Helm chart for your application deployments
     digest: bd6f5b1865ab9b05fc6925c163ab8045235bd2723dba31f09d5083d24322d1f8
     name: onechart
@@ -11,7 +20,7 @@ entries:
     - https://onechart.github.io/onechart/onechart-0.3.1.tgz
     version: 0.3.1
   - apiVersion: v2
-    created: "2020-08-18T15:56:59.512449858+02:00"
+    created: "2020-08-28T10:03:23.181783564+02:00"
     description: A generic Helm chart for your application deployments
     digest: c79cef21eceab948144a289298cdf1e20e77a0782a883d7d65f9e709ccbbc271
     name: onechart
@@ -20,7 +29,7 @@ entries:
     - https://onechart.github.io/onechart/onechart-0.3.0.tgz
     version: 0.3.0
   - apiVersion: v2
-    created: "2020-08-18T15:56:59.512201887+02:00"
+    created: "2020-08-28T10:03:23.181554196+02:00"
     description: A generic Helm chart for your application deployments
     digest: dd814ac5d08d5e6163a1b769df6803f5cb0f09d906045086dfcc5be522bb1ec3
     name: onechart
@@ -29,7 +38,7 @@ entries:
     - https://onechart.github.io/onechart/onechart-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
-    created: "2020-08-18T15:56:59.511946255+02:00"
+    created: "2020-08-28T10:03:23.181306093+02:00"
     description: A generic Helm chart for your application deployments
     digest: e46062df8053840cbfbba26c0a66a843a79f15a0b43a145ed019327513bd5098
     name: onechart
@@ -38,7 +47,7 @@ entries:
     - https://onechart.github.io/onechart/onechart-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
-    created: "2020-08-18T15:56:59.51166206+02:00"
+    created: "2020-08-28T10:03:23.180749008+02:00"
     description: A generic Helm chart for your application deployments
     digest: a7bbc8b7dcc008e89156cd1830282b7d39c0592e82ccdcefb77a25a42eca2a3d
     name: onechart
@@ -47,7 +56,7 @@ entries:
     - https://onechart.github.io/onechart/onechart-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
-    created: "2020-08-18T15:56:59.511417105+02:00"
+    created: "2020-08-28T10:03:23.179751141+02:00"
     description: A generic Helm chart for your application deployments
     digest: 1ed8c0645abdae6c950526e9c5410dc056847a11700dc7def5f1c55eb7de0cd4
     name: onechart
@@ -55,4 +64,4 @@ entries:
     urls:
     - https://onechart.github.io/onechart/onechart-0.1.0.tgz
     version: 0.1.0
-generated: "2020-08-18T15:56:59.511011582+02:00"
+generated: "2020-08-28T10:03:23.179402951+02:00"
