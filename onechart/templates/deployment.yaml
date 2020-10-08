@@ -35,8 +35,10 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name }}
+            {{- if .Values.secret.enabled }}
             - secretRef:
                 name: {{ .Release.Name }}
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.containerPort }}
