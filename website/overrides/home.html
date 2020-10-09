@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% block extrahead %}
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block tabs %}
+{{ super() }}
+<section class="container mx-auto">
+    <div class="md-grid md-typeset">
+        <div class="tx-hero">
+            <div class="tx-hero__content">
+                <h1>Technical documentation that just works</h1>
+                <p>{{ config.site_description }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block site_nav %}{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}
