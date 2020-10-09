@@ -1,5 +1,5 @@
 
-all: lint package
+all: lint kubeval test package
 
 lint:
 	helm lint onechart/

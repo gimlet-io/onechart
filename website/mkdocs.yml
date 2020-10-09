@@ -24,8 +24,7 @@ site_name: OneChart
 site_url: https://onechart.dev
 site_author: Laszlo Fogas
 site_description: >-
-  One Helm chart to rule them all. One Helm chart for your apps.
-  Because no-one can remember the Kubernetes yaml syntax.
+  One chart to rule them all. A generic Helm chart for your application deployments. Because no-one can remember the Kubernetes yaml syntax.
 # Repository
 repo_name: onechart/onechart
 repo_url: https://github.com/onechart/onechart

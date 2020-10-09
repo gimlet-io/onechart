@@ -1,6 +1,6 @@
 apiVersion: v2
 name: onechart
-description: A generic Helm chart for your application deployments
+description: One chart to rule them all. A generic Helm chart for your application deployments. Because no-one can remember the Kubernetes yaml syntax.
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -15,4 +15,4 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.3.2
+version: 0.4.0
