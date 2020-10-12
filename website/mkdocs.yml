@@ -30,6 +30,9 @@ repo_name: onechart/onechart
 repo_url: https://github.com/onechart/onechart
 edit_uri: https://github.com/onechart/onechart/website
 
+extra_css:
+  - stylesheets/extra.css
+
 # Copyright
 copyright: Copyright &copy; 2020 Laszlo Fogas
 
@@ -50,7 +53,7 @@ theme:
   language: en
   features:
     - navigation.tabs
-    - navigation.instant
+#    - navigation.instant
   palette:
     scheme: default
     primary: indigo
@@ -60,7 +63,7 @@ theme:
     code: Roboto Mono
   favicon: assets/favicon.png
   icon:
-    logo: logo
+    logo: fontawesome/regular/circle
 
 # Plugins
 plugins:

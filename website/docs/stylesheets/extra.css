@@ -1,0 +1,12 @@
+.md-announce a, .md-announce a:focus, .md-announce a:hover {
+   color: white;
+}
+
+strong {
+    white-space: nowrap;
+}
+
+.md-announce .twitter {
+   margin-left: .2em;
+   color: #00ACEE;
+}
