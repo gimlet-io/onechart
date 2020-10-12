@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
-<!-- Custom front matter -->
 {% block extrahead %}
-
 <!-- Determine title -->
 {% set title = config.site_name %}
 {% if page and page.title and not page.is_homepage %}
@@ -10,7 +8,7 @@
 {% endif %}
 
 <!-- The image needs to have an absolute URL -->
-{% set image = config.site_url ~ 'assets/logo.png' %}
+{% set image = config.site_url ~ 'assets/circle.svg' %}
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
@@ -31,6 +29,7 @@
 <meta name="twitter:image" content="{{ image }}" />
 
 {% endblock %}
+
 
 {% block announce %}
 <a href="https://twitter.com/laszlocph">
