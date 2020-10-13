@@ -32,6 +32,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.command }}
+          command: ['{{ .Values.shell | default "/bin/sh" }}', {{ .Values.command | quote }}]
+          {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name }}

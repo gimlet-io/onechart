@@ -23,3 +23,19 @@ EOF
 
 helm template my-release onechart/onechart -f values.yaml
 ```
+
+### Running a command in Alpine Linux
+
+```bash
+cat << EOF > values.yaml
+image:
+  repository: alpine
+  tag: 3.12
+
+command: |
+  echo "hello"
+shell: "/bin/ash"
+EOF
+
+helm template my-release onechart/onechart -f values.yaml
+```

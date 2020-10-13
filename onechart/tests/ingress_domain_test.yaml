@@ -1,0 +1,25 @@
+suite: test deployment
+templates:
+  - ingress.yaml
+tests:
+  - it: Should set Ingress host name
+    set:
+      ingress:
+        host: chart-example.local
+    asserts:
+      - equal:
+          path: spec.tls
+          value:
+            - hosts:
+                - chart-example.local
+              secretName: tls-RELEASE-NAME
+  - it: Should set Ingress annotation
+    set:
+      ingress:
+        annotations:
+          kubernetes.io/ingress.class: nginx
+    asserts:
+      - equal:
+          path: metadata.annotations
+          value:
+            kubernetes.io/ingress.class: nginx

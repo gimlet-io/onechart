@@ -1,0 +1,22 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+  - configmap.yaml
+tests:
+  - it: Should set image and tag
+    set:
+      image.repository: nginx
+      image.tag: x.y.z
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: nginx:x.y.z
+  - it: Should set an ImagePullSecret
+    set:
+      imagePullSecrets:
+        - name: regcred
+    asserts:
+      - equal:
+          path: spec.template.spec.imagePullSecrets
+          value:
+            - name: regcred
