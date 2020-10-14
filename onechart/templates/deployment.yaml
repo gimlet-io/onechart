@@ -36,8 +36,10 @@ spec:
           command: ['{{ .Values.shell | default "/bin/sh" }}', {{ .Values.command | quote }}]
           {{- end }}
           envFrom:
+            {{- if .Values.vars }}
             - configMapRef:
                 name: {{ .Release.Name }}
+            {{- end }}
             {{- if .Values.secret.enabled }}
             - secretRef:
                 name: {{ .Release.Name }}

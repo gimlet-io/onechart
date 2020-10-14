@@ -1,15 +1,20 @@
 suite: test deployment
 templates:
+  - deployment.yaml
   - configmap.yaml
 tests:
-  - it: Should vars in ConfigMap
+  - it: Should reference configmap if vars are set
     set:
       vars:
         var1: value1
         var2: value2
     asserts:
-      - equal:
-          path: data
-          value:
-            var1: value1
-            var2: value2
+      - contains:
+          path: spec.template.spec.containers[0].envFrom
+          content:
+            configMapRef:
+              name: RELEASE-NAME
+  - it: Should not reference configmap if vars are not set
+    asserts:
+      - isNull:
+          path: spec.template.spec.containers[0].envFrom
