@@ -47,6 +47,10 @@ spec:
             - secretRef:
                 name: {{ .Release.Name }}
             {{- end }}
+            {{- if .Values.sealedSecrets }}
+            - secretRef:
+                name: {{ .Release.Name }}
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.containerPort }}
