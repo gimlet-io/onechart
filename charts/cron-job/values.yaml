@@ -5,6 +5,7 @@ image:
 schedule: "*/1 * * * *"
 command: |
   echo "I'm alive"
+shell: "/bin/sh"
 
 nameOverride: ""
 fullnameOverride: ""

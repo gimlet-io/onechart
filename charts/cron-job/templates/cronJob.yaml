@@ -27,7 +27,7 @@ spec:
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               {{- end }}
               command:
-                - {{ .Values.shell | default "/bin/sh" }}
+                - {{ .Values.shell }}
                 - -c
                 - {{ .Values.command | quote }}
               envFrom:
