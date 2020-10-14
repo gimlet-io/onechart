@@ -1,0 +1,30 @@
+image:
+  repository: nginx
+  tag: "latest"
+
+replicas: 1
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 999
+
+securityContext: {}
+
+containerPort: 8080
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+probe: "/"
+
+secret:
+  enabled: false
