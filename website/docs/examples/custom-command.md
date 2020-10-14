@@ -24,6 +24,22 @@ EOF
 helm template my-release onechart/onechart -f values.yaml
 ```
 
+### Using bash
+
+```bash
+cat << EOF > values.yaml
+image:
+  repository: debian
+  tag: stable-slim
+
+command: |
+  while true; do date; sleep 2; done
+shell: "/bin/bash"
+EOF
+
+helm template my-release onechart/onechart -f values.yaml
+```
+
 ### Running a command in Alpine Linux
 
 ```bash
