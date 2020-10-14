@@ -22,7 +22,7 @@ image:
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-  host: chart-example.local
+  host: my-release.mycompany.com
 EOF
 
 helm template my-release onechart/onechart -f values.yaml

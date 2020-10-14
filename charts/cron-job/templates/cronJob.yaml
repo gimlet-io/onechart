@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{ include "helm-chart.labels" . | nindent 4 }}
+    {{- include "helm-chart.labels" . | nindent 4 }}
 spec:
   schedule: {{ .Values.schedule | quote }}
   successfulJobsHistoryLimit: 1

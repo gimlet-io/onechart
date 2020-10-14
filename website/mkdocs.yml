@@ -28,7 +28,7 @@ site_description: >-
 # Repository
 repo_name: onechart/onechart
 repo_url: https://github.com/onechart/onechart
-edit_uri: https://github.com/onechart/onechart/website
+edit_uri: https://github.com/onechart/onechart/tree/master/website/docs
 
 extra_css:
   - stylesheets/extra.css
@@ -138,3 +138,5 @@ nav:
       - Volumes: examples/volumes.md
       - Custom command: examples/custom-command.md
       - Cron job: examples/cron-job.md
+      - Feature branch deploys: examples/feature-branch-deploys.md
+      - Prometheus monitoring rules: examples/prometheus-monitoring-rules.md
