@@ -6,7 +6,7 @@ image:
   tag: stable-slim
 
 command: |
-  while true; date; sleep 2; done
+  while true; do date; sleep 2; done
 ```
 
 Check the Kubernetes manifest:
@@ -18,7 +18,7 @@ image:
   tag: stable-slim
 
 command: |
-  echo "hello"
+  while true; do date; sleep 2; done
 EOF
 
 helm template my-release onechart/onechart -f values.yaml
@@ -33,7 +33,7 @@ image:
   tag: 3.12
 
 command: |
-  echo "hello"
+  while true; do date; sleep 2; done
 shell: "/bin/ash"
 EOF
 

@@ -5,16 +5,16 @@ templates:
 tests:
   - it: Should set command
     set:
-      command: "while true; date; sleep 2; done"
+      command: "while true; do date; sleep 2; done"
     asserts:
       - equal:
           path: spec.template.spec.containers[0].command
-          value: ['/bin/sh', 'while true; date; sleep 2; done']
+          value: ['/bin/sh', '-c', 'while true; do date; sleep 2; done']
   - it: Should set shell and command
     set:
-      command: "while true; date; sleep 2; done"
+      command: "while true; do date; sleep 2; done"
       shell: "/bin/ash"
     asserts:
       - equal:
           path: spec.template.spec.containers[0].command
-          value: ['/bin/ash', 'while true; date; sleep 2; done']
+          value: ['/bin/ash', '-c','while true; do date; sleep 2; done']

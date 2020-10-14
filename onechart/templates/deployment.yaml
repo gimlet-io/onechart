@@ -33,7 +33,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.command }}
-          command: ['{{ .Values.shell | default "/bin/sh" }}', {{ .Values.command | quote }}]
+          command: ['{{ .Values.shell | default "/bin/sh" }}', "-c", {{ .Values.command | quote }}]
           {{- end }}
           envFrom:
             {{- if .Values.vars }}
