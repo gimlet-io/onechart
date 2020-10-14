@@ -1,0 +1,66 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{ include "helm-chart.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.schedule }}
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 120
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          restartPolicy: Never
+          containers:
+            - name: {{ .Release.Name }}
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              {{- if .Values.vars }}
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              {{- end }}
+              command:
+                - {{ .Values.shell | default "/bin/sh" }}
+                - -c
+                - {{ .Values.command | default "echo I'm alive" | quote }}
+              envFrom:
+                {{- if .Values.vars }}
+                - configMapRef:
+                    name: {{ .Release.Name }}
+                {{- end }}
+                {{- if .Values.secret.enabled }}
+                - secretRef:
+                    name: {{ .Release.Name }}
+                {{- end }}
+              volumeMounts:
+                {{- range .Values.volumes }}
+                - name: {{ .name }}
+                  mountPath: {{ .path }}
+                {{- end }}
+              resources:
+                {{ toYaml .Values.resources | nindent 16 }}
+          volumes:
+            {{- range .Values.volumes }}
+            - name: {{ .name }}
+              persistentVolumeClaim:
+                claimName: {{ printf "%s-%s" $.Release.Name .name }}
+            {{- end }}
+            {{ with .Values.nodeSelector }}
+          nodeSelector:
+            {{ toYaml . | nindent 8 }}
+          {{- end }}
+          {{ with .Values.affinity }}
+          affinity:
+            {{ toYaml . | nindent 8 }}
+          {{- end }}
+          {{ with .Values.tolerations }}
+          tolerations:
+            {{ toYaml . | nindent 8 }}
+          {{- end }}

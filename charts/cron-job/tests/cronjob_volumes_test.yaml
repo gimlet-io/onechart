@@ -1,0 +1,33 @@
+suite: test cron job
+templates:
+  - cronJob.yaml
+  - configmap.yaml
+  - pvc.yaml
+tests:
+  - it: Should mount volume
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          size: 10Gi
+          storageClass: default
+    asserts:
+      - equal:
+          path: spec.jobTemplate.spec.template.spec.containers[0].volumeMounts
+          value:
+            - name: data
+              mountPath: /var/lib/1clickinfra/data
+  - it: Should reference volume
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          size: 10Gi
+          storageClass: default
+    asserts:
+      - equal:
+          path: spec.jobTemplate.spec.template.spec.volumes
+          value:
+            - name: data
+              persistentVolumeClaim:
+                claimName: RELEASE-NAME-data

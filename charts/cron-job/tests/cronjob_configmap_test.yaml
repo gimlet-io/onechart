@@ -1,0 +1,20 @@
+suite: test deployment
+templates:
+  - cronJob.yaml
+  - configmap.yaml
+tests:
+  - it: Should reference configmap if vars are set
+    set:
+      vars:
+        var1: value1
+        var2: value2
+    asserts:
+      - contains:
+          path: spec.jobTemplate.spec.template.spec.containers[0].envFrom
+          content:
+            configMapRef:
+              name: RELEASE-NAME
+  - it: Should not reference configmap if vars are not set
+    asserts:
+      - isNull:
+          path: spec.jobTemplate.spec.template.spec.containers[0].envFrom

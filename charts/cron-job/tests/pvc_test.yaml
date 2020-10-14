@@ -1,0 +1,15 @@
+suite: test cron job
+templates:
+  - pvc.yaml
+tests:
+  - it: Should create PVC
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          size: 10Gi
+          storageClass: default
+    asserts:
+      - equal:
+          path: spec.storageClassName
+          value: default

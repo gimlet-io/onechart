@@ -18,7 +18,7 @@ image:
   repository: debian
   tag: stable-slim
 
-schedule: "0 1 0 0 0"
+schedule: "*/1 * * * *"
 command: |
   echo "hello"
 EOF
