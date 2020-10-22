@@ -24,7 +24,9 @@ tolerations: []
 
 affinity: {}
 
-probe: "/"
+probe:
+  enabled: false
+  path: "/"
 
 secret:
   enabled: false
