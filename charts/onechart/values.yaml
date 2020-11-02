@@ -14,7 +14,7 @@ podSecurityContext:
 
 securityContext: {}
 
-containerPort: 8080
+containerPort: 80
 
 resources: {}
 
