@@ -1,0 +1,12 @@
+suite: test deployment
+templates:
+  - namespace.yaml
+tests:
+  - it: Should create namespace
+    set:
+      namespaces:
+        - name: staging
+    asserts:
+      - equal:
+          path: metadata.name
+          value: staging
