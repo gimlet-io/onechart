@@ -1,0 +1,25 @@
+{{- range .Values.namespaces }}
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: resource-limits
+spec:
+  limits:
+    - type: Container
+      max:
+        cpu: "4"
+        memory: "8Gi"
+      min:
+        cpu: "100m"
+        memory: "50Mi"
+      default:
+        cpu: "300m"
+        memory: "200Mi"
+      defaultRequest:
+        cpu: "200m"
+        memory: "200Mi"
+      maxLimitRequestRatio:
+        cpu: "10"
+        memory: "1"
+{{- end }}

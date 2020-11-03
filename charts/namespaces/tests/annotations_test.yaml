@@ -1,0 +1,15 @@
+suite: test deployment
+templates:
+  - namespace.yaml
+tests:
+  - it: Should place annotations
+    set:
+      namespaces:
+        - name: staging
+          annotations:
+            linkerd.io/inject: enabled
+    asserts:
+      - equal:
+          path: metadata.annotations
+          value:
+            linkerd.io/inject: enabled

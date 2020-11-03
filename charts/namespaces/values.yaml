@@ -1,2 +1,15 @@
 namespaces:
   - name: staging
+
+budget:
+  cpu: 32
+  memory: "64Gi"
+  storage: "500Gi"
+
+overcommit:
+  cpu: 2
+  memory: 1
+
+podOvercommit:
+  cpu: 10
+  memory: 2
