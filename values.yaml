@@ -2,7 +2,8 @@ namespaces:
   - name: staging
     annotations:
       linkerd.io/inject: enabled
-    budget:
-      cpu: 8
-      memory: "16Gi"
-      storage: "100Gi"
+    namespace:
+      budget:
+        cpu: 8
+        memory: "16Gi"
+        storage: "100Gi"

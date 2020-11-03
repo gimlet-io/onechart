@@ -1,25 +1,44 @@
 {{- range .Values.namespaces }}
+{{- $limits := $.Values.pod.limits }}
+{{- if .pod }}
+{{- if .pod.limits }}
+{{- $limits = .pod.limits }}
+{{- end }}
+{{- end }}
+{{- $overcommit := $.Values.pod.overcommit }}
+{{- if .pod }}
+{{- if .pod.overcommit }}
+{{- $overcommit = .pod.overcommit }}
+{{- end }}
+{{- end }}
+{{- $defaults := $.Values.pod.defaults }}
+{{- if .pod }}
+{{- if .pod.defaults }}
+{{- $defaults = .pod.defaults }}
+{{- end }}
+{{- end }}
 ---
 apiVersion: v1
 kind: LimitRange
 metadata:
-  name: resource-limits
+  name: {{ .name }}
+  namespace: {{ .name }}
 spec:
   limits:
     - type: Container
       max:
-        cpu: "4"
+        cpu: 4
         memory: "8Gi"
       min:
         cpu: "100m"
         memory: "50Mi"
       default:
-        cpu: "300m"
-        memory: "200Mi"
+        cpu: {{ $defaults.cpu }}
+        memory: {{ $defaults.memory }}
       defaultRequest:
-        cpu: "200m"
-        memory: "200Mi"
+        cpu: {{ $defaults.cpu }}
+        memory: {{ $defaults.memory }}
       maxLimitRequestRatio:
-        cpu: "10"
-        memory: "1"
+        cpu: {{ $overcommit.cpu }}
+        memory: {{ $overcommit.memory }}
 {{- end }}

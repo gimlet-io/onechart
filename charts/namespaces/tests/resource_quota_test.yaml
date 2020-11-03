@@ -4,13 +4,14 @@ templates:
 tests:
   - it: Should set default quota values
     set:
-      budget:
-        cpu: 32
-        memory: "64Gi"
-        storage: "500Gi"
-      overcommit:
-        cpu: 2
-        memory: 1
+      namespace:
+        budget:
+          cpu: 32
+          memory: "64Gi"
+          storage: "500Gi"
+        overcommit:
+          cpu: 2
+          memory: 1
     asserts:
       - equal:
           path: spec.hard
@@ -24,17 +25,19 @@ tests:
     set:
       namespaces:
         - name: staging
-          budget:
-            cpu: 8
-            memory: "16Gi"
-            storage: "100Gi"
-      budget:
-        cpu: 32
-        memory: "64Gi"
-        storage: "500Gi"
-      overcommit:
-        cpu: 2
-        memory: 1
+          namespace:
+            budget:
+              cpu: 8
+              memory: "16Gi"
+              storage: "100Gi"
+      namespace:
+        budget:
+          cpu: 32
+          memory: "64Gi"
+          storage: "500Gi"
+        overcommit:
+          cpu: 2
+          memory: 1
     asserts:
       - equal:
           path: spec.hard

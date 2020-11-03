@@ -1,0 +1,70 @@
+suite: test deployment
+templates:
+  - limit-range.yaml
+tests:
+  - it: Should set default limits
+    set:
+      pod:
+        limits:
+          cpu: 4
+          memory: "8Gi"
+        defaults:
+          cpu: "200m"
+          memory: "200Mi"
+        overcommit:
+          cpu: 10
+          memory: 2
+    asserts:
+      - equal:
+          path: spec.limits
+          value:
+            - type: Container
+              max:
+                cpu: 4
+                memory: "8Gi"
+              min:
+                cpu: "100m"
+                memory: "50Mi"
+              default:
+                cpu: "200m"
+                memory: "200Mi"
+              defaultRequest:
+                cpu: "200m"
+                memory: "200Mi"
+              maxLimitRequestRatio:
+                cpu: 10
+                memory: 2
+  - it: Should set namespace specific limits
+    set:
+      namespaces:
+        - name: staging
+          pod:
+            limits:
+              cpu: 4
+              memory: "8Gi"
+            defaults:
+              cpu: "200m"
+              memory: "200Mi"
+            overcommit:
+              cpu: 10
+              memory: 2
+    asserts:
+      - equal:
+          path: spec.limits
+          value:
+            - type: Container
+              max:
+                cpu: 4
+                memory: "8Gi"
+              min:
+                cpu: "100m"
+                memory: "50Mi"
+              default:
+                cpu: "200m"
+                memory: "200Mi"
+              defaultRequest:
+                cpu: "200m"
+                memory: "200Mi"
+              maxLimitRequestRatio:
+                cpu: 10
+                memory: 2
