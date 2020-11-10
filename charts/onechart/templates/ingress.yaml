@@ -17,10 +17,12 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
+  {{- if default false .tlsEnabled }}
   tls:
     - hosts:
         - {{ .host | quote }}
       secretName: {{ printf "tls-%s" $.Release.Name }}
+  {{- end }}
   rules:
     - host: {{ .host | quote }}
       http:
