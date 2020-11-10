@@ -43,23 +43,7 @@
       "shell": "/bin/sh"
     }
   ],
-  "required": [
-    "image",
-    "replicas",
-    "nameOverride",
-    "fullnameOverride",
-    "podAnnotations",
-    "podSecurityContext",
-    "securityContext",
-    "containerPort",
-    "resources",
-    "nodeSelector",
-    "tolerations",
-    "affinity",
-    "probe",
-    "secret",
-    "shell"
-  ],
+  "required": [],
   "properties": {
     "image": {
       "$id": "#/properties/image",
