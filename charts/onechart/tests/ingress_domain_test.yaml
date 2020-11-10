@@ -6,6 +6,7 @@ tests:
     set:
       ingress:
         host: chart-example.local
+        tlsEnabled: true
     asserts:
       - equal:
           path: spec.tls
