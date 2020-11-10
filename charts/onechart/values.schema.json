@@ -19,11 +19,24 @@
         "fsGroup": 999
       },
       "securityContext": {},
-      "containerPort": 8080,
-      "resources": {},
+      "containerPort": 80,
+      "resources": {
+        "requests": {
+          "cpu": "200m",
+          "memory": "200mi"
+        },
+        "limits": {
+          "cpu": "200m",
+          "memory": "200mi"
+        }
+      },
       "nodeSelector": {},
       "tolerations": [],
       "affinity": {},
+      "probe": {
+        "enabled": false,
+        "path": "/"
+      },
       "secret": {
         "enabled": false
       },
@@ -177,7 +190,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": 0,
       "examples": [
-        8080
+        80
       ]
     },
     "resources": {
@@ -187,9 +200,103 @@
       "description": "An explanation about the purpose of this instance.",
       "default": {},
       "examples": [
-        {}
+        {
+          "requests": {
+            "cpu": "200m",
+            "memory": "200mi"
+          },
+          "limits": {
+            "cpu": "200m",
+            "memory": "200mi"
+          }
+        }
       ],
-      "required": [],
+      "required": [
+        "requests",
+        "limits"
+      ],
+      "properties": {
+        "requests": {
+          "$id": "#/properties/resources/properties/requests",
+          "type": "object",
+          "title": "The requests schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "200m",
+              "memory": "200mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/requests/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "200m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/requests/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "200mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "limits": {
+          "$id": "#/properties/resources/properties/limits",
+          "type": "object",
+          "title": "The limits schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "200m",
+              "memory": "200mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/limits/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "200m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/limits/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "200mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
       "additionalProperties": true
     },
     "nodeSelector": {
@@ -235,10 +342,40 @@
       "type": "object",
       "title": "The probe schema",
       "description": "An explanation about the purpose of this instance.",
-      "default": "",
+      "default": {},
       "examples": [
-        "/"
-      ]
+        {
+          "enabled": false,
+          "path": "/"
+        }
+      ],
+      "required": [
+        "enabled",
+        "path"
+      ],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/probe/properties/enabled",
+          "type": "boolean",
+          "title": "The enabled schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            false
+          ]
+        },
+        "path": {
+          "$id": "#/properties/probe/properties/path",
+          "type": "string",
+          "title": "The path schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "/"
+          ]
+        }
+      },
+      "additionalProperties": true
     },
     "secret": {
       "$id": "#/properties/secret",
