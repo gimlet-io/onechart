@@ -16,7 +16,13 @@ securityContext: {}
 
 containerPort: 80
 
-resources: {}
+resources:
+  requests:
+    cpu: "200m"
+    memory: "200mi"
+  limits:
+    cpu: "200m"
+    memory: "200mi"
 
 nodeSelector: {}
 
