@@ -19,10 +19,10 @@ containerPort: 80
 resources:
   requests:
     cpu: "200m"
-    memory: "200mi"
+    memory: "200Mi"
   limits:
     cpu: "200m"
-    memory: "200mi"
+    memory: "200Mi"
 
 nodeSelector: {}
 
