@@ -48,8 +48,8 @@
     "image": {
       "$id": "#/properties/image",
       "type": "object",
-      "title": "The image schema",
-      "description": "An explanation about the purpose of this instance.",
+      "title": "Image",
+      "description": "The image to deploy",
       "default": {},
       "examples": [
         {
@@ -65,9 +65,9 @@
         "repository": {
           "$id": "#/properties/image/properties/repository",
           "type": "string",
-          "title": "The repository schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
+          "title": "Repository",
+          "description": "",
+          "default": "nginx",
           "examples": [
             "nginx"
           ]
@@ -75,22 +75,23 @@
         "tag": {
           "$id": "#/properties/image/properties/tag",
           "type": "string",
-          "title": "The tag schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
+          "title": "Tag",
+          "description": "",
+          "default": "1.19.3",
           "examples": [
             "latest"
           ]
         }
-      },
-      "additionalProperties": true
+      }
     },
     "replicas": {
       "$id": "#/properties/replicas",
       "type": "integer",
-      "title": "The replicas schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": 0,
+      "title": "Replicas",
+      "description": "",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 16,
       "examples": [
         1
       ]
@@ -170,9 +171,9 @@
     "containerPort": {
       "$id": "#/properties/containerPort",
       "type": "integer",
-      "title": "The containerPort schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": 0,
+      "title": "Port",
+      "description": "The port your app is listening on",
+      "default": 80,
       "examples": [
         80
       ]
@@ -180,8 +181,8 @@
     "resources": {
       "$id": "#/properties/resources",
       "type": "object",
-      "title": "The resources schema",
-      "description": "An explanation about the purpose of this instance.",
+      "title": "",
+      "description": "",
       "default": {},
       "examples": [
         {
@@ -195,16 +196,13 @@
           }
         }
       ],
-      "required": [
-        "requests",
-        "limits"
-      ],
+      "required": [],
       "properties": {
         "requests": {
           "$id": "#/properties/resources/properties/requests",
           "type": "object",
-          "title": "The requests schema",
-          "description": "An explanation about the purpose of this instance.",
+          "title": "Requests",
+          "description": "The typical resources your app uses",
           "default": {},
           "examples": [
             {
@@ -220,9 +218,9 @@
             "cpu": {
               "$id": "#/properties/resources/properties/requests/properties/cpu",
               "type": "string",
-              "title": "The cpu schema",
-              "description": "An explanation about the purpose of this instance.",
-              "default": "",
+              "title": "CPU",
+              "description": "",
+              "default": "200m",
               "examples": [
                 "200m"
               ]
@@ -230,21 +228,20 @@
             "memory": {
               "$id": "#/properties/resources/properties/requests/properties/memory",
               "type": "string",
-              "title": "The memory schema",
-              "description": "An explanation about the purpose of this instance.",
-              "default": "",
+              "title": "Memory",
+              "description": "",
+              "default": "200Mi",
               "examples": [
                 "200mi"
               ]
             }
-          },
-          "additionalProperties": true
+          }
         },
         "limits": {
           "$id": "#/properties/resources/properties/limits",
           "type": "object",
-          "title": "The limits schema",
-          "description": "An explanation about the purpose of this instance.",
+          "title": "Limits",
+          "description": "The maximum resources your app may use",
           "default": {},
           "examples": [
             {
@@ -260,9 +257,9 @@
             "cpu": {
               "$id": "#/properties/resources/properties/limits/properties/cpu",
               "type": "string",
-              "title": "The cpu schema",
-              "description": "An explanation about the purpose of this instance.",
-              "default": "",
+              "title": "CPU",
+              "description": "The hard ceiling for the app's CPU usage. The app will be throttled to this limit. 1000m or 1000 CPU shares = 1 CPU core",
+              "default": "200m",
               "examples": [
                 "200m"
               ]
@@ -270,18 +267,16 @@
             "memory": {
               "$id": "#/properties/resources/properties/limits/properties/memory",
               "type": "string",
-              "title": "The memory schema",
-              "description": "An explanation about the purpose of this instance.",
-              "default": "",
+              "title": "Memory",
+              "description": "The hard ceiling for the app's memory usage. The app will be RESTARTED if it reaches this limit",
+              "default": "200Mi",
               "examples": [
                 "200mi"
               ]
             }
-          },
-          "additionalProperties": true
+          }
         }
-      },
-      "additionalProperties": true
+      }
     },
     "nodeSelector": {
       "$id": "#/properties/nodeSelector",
@@ -324,8 +319,8 @@
     "probe": {
       "$id": "#/properties/probe",
       "type": "object",
-      "title": "The probe schema",
-      "description": "An explanation about the purpose of this instance.",
+      "title": "Healthcheck",
+      "description": "The Kubernetes Readiness probe that determines whether your app is healthy and if should receive traffic",
       "default": {},
       "examples": [
         {
@@ -341,8 +336,8 @@
         "enabled": {
           "$id": "#/properties/probe/properties/enabled",
           "type": "boolean",
-          "title": "The enabled schema",
-          "description": "An explanation about the purpose of this instance.",
+          "title": "",
+          "description": "",
           "default": false,
           "examples": [
             false
@@ -351,15 +346,14 @@
         "path": {
           "$id": "#/properties/probe/properties/path",
           "type": "string",
-          "title": "The path schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
+          "title": "Path",
+          "description": "The web endpoint that returns HTTP 200 if your application is healthy",
+          "default": "/",
           "examples": [
             "/"
           ]
         }
-      },
-      "additionalProperties": true
+      }
     },
     "secret": {
       "$id": "#/properties/secret",
@@ -398,6 +392,90 @@
       "examples": [
         "/bin/sh"
       ]
+    },
+    "vars": {
+      "$id": "#/properties/vars",
+      "type": "object",
+      "title": "Environment variables",
+      "description": "",
+      "default": {},
+      "examples": [
+        {
+          "VAR_1": "value 1",
+          "VAR_2": "value 2"
+        }
+      ],
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    },
+    "sealedSecrets": {
+      "$id": "#/properties/sealedSecrets",
+      "type": "object",
+      "title": "Sealed Secrets",
+      "description": "",
+      "default": {},
+      "examples": [
+        {
+          "VAR_1": "value 1",
+          "VAR_2": "value 2"
+        }
+      ],
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    },
+    "ingress": {
+      "$id": "#/properties/ingress",
+      "type": "object",
+      "title": "Incoming traffic",
+      "description": "",
+      "default": {},
+      "examples": [
+        {
+          "tlsEnabled": false,
+          "annotations": {
+            "kubernetes.io/ingress.class": "nginx"
+          },
+          "host": "my-release.mycompany.com"
+        }
+      ],
+      "required": [],
+      "properties": {
+        "host": {
+          "$id": "#/properties/ingress/properties/host",
+          "type": "string",
+          "title": "Host Name",
+          "description": "Where your application will be accessible",
+          "default": "",
+          "examples": [
+            "my-release.mycompany.com"
+          ]
+        },
+        "tlsEnabled": {
+          "$id": "#/properties/ingress/properties/tlsEnabled",
+          "type": "boolean",
+          "title": "HTTPS",
+          "description": "",
+          "default": false,
+          "examples": [
+            false
+          ]
+        },
+        "annotations": {
+          "$id": "#/properties/ingress/properties/annotations",
+          "type": "object",
+          "title": "Annotations",
+          "description": "",
+          "default": {},
+          "examples": [
+            {
+              "kubernetes.io/ingress.class": "nginx"
+            }
+          ],
+          "additionalProperties": true
+        }
+      }
     }
   },
   "additionalProperties": true
