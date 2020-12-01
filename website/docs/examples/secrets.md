@@ -42,12 +42,19 @@ sealedSecrets:
   secret2: ewogICJjcmVk...
 ```
 
-Where you have to generate the encrypted values with [Sealed Secrets "raw" workflow](https://github.com/bitnami-labs/sealed-secrets#raw-mode-experimental):
+Where you have to generate the encrypted values 
+
+- either one-by-one with [Sealed Secrets "raw" workflow](https://github.com/bitnami-labs/sealed-secrets#raw-mode-experimental):
 
 ```bash
-echo -n my-secret-value | kubeseal \
-  --raw \
-  --from-file=/dev/stdin \
-  --namespace bar \
-  --name my-release
+echo -n my-secret-value | kubeseal --raw --scope cluster-wide --from-file=/dev/stdin
+```
+
+- or with the [Gimlet CLI](https://github.com/gimlet-io/gimlet-cli):
+
+```
+# Fetch the keys first
+kubeseal --fetch-cert > sealing-key.pub
+# Seal all secrets in one go
+gimlet seal -p sealedSecrets -k sealingKey.pub -f values.yaml -o sealed-valeus.yaml
 ```
