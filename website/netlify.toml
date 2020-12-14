@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/*"
+  to = "https://gimlet.io/onechart/getting-started"
+  status = 301
+  force = true
