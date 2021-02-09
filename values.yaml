@@ -1,9 +1,10 @@
-namespaces:
-  - name: staging
-    annotations:
-      linkerd.io/inject: enabled
-    namespace:
-      budget:
-        cpu: 8
-        memory: "16Gi"
-        storage: "100Gi"
+sealedFileSecrets:
+  - name: google-account-key
+    path: /google-account-key
+    filesToMount:
+      - name: key
+#        sourcePath: README.md
+        source: |-
+          {
+            "what": "this is a fixture"
+          }

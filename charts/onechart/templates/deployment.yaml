@@ -71,7 +71,7 @@ spec:
             - name: {{ .name }}
               mountPath: {{ .path }}
             {{- end }}
-            {{- range .Values.volumesFromSecretFiles }}
+            {{- range .Values.sealedFileSecrets }}
             - name: {{ .name }}
               mountPath: {{ .path }}
               readOnly: true
@@ -84,10 +84,10 @@ spec:
           persistentVolumeClaim:
             claimName: {{ printf "%s-%s" $.Release.Name .name }}
         {{- end }}
-        {{- range .Values.volumesFromSecretFiles }}
+        {{- range .Values.sealedFileSecrets }}
         - name: {{ .name }}
           secret:
-            secretName: {{ .name }}
+            secretName: {{ printf "%s-%s" $.Release.Name .name }}
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
