@@ -71,6 +71,11 @@ spec:
             - name: {{ .name }}
               mountPath: {{ .path }}
             {{- end }}
+            {{- range .Values.volumesFromSecretFiles }}
+            - name: {{ .name }}
+              mountPath: {{ .path }}
+              readOnly: true
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
@@ -78,6 +83,11 @@ spec:
         - name: {{ .name }}
           persistentVolumeClaim:
             claimName: {{ printf "%s-%s" $.Release.Name .name }}
+        {{- end }}
+        {{- range .Values.volumesFromSecretFiles }}
+        - name: {{ .name }}
+          secret:
+            secretName: {{ .name }}
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
