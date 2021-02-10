@@ -17,6 +17,7 @@ tests:
   - it: Should set Ingress annotation
     set:
       ingress:
+        host: chart-example.local
         annotations:
           kubernetes.io/ingress.class: nginx
     asserts:
