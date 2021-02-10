@@ -82,7 +82,6 @@ spec:
         - name: {{ .Release.Name }}-debug
           securityContext: *securityContext
           image: {{ .Values.debugSidecar.image }}
-          imagePullPolicy: *imagePullPolicy
           command:
             - {{ .Values.debugSidecar.shell }}
             - -c
