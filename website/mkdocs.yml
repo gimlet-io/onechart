@@ -140,3 +140,4 @@ nav:
       - Cron job: examples/cron-job.md
       - Feature branch deploys: examples/feature-branch-deploys.md
       - Prometheus monitoring rules: examples/prometheus-monitoring-rules.md
+      - Debug toolbox in a sidecar: examples/debugSidecar.md

@@ -1,10 +1,7 @@
-sealedFileSecrets:
-  - name: google-account-key
-    path: /google-account-key
-    filesToMount:
-      - name: key
-#        sourcePath: README.md
-        source: |-
-          {
-            "what": "this is a fixture"
-          }
+debugSidecarEnabled: true
+
+volumes:
+  - name: data
+    path: /data
+    size: 1Gi
+    storageClass: local-path

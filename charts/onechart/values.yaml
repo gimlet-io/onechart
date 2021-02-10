@@ -38,3 +38,9 @@ secret:
   enabled: false
 
 shell: "/bin/sh"
+
+debugSidecarEnabled: false
+debugSidecar:
+  image: debian:stable-slim
+  shell: "/bin/bash"
+  command: "while true; do sleep 30; done;"

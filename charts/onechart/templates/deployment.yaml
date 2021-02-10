@@ -28,17 +28,17 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Release.Name }}
-          securityContext:
+          securityContext: &securityContext
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }} &imagePullPolicy
           {{- if .Values.command }}
           command:
             - {{ .Values.shell }}
             - -c
             - {{ .Values.command | quote }}
           {{- end }}
-          envFrom:
+          envFrom: &envFrom
             {{- if .Values.vars }}
             - configMapRef:
                 name: {{ .Release.Name }}
@@ -66,7 +66,7 @@ spec:
             successThreshold: 1
             timeoutSeconds: 10
           {{- end }}
-          volumeMounts:
+          volumeMounts: &volumeMounts
             {{- range .Values.volumes }}
             - name: {{ .name }}
               mountPath: {{ .path }}
@@ -78,6 +78,18 @@ spec:
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+        {{- if .Values.debugSidecarEnabled }}
+        - name: {{ .Release.Name }}-debug
+          securityContext: *securityContext
+          image: {{ .Values.debugSidecar.image }}
+          imagePullPolicy: *imagePullPolicy
+          command:
+            - {{ .Values.debugSidecar.shell }}
+            - -c
+            - {{ .Values.debugSidecar.command | quote }}
+          envFrom: *envFrom
+          volumeMounts: *volumeMounts
+        {{- end }}
       volumes:
         {{- range .Values.volumes }}
         - name: {{ .name }}
