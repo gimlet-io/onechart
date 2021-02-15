@@ -96,6 +96,20 @@
         1
       ]
     },
+    "podDisruptionBudgetEnabled": {
+      "$id": "#/properties/podDisruptionBudgetEnabled",
+      "type": "boolean",
+      "title": "Pod Disruption Budget",
+      "description": "If pod disruption budgets is enabled, node maintenance won't affect the availability of your application",
+      "default": true
+    },
+    "spreadAcrossNodes": {
+      "$id": "#/properties/spreadAcrossNodes",
+      "type": "boolean",
+      "title": "Spread pods across nodes",
+      "description": "This setting prevents pods to be placed on the same node",
+      "default": true
+    },
     "nameOverride": {
       "$id": "#/properties/nameOverride",
       "type": "string",

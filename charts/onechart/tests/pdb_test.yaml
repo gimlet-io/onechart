@@ -1,0 +1,11 @@
+suite: test prometheus rule
+templates:
+  - pdb.yaml
+tests:
+  - it: Should set Pod Disruption budget
+    set:
+      replicas: 2
+    asserts:
+      - equal:
+          path: spec.minAvailable
+          value: 1

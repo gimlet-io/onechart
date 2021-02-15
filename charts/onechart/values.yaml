@@ -29,7 +29,6 @@ nodeSelector: {}
 
 tolerations: []
 
-affinity: {}
 
 probe:
   enabled: false
@@ -51,3 +50,6 @@ debugSidecar:
   image: debian:stable-slim
   shell: "/bin/bash"
   command: "while true; do sleep 30; done;"
+
+podDisruptionBudgetEnabled: true
+spreadAcrossNodes: true

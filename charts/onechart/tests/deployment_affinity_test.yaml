@@ -1,0 +1,27 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+  - configmap.yaml
+tests:
+  - it: Should spread pods across nodes
+    set:
+      spreadAccrossNodes: true
+    asserts:
+      - equal:
+          path: spec.template.spec.affinity
+          value:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: "app.kubernetes.io/instance"
+                        operator: In
+                        values:
+                          - RELEASE-NAME
+                  topologyKey: "kubernetes.io/hostname"
+  - it: Should not spread pods across nodes
+    set:
+      spreadAcrossNodes: false
+    asserts:
+      - isNull:
+          path: spec.template.spec.affinity
