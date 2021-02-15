@@ -11,15 +11,35 @@ tests:
       - equal:
           path: spec.template.spec.containers[0].readinessProbe
           value:
-            failureThreshold: 3
             httpGet:
               path: "/"
               port: 80
               scheme: HTTP
+            initialDelaySeconds: 0
             periodSeconds: 10
             successThreshold: 1
-            timeoutSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
   - it: Should not set a readinessProbe
     asserts:
       - isNull:
           path: spec.template.spec.containers[0].readinessProbe
+  - it: Should tune readiness probe
+    set:
+      probe:
+        enabled: true
+        settings:
+          periodSeconds: 30
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].readinessProbe
+          value:
+            httpGet:
+              path: "/"
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 3
+            failureThreshold: 3

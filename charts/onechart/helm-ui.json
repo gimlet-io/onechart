@@ -8,6 +8,21 @@
     "uiSchema": {
       "#/properties/replicas": {
         "ui:widget": "range"
+      },
+      "#/properties/probe/properties/settings/properties/initialDelaySeconds": {
+        "ui:widget": "range"
+      },
+      "#/properties/probe/properties/settings/properties/periodSeconds": {
+        "ui:widget": "range"
+      },
+      "#/properties/probe/properties/settings/properties/successThreshold": {
+        "ui:widget": "range"
+      },
+      "#/properties/probe/properties/settings/properties/timeoutSeconds": {
+        "ui:widget": "range"
+      },
+      "#/properties/probe/properties/settings/properties/failureThreshold": {
+        "ui:widget": "range"
       }
     },
     "metaData": {

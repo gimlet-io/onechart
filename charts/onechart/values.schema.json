@@ -352,6 +352,67 @@
           "examples": [
             "/"
           ]
+        },
+        "settings": {
+          "$id": "#/properties/probe/properties/settings",
+          "type": "object",
+          "title": "Probe thresholds",
+          "description": "Tune the probe behavior",
+          "examples": [
+            {
+              "failureThreshold": 3,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "timeoutSeconds": 10
+            }
+          ],
+          "properties": {
+            "initialDelaySeconds": {
+              "$id": "#/properties/probe/properties/settings/properties/initialDelaySeconds",
+              "type": "integer",
+              "title": "Initial Delay Seconds",
+              "description": "Number of seconds after the container has started before the probes is initiated",
+              "default": 0,
+              "minimum": 0,
+              "maximum": 60
+            },
+            "periodSeconds": {
+              "$id": "#/properties/probe/properties/settings/properties/periodSeconds",
+              "type": "integer",
+              "title": "Period",
+              "description": "How often (in seconds) to perform the probe",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 60
+            },
+            "successThreshold": {
+              "$id": "#/properties/probe/properties/settings/properties/successThreshold",
+              "type": "integer",
+              "title": "Success Threshold",
+              "description": "Minimum consecutive successes for the probe to be considered successful after having failed",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 15
+            },
+            "timeoutSeconds": {
+              "$id": "#/properties/probe/properties/settings/properties/timeoutSeconds",
+              "type": "integer",
+              "title": "Timeout",
+              "description": "Number of seconds after which the probe times out",
+              "default": 3,
+              "minimum": 1,
+              "maximum": 30
+            },
+            "failureThreshold": {
+              "$id": "#/properties/probe/properties/settings/properties/failureThreshold",
+              "type": "integer",
+              "title": "Failure Threshold",
+              "description": "When a probe fails, Kubernetes will tries this many times before giving up. Giving up the pod will be marked Unready and won't get any traffic",
+              "default": 3,
+              "minimum": 1,
+              "maximum": 15
+            }
+          }
         }
       }
     },
