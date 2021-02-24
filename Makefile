@@ -41,3 +41,7 @@ package:
 	mv namespaces*.tgz docs
 
 	helm repo index docs --url https://chart.onechart.dev
+
+debug-ui:
+	#gimlet chart configure -s charts/onechart/values.schema.json -u charts/onechart/helm-ui.json onechart/onechart
+	/home/laszlo/projects/gimlet-cli/build/gimlet chart configure -s charts/onechart/values.schema.json -u charts/onechart/helm-ui.json onechart/onechart
