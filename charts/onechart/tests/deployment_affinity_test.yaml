@@ -17,7 +17,7 @@ tests:
                       - key: "app.kubernetes.io/instance"
                         operator: In
                         values:
-                          - RELEASE-NAME
+                          - release-name
                   topologyKey: "kubernetes.io/hostname"
   - it: Should not spread pods across nodes
     set:

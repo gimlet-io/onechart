@@ -1,0 +1,25 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+  - configmap.yaml
+tests:
+  - it: Should replace special char
+    set:
+      image.repository: nginx
+      image.tag: x.y.z
+    release:
+      name: my+release
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].name
+          value: my-release
+  - it: Should replace special char 2
+    set:
+      image.repository: nginx
+      image.tag: x.y.z
+    release:
+      name: my/release
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].name
+          value: my-release

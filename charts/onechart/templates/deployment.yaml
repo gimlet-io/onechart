@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ template "robustName" .Release.Name }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "helm-chart.labels" . | nindent 4 }}
@@ -27,7 +27,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Release.Name }}
+        - name: {{ template "robustName" .Release.Name }}
           securityContext: &securityContext
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -41,15 +41,15 @@ spec:
           envFrom: &envFrom
             {{- if .Values.vars }}
             - configMapRef:
-                name: {{ .Release.Name }}
+                name: {{ template "robustName" .Release.Name }}
             {{- end }}
             {{- if .Values.secret.enabled }}
             - secretRef:
-                name: {{ .Release.Name }}
+                name: {{ template "robustName" .Release.Name }}
             {{- end }}
             {{- if .Values.sealedSecrets }}
             - secretRef:
-                name: {{ .Release.Name }}
+                name: {{ template "robustName" .Release.Name }}
             {{- end }}
           ports:
             - name: http
@@ -78,7 +78,7 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
         {{- if .Values.debugSidecarEnabled }}
-        - name: {{ .Release.Name }}-debug
+        - name: {{ template "robustName" .Release.Name }}-debug
           securityContext: *securityContext
           image: {{ .Values.debugSidecar.image }}
           command:
@@ -113,7 +113,7 @@ spec:
                   - key: "app.kubernetes.io/instance"
                     operator: In
                     values:
-                      - {{ .Release.Name }}
+                      - {{ template "robustName" .Release.Name }}
               topologyKey: "kubernetes.io/hostname"
         {{- end }}
         {{- if .Values.affinity }}

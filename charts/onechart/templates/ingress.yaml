@@ -8,7 +8,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $.Release.Name }}
+  name: {{ template "robustName" $.Release.Name }}
   namespace: {{ $.Release.Namespace }}
   labels:
     {{- $labels | nindent 4 }}
@@ -28,6 +28,6 @@ spec:
       http:
         paths:
         - backend:
-            serviceName: {{ $.Release.Name }}
+            serviceName: {{ template "robustName" $.Release.Name }}
             servicePort: {{ $.Values.containerPort }}
 {{- end }}

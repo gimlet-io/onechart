@@ -1,9 +1,10 @@
 {{- range .Values.volumes }}
+{{- $robustName := include "robustName" $.Release.Name -}}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ printf "%s-%s" $.Release.Name .name }}
+  name: {{ printf "%s-%s" $robustName .name }}
   namespace: {{ $.Release.Namespace }}
 spec:
   accessModes:

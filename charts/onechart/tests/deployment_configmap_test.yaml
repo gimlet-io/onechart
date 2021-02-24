@@ -13,7 +13,7 @@ tests:
           path: spec.template.spec.containers[0].envFrom
           content:
             configMapRef:
-              name: RELEASE-NAME
+              name: release-name
   - it: Should not reference configmap if vars are not set
     asserts:
       - isNull:
