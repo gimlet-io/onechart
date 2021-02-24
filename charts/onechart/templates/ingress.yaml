@@ -24,7 +24,7 @@ spec:
       secretName: {{ printf "tls-%s" $.Release.Name }}
   {{- end }}
   rules:
-    - host: {{ .host | trunc 63 | trimSuffix "-" | replace "/" "-" | replace "_" "-" | quote }}
+    - host: {{ template "robustName" .host | quote }}
       http:
         paths:
         - backend:
