@@ -5,3 +5,7 @@ volumes:
     path: /data
     size: 1Gi
     storageClass: local-path
+
+ingress:
+  host: chart-example.local
+  tlsEnabled: true

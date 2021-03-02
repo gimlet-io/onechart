@@ -68,5 +68,5 @@ Create robustName that can be used as Kubernetes resource name, and as subdomain
 \W – all but \w .
 */}}
 {{- define "robustName" -}}
-{{ regexReplaceAll "\\W+" . "-" | replace "_" "-" | lower | trunc 63 | trimSuffix "-" }}
+{{ regexReplaceAll "[^0-9A-Za-z_\\.]+" . "-" | replace "_" "-" | lower | trunc 63 | trimSuffix "-" | trimPrefix "-" }}
 {{- end }}
