@@ -1,0 +1,16 @@
+suite: test deployment
+templates:
+  - service.yaml
+tests:
+  - it: Should have default ClusterIP type
+    asserts:
+      - equal:
+          path: spec.type
+          value: ClusterIP
+  - it: Should set NodePort if flag enabled
+    set:
+      nodePortEnabled: true
+    asserts:
+      - equal:
+          path: spec.type
+          value: NodePort

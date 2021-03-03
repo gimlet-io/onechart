@@ -53,3 +53,5 @@ debugSidecar:
 
 podDisruptionBudgetEnabled: true
 spreadAcrossNodes: true
+
+nodePortEnabled: false
