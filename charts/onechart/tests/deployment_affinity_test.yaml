@@ -5,7 +5,7 @@ templates:
 tests:
   - it: Should spread pods across nodes
     set:
-      spreadAccrossNodes: true
+      spreadAcrossNodes: true
     asserts:
       - equal:
           path: spec.template.spec.affinity
