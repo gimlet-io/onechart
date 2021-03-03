@@ -52,6 +52,6 @@ debugSidecar:
   command: "while true; do sleep 30; done;"
 
 podDisruptionBudgetEnabled: true
-spreadAcrossNodes: true
+spreadAcrossNodes: false
 
 nodePortEnabled: false
