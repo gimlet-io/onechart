@@ -75,6 +75,11 @@ spec:
               mountPath: {{ .path }}
               readOnly: true
             {{- end }}
+            {{- range .Values.fileSecrets }}
+            - name: {{ .name }}
+              mountPath: {{ .path }}
+              readOnly: true
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
         {{- if .Values.debugSidecarEnabled }}
@@ -95,6 +100,11 @@ spec:
             claimName: {{ printf "%s-%s" $.Release.Name .name }}
         {{- end }}
         {{- range .Values.sealedFileSecrets }}
+        - name: {{ .name }}
+          secret:
+            secretName: {{ printf "%s-%s" $.Release.Name .name }}
+        {{- end }}
+        {{- range .Values.fileSecrets }}
         - name: {{ .name }}
           secret:
             secretName: {{ printf "%s-%s" $.Release.Name .name }}

@@ -1,11 +1,11 @@
-debugSidecarEnabled: true
-
-volumes:
-  - name: data
-    path: /data
-    size: 1Gi
-    storageClass: local-path
-
-ingress:
-  host: chart-example.local
-  tlsEnabled: true
+fileSecrets:
+  - name: google-account-key
+    path: /google-account-key
+    secrets:
+      key.json: supersecret
+      another.json: |
+        this
+        is
+        a
+        multiline
+        secret
