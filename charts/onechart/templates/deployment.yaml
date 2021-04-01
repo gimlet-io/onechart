@@ -38,6 +38,7 @@ spec:
             - -c
             - {{ .Values.command | quote }}
           {{- end }}
+          {{- if or (or (.Values.vars) (.Values.secretEnabled)) .Values.sealedSecrets }}
           envFrom: &envFrom
             {{- if .Values.vars }}
             - configMapRef:
@@ -51,6 +52,7 @@ spec:
             - secretRef:
                 name: {{ template "robustName" .Release.Name }}
             {{- end }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.containerPort }}
@@ -65,6 +67,7 @@ spec:
             {{- toYaml . | nindent 12 }}
             {{- end }}
           {{- end }}
+          {{- if or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets }}
           volumeMounts: &volumeMounts
             {{- range .Values.volumes }}
             - name: {{ .name }}
@@ -80,6 +83,7 @@ spec:
               mountPath: {{ .path }}
               readOnly: true
             {{- end }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
         {{- if .Values.debugSidecarEnabled }}
@@ -90,9 +94,14 @@ spec:
             - {{ .Values.debugSidecar.shell }}
             - -c
             - {{ .Values.debugSidecar.command | quote }}
+          {{- if or (or (.Values.vars) (.Values.secretEnabled)) .Values.sealedSecrets }}
           envFrom: *envFrom
+          {{- end }}
+          {{- if or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets }}
           volumeMounts: *volumeMounts
+          {{- end }}
         {{- end }}
+      {{- if or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets }}
       volumes:
         {{- range .Values.volumes }}
         - name: {{ .name }}
@@ -109,6 +118,7 @@ spec:
           secret:
             secretName: {{ printf "%s-%s" $.Release.Name .name }}
         {{- end }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

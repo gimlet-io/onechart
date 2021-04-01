@@ -1,7 +1,7 @@
 image:
   repository: nginx
   tag: "latest"
-  imagePullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
 
 replicas: 1
 
