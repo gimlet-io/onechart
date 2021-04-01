@@ -43,9 +43,9 @@ spec:
             - configMapRef:
                 name: {{ template "robustName" .Release.Name }}
             {{- end }}
-            {{- if .Values.secret.enabled }}
+            {{- if .Values.secretEnabled }}
             - secretRef:
-                name: {{ template "robustName" .Release.Name }}
+                name: {{ .Values.secretName | default (include "robustName" $.Release.Name) }}
             {{- end }}
             {{- if .Values.sealedSecrets }}
             - secretRef:
