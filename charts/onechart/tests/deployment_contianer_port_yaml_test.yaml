@@ -1,0 +1,44 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+  - configmap.yaml
+tests:
+  - it: Should set custom ports
+    set:
+      containerPortYaml:
+        - port: 21
+          targetPort: ftp
+          protocol: TCP
+          name: ftp
+        - port: 3001
+          targetPort: passive-1
+          protocol: TCP
+          name: passive-1
+        - port: 3002
+          targetPort: passive-2
+          protocol: TCP
+          name: passive-2
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].ports
+          value:
+            - port: 21
+              targetPort: ftp
+              protocol: TCP
+              name: ftp
+            - port: 3001
+              targetPort: passive-1
+              protocol: TCP
+              name: passive-1
+            - port: 3002
+              targetPort: passive-2
+              protocol: TCP
+              name: passive-2
+  - it: Should set default port
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].ports
+          value:
+            - name: http
+              containerPort: 80
+              protocol: TCP
