@@ -3,9 +3,11 @@ templates:
   - deployment.yaml
   - configmap.yaml
 tests:
-  - it: Should add a debug sidecar
+  - it: Should inject a sidecar if one is specified
     set:
-      debugSidecarEnabled: true
+      sidecar:
+        repository: debian
+        tag: stable-slim
     asserts:
       - equal:
           path: spec.template.spec.containers[1].image
