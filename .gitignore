@@ -2,3 +2,7 @@
 manifests
 website/site
 website/awesome_venv
+.DS_Store
+**/.DS_Store
+/.DS_Store
+__MACOSX/
