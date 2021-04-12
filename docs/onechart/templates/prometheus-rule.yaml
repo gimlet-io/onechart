@@ -1,0 +1,24 @@
+{{- if .Values.prometheusRules }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ template "robustName" .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "helm-chart.labels" . | nindent 4 }}
+annotations:
+spec:
+  groups:
+    - name: kubernetes-apps
+      rules:
+        {{- range $rule := .Values.prometheusRules }}
+        - alert: {{ $rule.name }}
+          annotations:
+            message: {{ $rule.message | quote }}
+            runbook_url: {{ $rule.runBookURL | quote }}
+          expr: {{ $rule.expression | quote }}
+          for: {{ $rule.for | quote }}
+          labels:
+            {{- toYaml $rule.labels | nindent 12 }}
+        {{- end }}
+{{- end }}

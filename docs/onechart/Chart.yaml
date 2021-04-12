@@ -1,0 +1,5 @@
+apiVersion: v2
+description: One chart to rule them all. A generic Helm chart for your application deployments. Because no-one can remember the Kubernetes yaml syntax.
+name: onechart
+type: application
+version: 0.18.0

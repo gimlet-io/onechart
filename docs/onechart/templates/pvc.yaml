@@ -1,0 +1,16 @@
+{{- range .Values.volumes }}
+{{- $robustName := include "robustName" $.Release.Name -}}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ printf "%s-%s" $robustName .name }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  accessModes:
+    - {{ .accessMode | default "ReadWriteOnce" }}
+  storageClassName: {{ .storageClass | default "local-path" }}
+  resources:
+    requests:
+      storage: {{ .size | default "1Gi" }}
+{{- end }}

@@ -1,0 +1,12 @@
+{{- if and (.Values.podDisruptionBudgetEnabled) (gt (.Values.replicas | int64) 1) }}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ template "robustName" .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      {{- include "helm-chart.selectorLabels" . | nindent 6 }}
+  {{- end }}

@@ -1,0 +1,56 @@
+image:
+  repository: nginx
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+replicas: 1
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 999
+
+securityContext: {}
+
+containerPort: 80
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "200Mi"
+  limits:
+    cpu: "200m"
+    memory: "200Mi"
+
+nodeSelector: {}
+
+tolerations: []
+
+
+probe:
+  enabled: false
+  path: "/"
+  settings:
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 3
+    failureThreshold: 3
+
+secretEnabled: false
+
+shell: "/bin/sh"
+
+debugSidecarEnabled: false
+debugSidecar:
+  image: debian:stable-slim
+  shell: "/bin/bash"
+  command: "while true; do sleep 30; done;"
+
+podDisruptionBudgetEnabled: true
+spreadAcrossNodes: false
+
+nodePortEnabled: false
