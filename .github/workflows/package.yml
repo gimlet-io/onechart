@@ -19,8 +19,7 @@ jobs:
     - name: Versioning
       id: versioning
       run: |
-        echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-        echo "${{ steps.versioning.outputs.VERSION }}"
+        echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
 
     - name: Fetch tag
       id: fetch_tag
@@ -28,6 +27,7 @@ jobs:
         git tag
         VERSION_TAG=`git describe --tags`
         echo "::set-output name=version_tag::$VERSION_TAG"
+        echo "${{ steps.versioning.outputs.version }}"
 
     - name: Create Release
       id: create_release
