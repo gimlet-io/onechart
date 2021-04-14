@@ -21,6 +21,13 @@ jobs:
       run: |
         echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
+# - make sure the tag version equals to the version field in charts/onechart/Chart.yaml
+
+    - name: Verifying version
+      id: verify_version
+      run: |
+        echo "$(cat charts/onechart/Chart.yaml | grep version: | sed 's/"//g')"
+
     - name: Fetch tag
       id: fetch_tag
       run: |
@@ -43,3 +50,4 @@ jobs:
       run: |
         echo "Publishing ${{ steps.fetch_tag.outputs.version_tag }} to the helm repository"
         echo "Run ${{ steps.versioning.outputs.version }}"
+        echo "Version ${{ steps.verify_version.outputs.version }}"
