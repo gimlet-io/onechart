@@ -16,7 +16,11 @@ jobs:
         ref: main
         fetch-depth: 0
 
-    - run: git tag
+    - name: Fetch tag
+      run: |
+        git tag
+        VERSION_TAG=`git describe --tags`
+        echo "::set-output name=version_tag::$VERSION_TAG"
 
     - name: Create Release
       id: create_release
