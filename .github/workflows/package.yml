@@ -15,8 +15,14 @@ jobs:
       with:
         ref: main
         fetch-depth: 0
+    
+    - name: Versioning
+      run: |
+        export VERSION=$(cat charts/onechart/Chart.yaml | grep "version:")
+        echo ${{ VERSION#version }}
 
     - name: Fetch tag
+      id: fetch_tag
       run: |
         git tag
         VERSION_TAG=`git describe --tags`
@@ -34,4 +40,4 @@ jobs:
         prerelease: false
 
     - name: Display commit message
-      run: Publishing {{ $VERSION_TAG }} to the helm repository
+      run: echo "Publishing ${{ steps.fetch_tag.outputs.version_tag }} to the helm repository"
