@@ -1,4 +1,6 @@
 
+.PHONY: all lint kubeval test package debug debug-ui
+
 all: lint kubeval test package
 
 lint:
