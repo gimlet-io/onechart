@@ -17,9 +17,10 @@ jobs:
         fetch-depth: 0
     
     - name: Versioning
+      id: versioning
       run: |
-        export VERSION=$(cat charts/onechart/Chart.yaml | grep "version:")
-        echo "${{ VERSION }}"
+        echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+        echo "${{ steps.versioning.outputs.VERSION }}"
 
     - name: Fetch tag
       id: fetch_tag
