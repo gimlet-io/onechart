@@ -19,7 +19,7 @@ jobs:
     - name: Versioning
       run: |
         export VERSION=$(cat charts/onechart/Chart.yaml | grep "version:")
-        echo ${{ VERSION#version }}
+        echo "${{ VERSION }}"
 
     - name: Fetch tag
       id: fetch_tag
