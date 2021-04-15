@@ -13,7 +13,6 @@ jobs:
     - name: Checkout main
       uses: actions/checkout@v2
       with:
-        ref: main
         fetch-depth: 0
     
     - name: Versioning
@@ -46,13 +45,17 @@ jobs:
 
     - name: Ensure tag and chart version matches
       run: |
-        if [ `$VERSION` -ne `$CHART_VERSION` ]
+        echo "Run ${{ steps.versioning.outputs.VERSION }}"
+        echo "${{ steps.chart_version.outputs.CHART_VERSION }}"
+        echo "$TAG_VERSION"
+        echo "$CHART_VERSION"
+        if [ "$TAG_VERSION" != "$CHART_VERSION" ]
         then
             echo "Tag version does not match chart version"
             exit 1
         fi
       env:
-        TAG_VERSION: ${{ steps.versioning.outputs.version }}
+        TAG_VERSION: ${{ steps.versioning.outputs.VERSION }}
         CHART_VERSION: ${{ steps.chart_version.outputs.CHART_VERSION }}
 
     - name: Fetch tag
