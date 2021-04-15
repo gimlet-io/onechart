@@ -15,35 +15,18 @@ jobs:
       with:
         fetch-depth: 0
     
-    - name: Versioning
+    - name: Extract tag version
       id: versioning
       run: |
         echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
-# - make sure the tag version equals to the version field in charts/onechart/Chart.yaml
-
-    - name: Chart version
+    - name: Extract chart version
       id: chart_version
       run: |
-        echo ::set-output name=CHART_VERSION::$(cat charts/onechart/Chart.yaml | grep version:)
-        echo ${CHART_VERSION#version: }
-        echo VERSION=$(cat charts/onechart/Chart.yaml | grep "version:")
-      
-    - name: Print Versions
-      run: |
-        echo "Run ${{ steps.versioning.outputs.VERSION }}"
-        echo "${{ steps.chart_version.outputs.CHART_VERSION }}"
-
-
-    # - name: Verify version
-    #   id: verify_version
-    #   run: |
-    #     if: ${{ steps.chart_version.outputs.version }} == ${{ steps.versioning.outputs.version }}
-    #     then
-    #         echo "tag version equals to the version field in chart"
-    #     fi
-    #   env:
-    #     VERSION: ${{ steps.chart_version.outputs.version }}
+        CHART_VERSION=$(cat charts/onechart/Chart.yaml | grep version:)
+        CHART_VERSION=${CHART_VERSION#version: }
+        echo $CHART_VERSION
+        echo ::set-output name=CHART_VERSION::$CHART_VERSION
 
     - name: Ensure tag and chart version matches
       run: |
