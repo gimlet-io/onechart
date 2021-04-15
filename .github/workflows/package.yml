@@ -26,7 +26,13 @@ jobs:
     - name: Chart version
       id: chart_version
       run: |
-        echo "$(cat charts/onechart/Chart.yaml | grep version: | sed 's/"//g')"
+        echo ::set-output name=CHART_VERSION::$(cat charts/onechart/Chart.yaml | grep version: | sed 's/"//g')
+      
+    - name: Print Versions
+      run: |
+        echo "Run ${{ steps.versioning.outputs.VERSION }}"
+        echo "${{ steps.chart_version.outputs.CHART_VERSION }}"
+
 
     # - name: Verify version
     #   id: verify_version
@@ -40,14 +46,14 @@ jobs:
 
     - name: Ensure tag and chart version matches
       run: |
-        if [ "$VERSION" -ne "$CHART_VERSION" ]
+        if [ `$VERSION` -ne `$CHART_VERSION` ]
         then
             echo "Tag version does not match chart version"
             exit 1
         fi
       env:
         TAG_VERSION: ${{ steps.versioning.outputs.version }}
-        CHART_VERSION: ${{ steps.chart_version.outputs.version }}
+        CHART_VERSION: ${{ steps.chart_version.outputs.CHART_VERSION }}
 
     - name: Fetch tag
       id: fetch_tag
@@ -70,5 +76,3 @@ jobs:
     - name: Display commit message
       run: |
         echo "Publishing ${{ steps.fetch_tag.outputs.version_tag }} to the helm repository"
-        echo "Run ${{ steps.versioning.outputs.version }}"
-        echo "Version ${{ steps.chart_version.outputs.version }}"
