@@ -28,15 +28,26 @@ jobs:
       run: |
         echo "$(cat charts/onechart/Chart.yaml | grep version: | sed 's/"//g')"
 
-    - name: Verify version
-      id: verify_version
+    # - name: Verify version
+    #   id: verify_version
+    #   run: |
+    #     if: ${{ steps.chart_version.outputs.version }} == ${{ steps.versioning.outputs.version }}
+    #     then
+    #         echo "tag version equals to the version field in chart"
+    #     fi
+    #   env:
+    #     VERSION: ${{ steps.chart_version.outputs.version }}
+
+    - name: Ensure tag and chart version matches
       run: |
-        if: ${{ steps.chart_version.outputs.version }} == ${{ steps.versioning.outputs.version }}
+        if [ "$VERSION" -ne "$CHART_VERSION" ]
         then
-            echo "tag version equals to the version field in chart"
+            echo "Tag version does not match chart version"
+            exit 1
         fi
       env:
-        VERSION: ${{ steps.chart_version.outputs.version }}
+        TAG_VERSION: ${{ steps.versioning.outputs.version }}
+        CHART_VERSION: ${{ steps.chart_version.outputs.version }}
 
     - name: Fetch tag
       id: fetch_tag
