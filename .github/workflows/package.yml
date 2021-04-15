@@ -25,7 +25,7 @@ jobs:
     - name: Chart version
       id: chart_version
       run: |
-        echo ::set-output name=CHART_VERSION::$(cat charts/onechart/Chart.yaml | grep version: | sed 's/"//g')
+        echo ::set-output name=CHART_VERSION::$(cat charts/onechart/Chart.yaml | grep version#version: | sed 's/"//g')
       
     - name: Print Versions
       run: |
