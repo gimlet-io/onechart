@@ -27,6 +27,7 @@ jobs:
       run: |
         echo ::set-output name=CHART_VERSION::$(cat charts/onechart/Chart.yaml | grep version:)
         echo ${CHART_VERSION#version: }
+        echo VERSION=$(cat charts/onechart/Chart.yaml | grep "version:")
       
     - name: Print Versions
       run: |
