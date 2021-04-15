@@ -20,9 +20,16 @@ jobs:
       run: |
         echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
-    # - name: Increase chart version
-    #   id: increase_chart_version
-    #   run: |
+    - name: Increase chart version
+      id: increase_chart_version
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "Github Action"
+        git checkout main
+        sed -i "s/v[0-9]\.[0-9]\.[0-9]\+/v${version}/" charts/onechart/Chart.yaml
+        git add .
+        git commit -am "Update chart.yml with ${version}"
+        git push origin main
 
 
     - name: Extract chart version
