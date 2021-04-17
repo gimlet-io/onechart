@@ -73,3 +73,5 @@ TODO: move it to the Makefile
 `make all` to test and package the Helm chart.
 The chart archives are put under `docs/` together with the Helm repository manifest (index.yaml)
 It is then served with Github Pages on https://chart.onechart.dev
+
+Github Actions is used to automate the make calls on git tag events.
