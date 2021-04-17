@@ -42,11 +42,9 @@ Below are some guidelines and best practices for contributing to this repository
 
 If you are running a fork of OneChart and would like to upstream a feature, please open a pull request for it.
 
+### New Features
+
 If you are planning to add a new feature to OneChart, please open an issue for it first. Helm charts are prone to having too many features, and OneChart want to keep the supported use-cases in-check. Proposed features have to be generally applicable, targeting newcomers to the Kubernetes ecosystem.
-
-### New Features / Components
-
-If you have any ideas on new features or want to improve the existing features, you can suggest it by opening a [GitHub issue](https://github.com/gimlet-io/onechart/issues/new). Make sure to include detailed information about the feature requests, use cases, and any other information that could be helpful.
 
 ### Pull Request Process
 
@@ -65,8 +63,7 @@ We write unit tests for our helm charts. Pull requests are only accepted with pr
 
 The tests are located under `charts/onechart/test` and use the https://github.com/DataDog/helm-unittest.git Helm plugin to run the tests.
 
-For installation, refer to the CI workflow at `.github/workflows/build.yaml`
-TODO: move it to the Makefile
+For installation, refer to the CI workflow at `.github/workflows/build.yaml`.
 
 ## Release process
 
