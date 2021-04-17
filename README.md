@@ -32,6 +32,29 @@ helm install my-release onechart/onechart \
 
 See all [Examples](/examples/deploying-an-image)
 
+## Contribution Guidelines
+
+Thank you for your interest in contributing to the Gimlet project.
+
+Below are some guidelines and best practices for contributing to this repository:
+
+### Issues
+
+If you are running a fork of OneChart and would like to upstream a feature, please open a pull request for it.
+
+If you are planning to add a new feature to OneChart, please open an issue for it first. Helm charts are prone to having too many features, and OneChart want to keep the supported use-cases in-check. Proposed features have to be generally applicable, targeting newcomers to the Kubernetes ecosystem.
+
+### New Features / Components
+
+If you have any ideas on new features or want to improve the existing features, you can suggest it by opening a [GitHub issue](https://github.com/gimlet-io/onechart/issues/new). Make sure to include detailed information about the feature requests, use cases, and any other information that could be helpful.
+
+### Pull Request Process
+
+* Fork the repository.
+* Create a new branch and make your changes.
+* Open a pull request with detailed commit message and reference issue number if applicable.
+* A maintainer will review your pull request, and help you throughout the process.
+
 ## Development
 
 Development of OneChart does not differ from developing a regular Helm chart.
@@ -45,7 +68,7 @@ The tests are located under `charts/onechart/test` and use the https://github.co
 For installation, refer to the CI workflow at `.github/workflows/build.yaml`
 TODO: move it to the Makefile
 
-## Release
+## Release process
 
 `make all` to test and package the Helm chart.
 The chart archives are put under `docs/` together with the Helm repository manifest (index.yaml)
