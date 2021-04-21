@@ -1,5 +1,5 @@
 {{- range .Values.volumes }}
-{{- $robustName := include "robustName" $.Release.Name -}}
+{{- $robustName := include "robustName" $.Release.Name }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
