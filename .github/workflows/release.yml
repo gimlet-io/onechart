@@ -61,13 +61,13 @@ jobs:
       run: |
         git config --global user.email "action@github.com"
         git config --global user.name "Github Action"
-        git checkout release-automation
+        git checkout master
 
         make package
 
         git add .
         git commit -m "Publishing $TAG_VERSION to the Helm repository"
-        git push origin release-automation
+        git push origin master
       env:
         TAG_VERSION: ${{ steps.versioning.outputs.tag_version }}
 
@@ -75,7 +75,7 @@ jobs:
       run: |
         git config --global user.email "action@github.com"
         git config --global user.name "Github Action"
-        git checkout release-automation
+        git checkout master
 
         without_major_version=${CHART_VERSION#*.}
         without_patch_version=${without_major_version%.*}
@@ -89,6 +89,6 @@ jobs:
         git status
         git add .
         git commit -m "The next release version will be $increased_version"
-        git push origin release-automation
+        git push origin master
       env:
         CHART_VERSION: ${{ steps.chart_version.outputs.chart_version }}
