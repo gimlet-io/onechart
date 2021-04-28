@@ -17,3 +17,11 @@ tests:
       - equal:
           path: spec.ports[0].port
           value: 22222
+  - it: Should set nodePort if it is defined
+    set:
+      containerPort: 11111
+      nodePort: 33333
+    asserts:
+      - equal:
+          path: spec.ports[0].nodePort
+          value: 33333
