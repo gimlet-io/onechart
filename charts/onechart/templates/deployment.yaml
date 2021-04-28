@@ -90,14 +90,16 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-        {{- if .Values.debugSidecarEnabled }}
-        - name: {{ template "robustName" .Release.Name }}-debug
+        {{- if .Values.sidecar }}
+        - name: {{ template "robustName" .Release.Name }}-sidecar
           securityContext: *securityContext
-          image: {{ .Values.debugSidecar.image }}
+          image: {{ .Values.sidecar.repository }}:{{ .Values.sidecar.tag }}
+          {{- if .Values.sidecar.command }}
           command:
-            - {{ .Values.debugSidecar.shell }}
+            - {{ .Values.sidecar.shell }}
             - -c
-            - {{ .Values.debugSidecar.command | quote }}
+            - {{ .Values.sidecar.command | quote }}
+          {{- end }}
           {{- if or (or (.Values.vars) (.Values.secretEnabled)) .Values.sealedSecrets }}
           envFrom: *envFrom
           {{- end }}
