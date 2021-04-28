@@ -8,6 +8,7 @@ metadata:
 spec:
   type: {{ if .Values.nodePortEnabled }}NodePort{{ else }}ClusterIP{{ end }}
   ports:
+    {{- if not .Values.ports }}
     - port: {{ if .Values.svcPort }}{{ .Values.svcPort }}{{ else }}{{ .Values.containerPort }}{{ end }}
       targetPort: http
       protocol: TCP
@@ -15,5 +16,16 @@ spec:
       {{- if .Values.nodePort }}
       nodePort: {{ .Values.nodePort }}
       {{- end }}
+    {{ else }}
+    {{- range .Values.ports }}
+    - name: {{ .name }}
+      port: {{ if .svcPort }}{{ .svcPort }}{{ else }}{{ .containerPort }}{{ end }}
+      {{- if .nodePort }}
+      nodePort: {{ .nodePort }}
+      {{- end }}
+      targetPort: {{ .name }}
+      protocol: TCP
+    {{- end }}
+    {{- end }}
   selector:
     {{- include "helm-chart.selectorLabels" . | nindent 4 }}

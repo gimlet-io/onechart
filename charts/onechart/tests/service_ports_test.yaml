@@ -1,0 +1,66 @@
+suite: test deployment
+templates:
+  - service.yaml
+tests:
+  - it: Should set custom ports
+    set:
+      ports:
+        - containerPort: 21
+          name: ftp
+        - containerPort: 3001
+          name: passive-1
+        - containerPort: 3002
+          name: passive-2
+    asserts:
+      - equal:
+          path: spec.ports
+          value:
+            - name: ftp
+              port: 21
+              targetPort: ftp
+              protocol: TCP
+            - name: passive-1
+              port: 3001
+              targetPort: passive-1
+              protocol: TCP
+            - name: passive-2
+              port: 3002
+              targetPort: passive-2
+              protocol: TCP
+  - it: Should set custom svc port
+    set:
+      ports:
+        - containerPort: 2021
+          svcPort: 21
+          name: ftp
+        - containerPort: 3001
+          nodePort: 33001
+          name: passive-1
+        - containerPort: 3002
+          name: passive-2
+    asserts:
+      - equal:
+          path: spec.ports
+          value:
+            - name: ftp
+              port: 21
+              targetPort: ftp
+              protocol: TCP
+            - name: passive-1
+              port: 3001
+              nodePort: 33001
+              targetPort: passive-1
+              protocol: TCP
+            - name: passive-2
+              port: 3002
+              targetPort: passive-2
+              protocol: TCP
+  - it: Should set default port
+    asserts:
+      - equal:
+          path: spec.ports
+          value:
+            - port: 80
+              targetPort: http
+              protocol: TCP
+              name: http
