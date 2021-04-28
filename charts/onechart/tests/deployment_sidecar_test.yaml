@@ -12,3 +12,14 @@ tests:
       - equal:
           path: spec.template.spec.containers[1].image
           value: debian:stable-slim
+  - it: Should inject a debug sidecar with shell and command specified
+    set:
+      sidecar:
+        repository: debian
+        tag: stable-slim
+        shell: "/bin/bash"
+        command: "while true; do sleep 30; done;"
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[1].image
+          value: debian:stable-slim

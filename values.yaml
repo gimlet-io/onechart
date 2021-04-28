@@ -9,3 +9,9 @@ fileSecrets:
         a
         multiline
         secret
+
+sidecar:
+  repository: debian
+  tag: stable-slim
+  shell: "/bin/bash"
+  command: "while true; do sleep 30; done;"
