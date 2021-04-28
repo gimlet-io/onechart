@@ -5,35 +5,26 @@ templates:
 tests:
   - it: Should set custom ports
     set:
-      containerPortYaml:
-        - port: 21
-          targetPort: ftp
-          protocol: TCP
+      ports:
+        - containerPort: 21
           name: ftp
-        - port: 3001
-          targetPort: passive-1
-          protocol: TCP
+        - containerPort: 3001
           name: passive-1
-        - port: 3002
-          targetPort: passive-2
-          protocol: TCP
+        - containerPort: 3002
           name: passive-2
     asserts:
       - equal:
           path: spec.template.spec.containers[0].ports
           value:
-            - port: 21
-              targetPort: ftp
+            - name: ftp
+              containerPort: 21
               protocol: TCP
-              name: ftp
-            - port: 3001
-              targetPort: passive-1
+            - name: passive-1
+              containerPort: 3001
               protocol: TCP
-              name: passive-1
-            - port: 3002
-              targetPort: passive-2
+            - name: passive-2
+              containerPort: 3002
               protocol: TCP
-              name: passive-2
   - it: Should set default port
     asserts:
       - equal:

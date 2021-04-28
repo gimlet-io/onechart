@@ -54,12 +54,16 @@ spec:
             {{- end }}
           {{- end }}
           ports:
-            {{- if not .Values.containerPortYaml }}
+            {{- if not .Values.ports }}
             - name: http
               containerPort: {{ .Values.containerPort }}
               protocol: TCP
             {{ else }}
-              {{- toYaml .Values.containerPortYaml | nindent 12 }}
+            {{- range .Values.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .containerPort }}
+              protocol: TCP
+            {{- end }}
             {{- end }}
           {{- if .Values.probe.enabled }}
           readinessProbe:
