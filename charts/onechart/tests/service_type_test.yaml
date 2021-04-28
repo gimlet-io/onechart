@@ -14,3 +14,10 @@ tests:
       - equal:
           path: spec.type
           value: NodePort
+  - it: Should set LoadBalancer if flag enabled
+    set:
+      loadbalancerEnabled: true
+    asserts:
+      - equal:
+          path: spec.type
+          value: LoadBalancer
