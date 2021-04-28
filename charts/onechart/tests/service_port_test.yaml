@@ -1,0 +1,19 @@
+suite: test deployment
+templates:
+  - service.yaml
+tests:
+  - it: Should set containerPort as default
+    set:
+      containerPort: 11111
+    asserts:
+      - equal:
+          path: spec.ports[0].port
+          value: 11111
+  - it: Should set svcPort if it is defined
+    set:
+      containerPort: 11111
+      svcPort: 22222
+    asserts:
+      - equal:
+          path: spec.ports[0].port
+          value: 22222

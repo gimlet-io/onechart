@@ -8,7 +8,7 @@ metadata:
 spec:
   type: {{ if .Values.nodePortEnabled }}NodePort{{ else }}ClusterIP{{ end }}
   ports:
-    - port: {{ .Values.containerPort }}
+    - port: {{ if .Values.svcPort }}{{ .Values.svcPort }}{{ else }}{{ .Values.containerPort }}{{ end }}
       targetPort: http
       protocol: TCP
       name: http
