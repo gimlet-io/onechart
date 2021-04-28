@@ -12,5 +12,8 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+      {{- if .Values.nodePort }}
+      nodePort: {{ .Values.nodePort }}
+      {{- end }}
   selector:
     {{- include "helm-chart.selectorLabels" . | nindent 4 }}
