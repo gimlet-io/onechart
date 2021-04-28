@@ -1,0 +1,11 @@
+suite: test deployment
+templates:
+  - service.yaml
+tests:
+  - it: Should set NodePort if flag enabled
+    set:
+      stickySessions: true
+    asserts:
+      - equal:
+          path: spec.externalTrafficPolicy
+          value: Local
