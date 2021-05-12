@@ -1,17 +1,11 @@
-fileSecrets:
-  - name: google-account-key
-    path: /google-account-key
-    secrets:
-      key.json: supersecret
-      another.json: |
-        this
-        is
-        a
-        multiline
-        secret
-
-sidecar:
-  repository: debian
-  tag: stable-slim
-  shell: "/bin/bash"
-  command: "while true; do sleep 30; done;"
+ingress:
+  host: chart-example.local
+  annotations:
+    kubernetes.io/ingress.class: nginx
+ingresses:
+  - host: chart-example.local
+    annotations:
+      kubernetes.io/ingress.class: nginx
+  - host: another.local
+    annotations:
+      kubernetes.io/ingress.class: nginx
