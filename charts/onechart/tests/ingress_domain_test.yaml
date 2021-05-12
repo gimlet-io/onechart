@@ -55,3 +55,31 @@ tests:
           path: metadata.annotations
           value:
             kubernetes.io/ingress.class: nginx
+  - it: Should generate multiple ingresses
+    set:
+      ingresses:
+      - host: chart-example.local
+        annotations:
+          kubernetes.io/ingress.class: nginx
+      - host: another.local
+        annotations:
+          kubernetes.io/ingress.class: nginx
+    asserts:
+      - hasDocuments:
+          count: 2
+  - it: Should generate multiple ingresses
+    set:
+      ingress:
+        host: chart-example.local
+        annotations:
+          kubernetes.io/ingress.class: nginx
+      ingresses:
+        - host: chart-example.local
+          annotations:
+            kubernetes.io/ingress.class: nginx
+        - host: another.local
+          annotations:
+            kubernetes.io/ingress.class: nginx
+    asserts:
+      - hasDocuments:
+          count: 3
