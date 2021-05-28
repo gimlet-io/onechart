@@ -9,3 +9,6 @@ ingresses:
   - host: another.local
     annotations:
       kubernetes.io/ingress.class: nginx
+
+gitRepository: github.com/laszlocph/demo-app
+gitSha: xyz
