@@ -31,3 +31,14 @@ tests:
             - name: data
               persistentVolumeClaim:
                 claimName: RELEASE-NAME-data
+  - it: Should recreate to avoid stuck deployments
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          size: 10Gi
+          storageClass: default
+    asserts:
+      - equal:
+          path: spec.strategy.type
+          value: Recreate

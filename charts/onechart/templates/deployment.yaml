@@ -10,6 +10,11 @@ spec:
   selector:
     matchLabels:
       {{- include "helm-chart.selectorLabels" . | nindent 6 }}
+  {{- $singleReplica := eq (.Values.replicas | int64) 1 }}
+  {{- if and .Values.volumes $singleReplica }}
+  strategy:
+    type: Recreate
+  {{- end }}
   template:
     metadata:
       annotations:
