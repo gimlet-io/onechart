@@ -5,6 +5,10 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "helm-chart.labels" . | nindent 4 }}
+  {{- if .Values.gitSha }}
+  annotations:
+    gimlet.io/git-sha: {{ .Values.gitSha }}
+  {{- end }}
 spec:
   replicas: {{ .Values.replicas }}
   selector:
@@ -21,6 +25,12 @@ spec:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
         {{- with .Values.podAnnotations }}
           {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- if .Values.gitSha }}
+        gimlet.io/git-sha: {{ .Values.gitSha }}
+        {{- end }}
+        {{- if .Values.gitRepository }}
+        gimlet.io/git-repository: {{ .Values.gitRepository }}
         {{- end }}
       labels:
         {{- include "helm-chart.selectorLabels" . | nindent 8 }}

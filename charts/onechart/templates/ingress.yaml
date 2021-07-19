@@ -13,9 +13,17 @@ metadata:
   namespace: {{ .root.Release.Namespace }}
   labels:
     {{- include "helm-chart.labels" .root | nindent 4 }}
-  {{- with .ingress.annotations }}
+  {{- if or (or .root.Values.gitSha .ingress.annotations) .root.Values.gitRepository }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+    {{- if .ingress.annotations }}
+      {{- toYaml .ingress.annotations | nindent 4 }}
+    {{- end }}
+    {{- if .root.Values.gitSha }}
+    gimlet.io/git-sha: {{ .root.Values.gitSha }}
+    {{- end }}
+    {{- if .root.Values.gitRepository }}
+    gimlet.io/git-sha: {{ .root.Values.gitRepository }}
+    {{- end }}
   {{- end }}
 spec:
   {{- if default false .ingress.tlsEnabled }}
