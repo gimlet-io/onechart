@@ -31,6 +31,9 @@ spec:
       {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.serviceAccount }}
+      serviceAccountName: {{ .Values.serviceAccount }}
+      {{- end }}
       containers:
         - name: {{ template "robustName" .Release.Name }}
           securityContext: &securityContext
