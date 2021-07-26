@@ -22,7 +22,7 @@ metadata:
     gimlet.io/git-sha: {{ .root.Values.gitSha }}
     {{- end }}
     {{- if .root.Values.gitRepository }}
-    gimlet.io/git-sha: {{ .root.Values.gitRepository }}
+    gimlet.io/git-repository: {{ .root.Values.gitRepository }}
     {{- end }}
   {{- end }}
 spec:

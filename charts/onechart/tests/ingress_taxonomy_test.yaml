@@ -1,0 +1,18 @@
+suite: test service
+templates:
+  - ingress.yaml
+tests:
+  - it: Should set Gimlet taxonomy on Ingress
+    set:
+      gitRepository: github.com/laszlocph/demo-app
+      gitSha: xyz
+      ingress:
+        host: chart-example.local
+        tlsEnabled: true
+    asserts:
+      - equal:
+          path: metadata.annotations
+          value:
+            gimlet.io/git-repository: github.com/laszlocph/demo-app
+            gimlet.io/git-sha: xyz
+
