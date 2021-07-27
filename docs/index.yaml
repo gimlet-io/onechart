@@ -2,17 +2,17 @@ apiVersion: v1
 entries:
   cron-job:
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.882262661Z"
+    created: "2021-07-27T08:10:13.113569016Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
-    digest: 4151116c120d3cad1e1e004ef957c7d2b08298c2ae0876f8cfd46cee73dbc0b6
+    digest: bfa0c2f56c3232b9cf87e9a00afe4a0b5cbf859f48a6714b9a27fb8bbe59e8a9
     name: cron-job
     type: application
     urls:
     - https://chart.onechart.dev/cron-job-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.881886259Z"
+    created: "2021-07-27T08:10:13.113125109Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: afab9ba533a4686827b54b0dad64f5bbf76f7fbc075e35fb1034689db9ab9dda
@@ -22,7 +22,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.881550457Z"
+    created: "2021-07-27T08:10:13.112349998Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 01f9fa40c1c4085d7688474ab00c9e9d21bd1d0793db6b75f2edda0e18456282
@@ -33,16 +33,16 @@ entries:
     version: 0.1.0
   namespaces:
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.882937566Z"
+    created: "2021-07-27T08:10:13.114782134Z"
     description: Chart to create namespaces and their defaults
-    digest: 003ee197e2ad135bed49f2755b854f58ce3287470e66d0b818d1c07a6ece21c5
+    digest: 0a8a251a53141254ac95399faa553bf0b17b59662c7d91bb60a3e40ccf88360a
     name: namespaces
     type: application
     urls:
     - https://chart.onechart.dev/namespaces-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.882526163Z"
+    created: "2021-07-27T08:10:13.113905721Z"
     description: Chart to create namespaces and their defaults
     digest: 88b06d78a9d1bda6f2ee15b1fad7f25399ac25c2320fb9a8dfa1a4fd14afdf6e
     name: namespaces
@@ -52,7 +52,17 @@ entries:
     version: 0.1.0
   onechart:
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.910574144Z"
+    created: "2021-07-27T08:10:13.131443477Z"
+    description: One chart to rule them all. A generic Helm chart for your application
+      deployments. Because no-one can remember the Kubernetes yaml syntax.
+    digest: efcbabde8193f1c3ecb34e4ede8f5efead1f77d8096180f4e8640ff94df07461
+    name: onechart
+    type: application
+    urls:
+    - https://chart.onechart.dev/onechart-0.25.0.tgz
+    version: 0.25.0
+  - apiVersion: v2
+    created: "2021-07-27T08:10:13.130841268Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 59f1389268efb3d970f84cae968e3ecbde57015df1201411f9f46becb4b09844
@@ -62,7 +72,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.24.1.tgz
     version: 0.24.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.90998294Z"
+    created: "2021-07-27T08:10:13.130220659Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 74b6fdf49a9fa5327fc0639f1d97f0cf553f89030c01379f3c91a5adb6f8a0f1
@@ -72,7 +82,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.24.0.tgz
     version: 0.24.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.909387837Z"
+    created: "2021-07-27T08:10:13.129629751Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: f8e444c2d5c5a4e73b76a971effda5246d3200427be45c2fb546bc990f197ecc
@@ -82,7 +92,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.23.0.tgz
     version: 0.23.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.908777333Z"
+    created: "2021-07-27T08:10:13.129015242Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: dfad2865c3eb54f0366300ef63b8ba1863ca69aa27e5ca5d3512c0d799d004d3
@@ -92,7 +102,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.22.0.tgz
     version: 0.22.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.908199829Z"
+    created: "2021-07-27T08:10:13.128398033Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 1b837cdefcb7025c40bffdd620a0f116df5ccb9023ac6a8c538bd8e77b3eb80a
@@ -102,7 +112,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.21.0.tgz
     version: 0.21.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.907594025Z"
+    created: "2021-07-27T08:10:13.127814724Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: a4f5741b46b89cd4328fbd96f96d85d53bae64b526730de5097ec33639c9c54f
@@ -112,7 +122,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.20.0.tgz
     version: 0.20.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.906701219Z"
+    created: "2021-07-27T08:10:13.126913711Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 59dd16db4f8519d3922da349aabcc2daec8385fc8a98d0f3163a84b98cc12f61
@@ -122,7 +132,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.19.0.tgz
     version: 0.19.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.905909714Z"
+    created: "2021-07-27T08:10:13.126264702Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 74c4c6a448e66929dfcafc5a641b5bdbaa8af6832c6065b02ce756dfeb3fc438
@@ -132,7 +142,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.18.0.tgz
     version: 0.18.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.904632406Z"
+    created: "2021-07-27T08:10:13.125426689Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: e1ba0bb54c3a3e13b661bb608839c7013d12e24d0437581ebfdbf5ce4a283d4d
@@ -142,7 +152,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.17.0.tgz
     version: 0.17.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.903273797Z"
+    created: "2021-07-27T08:10:13.124652578Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 596350a4977b305e4d5aae16dd8dcca62a17ea5cec9f444aacd82a12d6b3dcfe
@@ -152,7 +162,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.16.0.tgz
     version: 0.16.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.902637293Z"
+    created: "2021-07-27T08:10:13.123870166Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: d1a5a9e9bff274f32f6849bc58b201c7886240b94dd6b70b5cf3411d9ad03393
@@ -162,7 +172,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.15.3.tgz
     version: 0.15.3
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.902029489Z"
+    created: "2021-07-27T08:10:13.122392845Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 626410479f67bbbfa7e7fc94f6dfd8aae50a2bdf9fc72ec395c835dacbd5dbe7
@@ -172,7 +182,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.15.2.tgz
     version: 0.15.2
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.901404185Z"
+    created: "2021-07-27T08:10:13.121785036Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: e6d237aff4abedee6deb5ba57e8183c7598b255d40afdd04c03f73014f706aa3
@@ -182,7 +192,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.15.1.tgz
     version: 0.15.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.90068338Z"
+    created: "2021-07-27T08:10:13.121165127Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: d45fc4cc214bc94e4c2c10d6432562d7e65ee5e55226f677aafdfe101d7f6e7f
@@ -192,7 +202,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.15.0.tgz
     version: 0.15.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.899985976Z"
+    created: "2021-07-27T08:10:13.120570118Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 7e61a72a3400e09c44539094558a2084621239015132d20551c4593be3b5bede
@@ -202,7 +212,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.14.0.tgz
     version: 0.14.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.899365172Z"
+    created: "2021-07-27T08:10:13.11998591Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 743a9b552233770713f0c22edbe8cf4f55c890a59106e1f33055c1cb31be5a27
@@ -212,7 +222,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.13.2.tgz
     version: 0.13.2
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.898755568Z"
+    created: "2021-07-27T08:10:13.119410801Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 02bf9537e13cea0da9dc3bfbcdd45d51576354cb18b7c1c7cec76f829e20105f
@@ -222,7 +232,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.13.1.tgz
     version: 0.13.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.898195564Z"
+    created: "2021-07-27T08:10:13.118855693Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 5183ed825c4f255ca5a4f0ffeb8c92bbad3c43b42fc1b798f1f1fc6de2a30bef
@@ -232,7 +242,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.13.0.tgz
     version: 0.13.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.897643861Z"
+    created: "2021-07-27T08:10:13.118234284Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: e131a502d12a6b074453f1da8d0d1ca7145e80a025f31252b24cc3d62375a4c1
@@ -242,7 +252,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.12.2.tgz
     version: 0.12.2
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.897111457Z"
+    created: "2021-07-27T08:10:13.117741777Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 8e1a25d18a546c4ec5e970991301a08e38495a964a8f6e0a2ee97f92c41c9691
@@ -252,7 +262,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.12.1.tgz
     version: 0.12.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.896590154Z"
+    created: "2021-07-27T08:10:13.117222669Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: f38a6f2fbf5c847b00a9140ecd004e0bf667d859aa83d8dac4a2d0eecd1a361f
@@ -262,7 +272,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.12.0.tgz
     version: 0.12.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.89604325Z"
+    created: "2021-07-27T08:10:13.116691062Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 75c16f84b5e99aad5aa7203f5c1ce2a9589d85b89afec4e161a2e0344a522c17
@@ -272,7 +282,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.11.0.tgz
     version: 0.11.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.895517247Z"
+    created: "2021-07-27T08:10:13.116189754Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 40f1166e858d35cb237debd1390187884641b0e8c29a80aaa195b66b0ee73516
@@ -282,7 +292,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.10.0.tgz
     version: 0.10.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.916490983Z"
+    created: "2021-07-27T08:10:13.137274563Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: cb42b08b463b401f6718bba7c171ee55c173021c5101ea1b3068ef3899a6e164
@@ -292,7 +302,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.9.0.tgz
     version: 0.9.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.915894979Z"
+    created: "2021-07-27T08:10:13.136781455Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: ce046d209a9e8fa07766712492cc896451473fafca129dbc9c675107d0e39c52
@@ -302,7 +312,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.8.2.tgz
     version: 0.8.2
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.915048673Z"
+    created: "2021-07-27T08:10:13.136072045Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 422d7e6ea1bed530d4cd5e23417b229772a6fe2e835828ca282a3e6c9b646b2b
@@ -312,7 +322,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.8.1.tgz
     version: 0.8.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.914128667Z"
+    created: "2021-07-27T08:10:13.135537837Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 8001bd02fc90ad66da7941c136ee8d0e665ea90b6e1ac27d82b048f2b12b3964
@@ -322,7 +332,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.8.0.tgz
     version: 0.8.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.913725165Z"
+    created: "2021-07-27T08:10:13.134985829Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: d1454b430eb7131d0d450f7c0a8a6698278893c61e03d48649a8112dfcf42b72
@@ -332,7 +342,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.7.1.tgz
     version: 0.7.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.913329362Z"
+    created: "2021-07-27T08:10:13.134442621Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 4bf90835f287917671ec40b5b395da9332cf18e70f248d250f8d5a72360dcb4e
@@ -342,7 +352,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.7.0.tgz
     version: 0.7.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.912921859Z"
+    created: "2021-07-27T08:10:13.133812212Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 0cade489fc74a040f5e7f71d01c6fa00d3f68b4752a4d8234ccf2c1504b4c0a1
@@ -352,7 +362,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.6.1.tgz
     version: 0.6.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.912599357Z"
+    created: "2021-07-27T08:10:13.133486607Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: d607820a7e104eaaa88c153c1f2f7f409ef4c612ad747caeb3a671cf3fce03d4
@@ -362,7 +372,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.6.0.tgz
     version: 0.6.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.912272055Z"
+    created: "2021-07-27T08:10:13.133169302Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: ddf7cf87402095d62855898744b805115fdf86c4b295e0a4def0c50408fd9138
@@ -372,7 +382,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.5.1.tgz
     version: 0.5.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.911964553Z"
+    created: "2021-07-27T08:10:13.132859198Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: adf3c2cf3a27e58ec75620599e0e1c2031a7410a061a590317beeff6d8a9ad69
@@ -382,7 +392,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.5.0.tgz
     version: 0.5.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.911661351Z"
+    created: "2021-07-27T08:10:13.132552493Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 8dab33263c4e632aeb4656c666871440b589497b70e76a1d6c3a5e3db1a30bba
@@ -392,7 +402,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.4.0.tgz
     version: 0.4.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.911363749Z"
+    created: "2021-07-27T08:10:13.132253989Z"
     description: A generic Helm chart for your application deployments
     digest: fbaf6139e0ef8ad9a87cc1e41a97c7d25fdcf7ea17fa6364952f1a851a87480a
     name: onechart
@@ -401,7 +411,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.3.2.tgz
     version: 0.3.2
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.911103448Z"
+    created: "2021-07-27T08:10:13.131984185Z"
     description: A generic Helm chart for your application deployments
     digest: bd6f5b1865ab9b05fc6925c163ab8045235bd2723dba31f09d5083d24322d1f8
     name: onechart
@@ -410,7 +420,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.3.1.tgz
     version: 0.3.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.910844646Z"
+    created: "2021-07-27T08:10:13.131714981Z"
     description: A generic Helm chart for your application deployments
     digest: c79cef21eceab948144a289298cdf1e20e77a0782a883d7d65f9e709ccbbc271
     name: onechart
@@ -419,7 +429,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.3.0.tgz
     version: 0.3.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.907010621Z"
+    created: "2021-07-27T08:10:13.127203215Z"
     description: A generic Helm chart for your application deployments
     digest: dd814ac5d08d5e6163a1b769df6803f5cb0f09d906045086dfcc5be522bb1ec3
     name: onechart
@@ -428,7 +438,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.883942572Z"
+    created: "2021-07-27T08:10:13.115703047Z"
     description: A generic Helm chart for your application deployments
     digest: e46062df8053840cbfbba26c0a66a843a79f15a0b43a145ed019327513bd5098
     name: onechart
@@ -437,7 +447,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.88359907Z"
+    created: "2021-07-27T08:10:13.115393943Z"
     description: A generic Helm chart for your application deployments
     digest: a7bbc8b7dcc008e89156cd1830282b7d39c0592e82ccdcefb77a25a42eca2a3d
     name: onechart
@@ -446,7 +456,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
-    created: "2021-07-26T09:34:30.883247768Z"
+    created: "2021-07-27T08:10:13.115104438Z"
     description: A generic Helm chart for your application deployments
     digest: 1ed8c0645abdae6c950526e9c5410dc056847a11700dc7def5f1c55eb7de0cd4
     name: onechart
@@ -454,4 +464,4 @@ entries:
     urls:
     - https://chart.onechart.dev/onechart-0.1.0.tgz
     version: 0.1.0
-generated: "2021-07-26T09:34:30.881109154Z"
+generated: "2021-07-27T08:10:13.11182239Z"
