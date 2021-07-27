@@ -42,3 +42,22 @@ tests:
       - equal:
           path: spec.strategy.type
           value: Recreate
+  - it: Should strategy take precedence
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          size: 10Gi
+          storageClass: default
+      strategy: RollingUpdate
+    asserts:
+      - equal:
+          path: spec.strategy.type
+          value: RollingUpdate
+  - it: Should strategy be set
+    set:
+      strategy: Dummy
+    asserts:
+      - equal:
+          path: spec.strategy.type
+          value: Dummy

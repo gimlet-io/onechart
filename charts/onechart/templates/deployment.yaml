@@ -15,9 +15,14 @@ spec:
     matchLabels:
       {{- include "helm-chart.selectorLabels" . | nindent 6 }}
   {{- $singleReplica := eq (.Values.replicas | int64) 1 }}
-  {{- if and .Values.volumes $singleReplica }}
+  {{- $strategyNotDefined := not .Values.strategy }}
+  {{- if and (and .Values.volumes $singleReplica) $strategyNotDefined}}
   strategy:
     type: Recreate
+  {{- end }}
+  {{- if .Values.strategy }}
+  strategy:
+    type: {{ .Values.strategy }}
   {{- end }}
   template:
     metadata:
