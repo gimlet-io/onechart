@@ -38,7 +38,7 @@ spec:
         paths:
           - backend:
               serviceName: {{ $robustName }}
-              servicePort: {{ .root.Values.containerPort }}
+              servicePort: {{ if .root.Values.svcPort }}{{ .root.Values.svcPort }}{{ else }}{{ .root.Values.containerPort }}{{ end }}
 {{- end }}
 
 {{- with .Values.ingress }}
