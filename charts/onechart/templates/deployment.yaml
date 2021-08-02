@@ -61,7 +61,7 @@ spec:
             - -c
             - {{ .Values.command | quote }}
           {{- end }}
-          {{- if or (or (.Values.vars) (.Values.secretEnabled)) .Values.sealedSecrets }}
+          {{- if or (or (or (.Values.vars) (.Values.secretEnabled)) .Values.sealedSecrets) .Values.secretName }}
           envFrom: &envFrom
             {{- if .Values.vars }}
             - configMapRef:
@@ -69,7 +69,11 @@ spec:
             {{- end }}
             {{- if .Values.secretEnabled }}
             - secretRef:
-                name: {{ .Values.secretName | default (include "robustName" $.Release.Name) }}
+                name: {{ include "robustName" $.Release.Name }}
+            {{- end }}
+            {{- if .Values.secretName }}
+            - secretRef:
+                name: {{ .Values.secretName }}
             {{- end }}
             {{- if .Values.sealedSecrets }}
             - secretRef:
