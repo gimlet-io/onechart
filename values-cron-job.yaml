@@ -1,0 +1,11 @@
+image:
+  repository: debian
+  tag: stable-slim
+
+schedule: "*/1 * * * *"
+command: |
+  echo "I'm alive"
+shell: "/bin/sh"
+
+vars:
+  MY_VAR: "value"

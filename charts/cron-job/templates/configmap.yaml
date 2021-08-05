@@ -1,13 +1,1 @@
-{{- if .Values.vars }}
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}
-  namespace: {{ .Release.Namespace }}
-  labels:
-    {{- include "helm-chart.labels" . | nindent 4 }}
-data:
-{{- range $key, $val := .Values.vars }}
-  {{ $key }}: {{ $val | quote }}
-{{- end }}
-{{- end }}
+{{- include "common.configmap.tpl" . -}}
