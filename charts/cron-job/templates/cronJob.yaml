@@ -7,10 +7,9 @@ metadata:
     {{- include "helm-chart.labels" . | nindent 4 }}
 spec:
   schedule: {{ .Values.schedule | quote }}
-  successfulJobsHistoryLimit: 1
-  failedJobsHistoryLimit: 1
-  concurrencyPolicy: Forbid
-  startingDeadlineSeconds: 120
+  {{ with .Values.constraints }}
+    {{ toYaml . | nindent 2 }}
+  {{- end }}
   jobTemplate:
     spec:
       template:

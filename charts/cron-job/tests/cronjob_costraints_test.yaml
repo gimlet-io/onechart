@@ -1,0 +1,17 @@
+suite: test cron job
+templates:
+  - cronJob.yaml
+tests:
+  - it: Should have default constraints
+    asserts:
+      - equal:
+          path: spec.successfulJobsHistoryLimit
+          value: 1
+  - it: Should constraints be configurable
+    set:
+      constraints:
+        successfulJobsHistoryLimit: 2
+    asserts:
+      - equal:
+          path: spec.successfulJobsHistoryLimit
+          value: 2

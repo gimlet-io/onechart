@@ -27,3 +27,9 @@ affinity: {}
 
 secret:
   enabled: false
+
+constraints:
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 120
