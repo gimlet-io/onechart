@@ -1,0 +1,20 @@
+{{- define "common.volumesRef.tpl" -}}
+{{- if or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets }}
+volumes:
+  {{- range .Values.volumes }}
+  - name: {{ .name }}
+    persistentVolumeClaim:
+      claimName: {{ printf "%s-%s" $.Release.Name .name }}
+  {{- end }}
+  {{- range .Values.sealedFileSecrets }}
+  - name: {{ .name }}
+    secret:
+      secretName: {{ printf "%s-%s" $.Release.Name .name }}
+  {{- end }}
+  {{- range .Values.fileSecrets }}
+  - name: {{ .name }}
+    secret:
+      secretName: {{ printf "%s-%s" $.Release.Name .name }}
+  {{- end }}
+{{- end }}
+{{- end -}}

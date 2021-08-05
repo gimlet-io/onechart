@@ -7,10 +7,9 @@ metadata:
     {{- include "helm-chart.labels" . | nindent 4 }}
 spec:
   schedule: {{ .Values.schedule | quote }}
-  successfulJobsHistoryLimit: 1
-  failedJobsHistoryLimit: 1
-  concurrencyPolicy: Forbid
-  startingDeadlineSeconds: 120
+  {{- with .Values.constraints }}
+    {{- toYaml . | nindent 2 }}
+  {{- end }}
   jobTemplate:
     spec:
       template:
@@ -30,29 +29,12 @@ spec:
                 - {{ .Values.shell }}
                 - -c
                 - {{ .Values.command | quote }}
-              envFrom:
-                {{- if .Values.vars }}
-                - configMapRef:
-                    name: {{ .Release.Name }}
-                {{- end }}
-                {{- if .Values.secret.enabled }}
-                - secretRef:
-                    name: {{ .Release.Name }}
-                {{- end }}
-              volumeMounts:
-                {{- range .Values.volumes }}
-                - name: {{ .name }}
-                  mountPath: {{ .path }}
-                {{- end }}
+              {{- include "common.envFromRef.tpl" . | nindent 14 }}
+              {{- include "common.volumeMountsRef.tpl" . | nindent 14 }}
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
-          volumes:
-            {{- range .Values.volumes }}
-            - name: {{ .name }}
-              persistentVolumeClaim:
-                claimName: {{ printf "%s-%s" $.Release.Name .name }}
-            {{- end }}
-            {{ with .Values.nodeSelector }}
+          {{- include "common.volumesRef.tpl" . | nindent 10 }}
+          {{ with .Values.nodeSelector }}
           nodeSelector:
             {{ toYaml . | nindent 8 }}
           {{- end }}

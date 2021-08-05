@@ -28,8 +28,12 @@ kubeval:
 	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.18.0
 
 test:
+	helm dependency update charts/onechart
 	helm unittest charts/onechart
+
+	helm dependency update charts/cron-job
 	helm unittest charts/cron-job
+
 	helm unittest charts/namespaces
 
 package:
@@ -45,7 +49,12 @@ package:
 	helm repo index docs --url https://chart.onechart.dev
 
 debug:
+	helm dependency update charts/onechart
 	helm template charts/onechart/ -f values.yaml --debug
+
+debug-cron-job:
+	helm dependency update charts/cron-job
+	helm template charts/cron-job/ -f values-cron-job.yaml --debug
 
 debug-ui:
 	#gimlet chart configure -s charts/onechart/values.schema.json -u charts/onechart/helm-ui.json onechart/onechart
