@@ -7,8 +7,8 @@ metadata:
     {{- include "helm-chart.labels" . | nindent 4 }}
 spec:
   schedule: {{ .Values.schedule | quote }}
-  {{ with .Values.constraints }}
-    {{ toYaml . | nindent 2 }}
+  {{- with .Values.constraints }}
+    {{- toYaml . | nindent 2 }}
   {{- end }}
   jobTemplate:
     spec:
@@ -29,15 +29,7 @@ spec:
                 - {{ .Values.shell }}
                 - -c
                 - {{ .Values.command | quote }}
-              envFrom:
-                {{- if .Values.vars }}
-                - configMapRef:
-                    name: {{ .Release.Name }}
-                {{- end }}
-                {{- if .Values.secret.enabled }}
-                - secretRef:
-                    name: {{ .Release.Name }}
-                {{- end }}
+              {{- include "common.envFromRef.tpl" . | nindent 14 }}
               {{- include "common.volumeMountsRef.tpl" . | nindent 14 }}
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
