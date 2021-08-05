@@ -1,0 +1,316 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "required": [],
+  "properties": {
+    "image": {
+      "$id": "#/properties/image",
+      "type": "object",
+      "title": "Image",
+      "description": "The image to deploy",
+      "default": {},
+      "examples": [
+        {
+          "repository": "nginx",
+          "tag": "latest"
+        }
+      ],
+      "required": [
+        "repository",
+        "tag"
+      ],
+      "properties": {
+        "repository": {
+          "$id": "#/properties/image/properties/repository",
+          "type": "string",
+          "title": "Repository",
+          "description": "",
+          "default": "nginx",
+          "examples": [
+            "nginx"
+          ]
+        },
+        "tag": {
+          "$id": "#/properties/image/properties/tag",
+          "type": "string",
+          "title": "Tag",
+          "description": "",
+          "default": "1.19.3",
+          "examples": [
+            "latest"
+          ]
+        }
+      }
+    },
+    "podAnnotations": {
+      "$id": "#/properties/podAnnotations",
+      "type": "object",
+      "title": "The podAnnotations schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    },
+    "resources": {
+      "$id": "#/properties/resources",
+      "type": "object",
+      "title": "",
+      "description": "",
+      "default": {},
+      "examples": [
+        {
+          "requests": {
+            "cpu": "200m",
+            "memory": "200mi"
+          },
+          "limits": {
+            "cpu": "200m",
+            "memory": "200mi"
+          }
+        }
+      ],
+      "required": [],
+      "properties": {
+        "requests": {
+          "$id": "#/properties/resources/properties/requests",
+          "type": "object",
+          "title": "Requests",
+          "description": "The typical resources your app uses",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "200m",
+              "memory": "200mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/requests/properties/cpu",
+              "type": "string",
+              "title": "CPU",
+              "description": "",
+              "default": "200m",
+              "examples": [
+                "200m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/requests/properties/memory",
+              "type": "string",
+              "title": "Memory",
+              "description": "",
+              "default": "200Mi",
+              "examples": [
+                "200mi"
+              ]
+            }
+          }
+        },
+        "limits": {
+          "$id": "#/properties/resources/properties/limits",
+          "type": "object",
+          "title": "Limits",
+          "description": "The maximum resources your app may use",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "200m",
+              "memory": "200mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/limits/properties/cpu",
+              "type": "string",
+              "title": "CPU",
+              "description": "The hard ceiling for the app's CPU usage. The app will be throttled to this limit. 1000m or 1000 CPU shares = 1 CPU core",
+              "default": "200m",
+              "examples": [
+                "200m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/limits/properties/memory",
+              "type": "string",
+              "title": "Memory",
+              "description": "The hard ceiling for the app's memory usage. The app will be RESTARTED if it reaches this limit",
+              "default": "200Mi",
+              "examples": [
+                "200mi"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "nodeSelector": {
+      "$id": "#/properties/nodeSelector",
+      "type": "object",
+      "title": "The nodeSelector schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    },
+    "tolerations": {
+      "$id": "#/properties/tolerations",
+      "type": "array",
+      "title": "The tolerations schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        []
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/tolerations/items"
+      }
+    },
+    "affinity": {
+      "$id": "#/properties/affinity",
+      "type": "object",
+      "title": "The affinity schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    },
+    "secret": {
+      "$id": "#/properties/secret",
+      "type": "object",
+      "title": "The secret schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "enabled": false
+        }
+      ],
+      "required": [
+        "enabled"
+      ],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/secret/properties/enabled",
+          "type": "boolean",
+          "title": "The enabled schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            false
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "shell": {
+      "$id": "#/properties/shell",
+      "type": "string",
+      "title": "Shell",
+      "description": "The shell to use",
+      "default": "/bin/sh"
+    },
+    "command": {
+      "$id": "#/properties/command",
+      "type": "string",
+      "title": "Command",
+      "description": "The command to run in the cronjob",
+      "default": "echo \"I'm alive\""
+    },
+    "vars": {
+      "$id": "#/properties/vars",
+      "type": "object",
+      "title": "Environment variables",
+      "description": "",
+      "default": {},
+      "examples": [
+        {
+          "VAR_1": "value 1",
+          "VAR_2": "value 2"
+        }
+      ],
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    },
+    "sealedSecrets": {
+      "$id": "#/properties/sealedSecrets",
+      "type": "object",
+      "title": "Sealed Secrets",
+      "description": "",
+      "default": {},
+      "examples": [
+        {
+          "VAR_1": "value 1",
+          "VAR_2": "value 2"
+        }
+      ],
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    },
+    "volumes": {
+      "$id": "#/properties/volumes",
+      "type": "array",
+      "title": "Volumes",
+      "default": [],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/volumes/items",
+        "type": "object",
+        "properties": {
+          "name": {
+            "$id": "#/properties/volumes/items/anyOf/0/properties/name",
+            "type": "string",
+            "title": "Name",
+            "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
+            "default": "data"
+          },
+          "path": {
+            "$id": "#/properties/volumes/items/anyOf/0/properties/path",
+            "type": "string",
+            "title": "Path",
+            "description": "The mount path inside the container",
+            "default": "/data"
+          },
+          "size": {
+            "$id": "#/properties/volumes/items/anyOf/0/properties/size",
+            "type": "string",
+            "title": "Size",
+            "description": "",
+            "default": "10Gi"
+          },
+          "storageClass": {
+            "$id": "#/properties/volumes/items/anyOf/0/properties/storageClass",
+            "type": "string",
+            "title": "Storage Class",
+            "description": "The slug indicating the disk type in your cloud provider. `standard` on Google Cloud, `default` on Azure; `do-block-storage` on Digital Ocean",
+            "default": ""
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
