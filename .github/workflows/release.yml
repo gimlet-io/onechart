@@ -26,7 +26,7 @@ jobs:
     - name: Extract chart version
       id: chart_version
       run: |
-        CHART_VERSION=$(cat charts/onechart/Chart.yaml | grep version:)
+        CHART_VERSION=$(cat charts/onechart/Chart.yaml | grep ^version:)
         CHART_VERSION=${CHART_VERSION#version: }
         echo $CHART_VERSION
         echo ::set-output name=chart_version::$CHART_VERSION
