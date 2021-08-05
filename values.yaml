@@ -15,3 +15,9 @@ gitSha: xyz
 
 vars:
   MY_VAR: "value"
+
+volumes:
+  - name: data
+    path: /data
+    size: 10Gi
+    storageClass: default

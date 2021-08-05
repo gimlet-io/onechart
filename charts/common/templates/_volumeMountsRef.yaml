@@ -1,0 +1,19 @@
+{{- define "common.volumeMountsRef.tpl" -}}
+{{- if or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets }}
+volumeMounts: &volumeMounts
+{{- range .Values.volumes }}
+  - name: {{ .name }}
+    mountPath: {{ .path }}
+{{- end }}
+{{- range .Values.sealedFileSecrets }}
+  - name: {{ .name }}
+    mountPath: {{ .path }}
+    readOnly: true
+{{- end }}
+{{- range .Values.fileSecrets }}
+  - name: {{ .name }}
+    mountPath: {{ .path }}
+    readOnly: true
+{{- end }}
+{{- end }}
+{{- end }}

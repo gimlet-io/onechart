@@ -38,20 +38,11 @@ spec:
                 - secretRef:
                     name: {{ .Release.Name }}
                 {{- end }}
-              volumeMounts:
-                {{- range .Values.volumes }}
-                - name: {{ .name }}
-                  mountPath: {{ .path }}
-                {{- end }}
+              {{- include "common.volumeMountsRef.tpl" . | nindent 14 }}
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
-          volumes:
-            {{- range .Values.volumes }}
-            - name: {{ .name }}
-              persistentVolumeClaim:
-                claimName: {{ printf "%s-%s" $.Release.Name .name }}
-            {{- end }}
-            {{ with .Values.nodeSelector }}
+          {{- include "common.volumesRef.tpl" . | nindent 10 }}
+          {{ with .Values.nodeSelector }}
           nodeSelector:
             {{ toYaml . | nindent 8 }}
           {{- end }}
