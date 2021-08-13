@@ -4,9 +4,11 @@ ingress:
     kubernetes.io/ingress.class: nginx
 ingresses:
   - host: chart-example.local
+    tlsEnabled: true
     annotations:
       kubernetes.io/ingress.class: nginx
   - host: another.local
+    tlsEnabled: true
     annotations:
       kubernetes.io/ingress.class: nginx
 

@@ -83,3 +83,21 @@ tests:
     asserts:
       - hasDocuments:
           count: 3
+  - it: Should have unique TLS secret names
+    set:
+      ingresses:
+        - host: chart-example.local
+          tlsEnabled: true
+          annotations:
+            kubernetes.io/ingress.class: nginx
+        - host: another.local
+          tlsEnabled: true
+          annotations:
+            kubernetes.io/ingress.class: nginx
+    asserts:
+      - equal:
+          path: spec.tls
+          value:
+            - hosts:
+                - chart-example.local
+              secretName: tls-release-name-chart-example.local

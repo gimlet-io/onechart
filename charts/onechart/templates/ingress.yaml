@@ -1,15 +1,15 @@
 {{/* OneChart ingress snippet */}}
 {{- define "onechart.ingress" }}
 {{- $robustName := include "robustName" .root.Release.Name -}}
+{{- $resourceName := $robustName -}}
+{{- if .longName }}
+{{- $resourceName = printf "%s-%s" $robustName (include "robustName" .ingress.host) -}}
+{{- end }}
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  {{- if .longName }}
-  name: {{ $robustName }}-{{ template "robustName" .ingress.host }}
-  {{- else }}
-  name: {{ $robustName }}
-  {{- end }}
+  name: {{ $resourceName }}
   namespace: {{ .root.Release.Namespace }}
   labels:
     {{- include "helm-chart.labels" .root | nindent 4 }}
@@ -30,7 +30,7 @@ spec:
   tls:
     - hosts:
         - {{ template "robustName" .ingress.host | quote }}
-      secretName: {{ printf "tls-%s" $robustName }}
+      secretName: {{ printf "tls-%s" $resourceName }}
   {{- end }}
   rules:
     - host: {{ template "robustName" .ingress.host | quote }}
