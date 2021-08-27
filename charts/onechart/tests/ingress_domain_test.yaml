@@ -23,7 +23,7 @@ tests:
                 - backend:
                     serviceName: release-name
                     servicePort: 80
-  - it: Should conform to DNS names
+  - it: Should pass ingress host name as is, user must sanitize it
     set:
       ingress:
         host: feature/my_branch.local
@@ -33,12 +33,12 @@ tests:
           path: spec.tls
           value:
             - hosts:
-                - feature-my-branch.local
+                - feature/my_branch.local
               secretName: tls-release-name
       - equal:
           path: spec.rules
           value:
-            - host: feature-my-branch.local
+            - host: feature/my_branch.local
               http:
                 paths:
                 - backend:
@@ -100,4 +100,4 @@ tests:
           value:
             - hosts:
                 - chart-example.local
-              secretName: tls-release-name-chart-example.local
+              secretName: tls-release-name-chart-example-local
