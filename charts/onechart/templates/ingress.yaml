@@ -29,11 +29,11 @@ spec:
   {{- if default false .ingress.tlsEnabled }}
   tls:
     - hosts:
-        - {{ template "robustName" .ingress.host | quote }}
+        - {{ .ingress.host | quote }}
       secretName: {{ printf "tls-%s" $resourceName }}
   {{- end }}
   rules:
-    - host: {{ template "robustName" .ingress.host | quote }}
+    - host: {{ .ingress.host | quote }}
       http:
         paths:
           - backend:
