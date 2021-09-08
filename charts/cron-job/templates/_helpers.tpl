@@ -61,3 +61,12 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create robustName that can be used as Kubernetes resource name, and as subdomain as well
+\w – Latin letters, digits, underscore '_' .
+\W – all but \w .
+*/}}
+{{- define "robustName" -}}
+{{ regexReplaceAll "\\W+" . "-" | replace "_" "-" | lower | trunc 63 | trimSuffix "-" }}
+{{- end }}
