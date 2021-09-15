@@ -13,3 +13,12 @@ tests:
       - equal:
           path: spec.storageClassName
           value: default
+  - it: Should not generate a claim when using existing claim
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          existingClaim: my-static-claim
+    asserts:
+      - hasDocuments:
+          count: 0

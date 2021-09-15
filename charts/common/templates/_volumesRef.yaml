@@ -4,7 +4,11 @@ volumes:
   {{- range .Values.volumes }}
   - name: {{ .name }}
     persistentVolumeClaim:
+      {{- if .existingClaim }}
+      claimName: {{ .existingClaim }}
+      {{ else }}
       claimName: {{ printf "%s-%s" $.Release.Name .name }}
+      {{- end }}
   {{- end }}
   {{- range .Values.sealedFileSecrets }}
   - name: {{ .name }}

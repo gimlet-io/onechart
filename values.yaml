@@ -21,5 +21,4 @@ vars:
 volumes:
   - name: data
     path: /data
-    size: 10Gi
-    storageClass: default
+    existingClaim: myclaim

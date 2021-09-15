@@ -61,3 +61,16 @@ tests:
       - equal:
           path: spec.strategy.type
           value: Dummy
+  - it: Should use the existing claim
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          existingClaim: my-static-claim
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: data
+              persistentVolumeClaim:
+                claimName: my-static-claim
