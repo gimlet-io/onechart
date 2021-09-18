@@ -40,6 +40,17 @@ probe:
     timeoutSeconds: 3
     failureThreshold: 3
 
+# Before you use a liveness probe: https://srcco.de/posts/kubernetes-liveness-probes-are-dangerous.html
+livenessProbe:
+  enabled: false
+  path: "/"
+  settings:
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 3
+    failureThreshold: 3
+
 secretEnabled: false
 
 shell: "/bin/sh"

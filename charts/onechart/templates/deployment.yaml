@@ -84,6 +84,16 @@ spec:
             {{- toYaml . | nindent 12 }}
             {{- end }}
           {{- end }}
+          {{- if .Values.livenessProbe.enabled }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.livenessProbe.path }}
+              port: {{ .Values.containerPort }}
+              scheme: HTTP
+            {{- with .Values.livenessProbe.settings }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- end }}
           {{- include "common.volumeMountsRef.tpl" . | nindent 10 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

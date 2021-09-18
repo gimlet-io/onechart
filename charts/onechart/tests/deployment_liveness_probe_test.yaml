@@ -1,0 +1,45 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+  - configmap.yaml
+tests:
+  - it: Should set a liveness probe
+    set:
+      livenessProbe:
+        enabled: true
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].livenessProbe
+          value:
+            httpGet:
+              path: "/"
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 3
+            failureThreshold: 3
+  - it: Should not set a livenessProbe
+    asserts:
+      - isNull:
+          path: spec.template.spec.containers[0].livenessProbe
+  - it: Should tune liveness probe
+    set:
+      livenessProbe:
+        enabled: true
+        settings:
+          periodSeconds: 30
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].livenessProbe
+          value:
+            httpGet:
+              path: "/"
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 3
+            failureThreshold: 3
