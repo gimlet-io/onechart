@@ -9,7 +9,7 @@ tests:
       containerPort: 1234
     asserts:
       - equal:
-          path: spec.rules[0].http.paths[0].backend.servicePort
+          path: spec.rules[0].http.paths[0].backend.service.port.number
           value: 1234
   - it: Should use service port
     set:
@@ -19,5 +19,5 @@ tests:
       containerPort: 5678
       asserts:
         - equal:
-            path: spec.rules[0].http.paths[0].backend.servicePort
+            path: spec.rules[0].http.paths[0].backend.service.port.number
             value: 1234

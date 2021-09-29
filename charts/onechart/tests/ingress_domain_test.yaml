@@ -20,9 +20,13 @@ tests:
             - host: chart-example.local
               http:
                 paths:
-                - backend:
-                    serviceName: release-name
-                    servicePort: 80
+                  - path: "/"
+                    pathType: "Prefix"
+                    backend:
+                      service:
+                        name: release-name
+                        port:
+                          number: 80
   - it: Should pass ingress host name as is, user must sanitize it
     set:
       ingress:
@@ -41,20 +45,33 @@ tests:
             - host: feature/my_branch.local
               http:
                 paths:
-                - backend:
-                    serviceName: release-name
-                    servicePort: 80
+                  - path: "/"
+                    pathType: "Prefix"
+                    backend:
+                      service:
+                        name: release-name
+                        port:
+                          number: 80
   - it: Should set Ingress annotation
     set:
       ingress:
         host: chart-example.local
         annotations:
-          kubernetes.io/ingress.class: nginx
+          just/a-random: annotation
     asserts:
       - equal:
           path: metadata.annotations
           value:
-            kubernetes.io/ingress.class: nginx
+            just/a-random: annotation
+  - it: Should set ingress class
+    set:
+      ingress:
+        host: chart-example.local
+        ingressClassName: nginx
+    asserts:
+      - equal:
+          path: spec.ingressClassName
+          value: nginx
   - it: Should generate multiple ingresses
     set:
       ingresses:

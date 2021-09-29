@@ -6,7 +6,7 @@
 {{- $resourceName = printf "%s-%s" $robustName (include "robustName" .ingress.host) -}}
 {{- end }}
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $resourceName }}
@@ -26,6 +26,9 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
+  {{- if .ingress.ingressClassName }}
+  ingressClassName: {{ .ingress.ingressClassName }}
+  {{- end }}
   {{- if default false .ingress.tlsEnabled }}
   tls:
     - hosts:
@@ -36,9 +39,13 @@ spec:
     - host: {{ .ingress.host | quote }}
       http:
         paths:
-          - backend:
-              serviceName: {{ $robustName }}
-              servicePort: {{ if .root.Values.svcPort }}{{ .root.Values.svcPort }}{{ else }}{{ .root.Values.containerPort }}{{ end }}
+          - path: "/"
+            pathType: "Prefix"
+            backend:
+              service:
+                name: {{ $robustName }}
+                port:
+                  number: {{ if .root.Values.svcPort }}{{ .root.Values.svcPort }}{{ else }}{{ .root.Values.containerPort }}{{ end }}
 {{- end }}
 
 {{- with .Values.ingress }}
