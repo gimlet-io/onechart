@@ -34,15 +34,15 @@ spec:
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
           {{- include "common.volumesRef.tpl" . | nindent 10 }}
-          {{ with .Values.nodeSelector }}
+          {{- with .Values.nodeSelector }}
           nodeSelector:
-            {{ toYaml . | nindent 8 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{ with .Values.affinity }}
+          {{- with .Values.affinity }}
           affinity:
-            {{ toYaml . | nindent 8 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{ with .Values.tolerations }}
+          {{- with .Values.tolerations }}
           tolerations:
-            {{ toYaml . | nindent 8 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
