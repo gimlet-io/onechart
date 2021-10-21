@@ -54,7 +54,7 @@ jobs:
       env:
         TAG_VERSION: ${{ steps.versioning.outputs.tag_version }}
         CHART_VERSION: ${{ steps.chart_version.outputs.chart_version }}
-        CRON_JOB_CHART_VERSION: ${{ steps.cron_job_chart_version.outputs.chart_version }}
+        CRON_JOB_CHART_VERSION: ${{ steps.chart_version.outputs.cron_job_chart_version }}
 
     - name: Create Release
       id: create_release
