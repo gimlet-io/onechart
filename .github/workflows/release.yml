@@ -40,13 +40,13 @@ jobs:
       run: |
         echo "$TAG_VERSION"
         echo "$CHART_VERSION"
-        echo "CRON_JOB_CHART_VERSION"
+        echo "$CRON_JOB_CHART_VERSION"
         if [ "$TAG_VERSION" != "$CHART_VERSION" ]
         then
             echo "Tag version does not match chart version"
             exit 1
         fi
-        if [ "$TAG_VERSION" != "CRON_JOB_CHART_VERSION" ]
+        if [ "$TAG_VERSION" != "$CRON_JOB_CHART_VERSION" ]
                 then
                     echo "Tag version does not match cron-job chart version"
                     exit 1
