@@ -31,20 +31,30 @@ jobs:
         echo $CHART_VERSION
         echo ::set-output name=chart_version::$CHART_VERSION
 
+        CHART_VERSION=$(cat charts/cron-job/Chart.yaml | grep ^version:)
+        CHART_VERSION=${CHART_VERSION#version: }
+        echo $CHART_VERSION
+        echo ::set-output name=cron_job_chart_version::$CHART_VERSION
+
     - name: Ensure tag and chart version matches
       run: |
-        echo "Run ${{ steps.versioning.outputs.VERSION }}"
-        echo "${{ steps.chart_version.outputs.CHART_VERSION }}"
         echo "$TAG_VERSION"
         echo "$CHART_VERSION"
+        echo "CRON_JOB_CHART_VERSION"
         if [ "$TAG_VERSION" != "$CHART_VERSION" ]
         then
             echo "Tag version does not match chart version"
             exit 1
         fi
+        if [ "$TAG_VERSION" != "CRON_JOB_CHART_VERSION" ]
+                then
+                    echo "Tag version does not match cron-job chart version"
+                    exit 1
+                fi
       env:
         TAG_VERSION: ${{ steps.versioning.outputs.tag_version }}
         CHART_VERSION: ${{ steps.chart_version.outputs.chart_version }}
+        CRON_JOB_CHART_VERSION: ${{ steps.cron_job_chart_version.outputs.chart_version }}
 
     - name: Create Release
       id: create_release
@@ -85,6 +95,7 @@ jobs:
         echo "The new version will be $increased_version"
 
         sed -i "s/version: $CHART_VERSION/version: $increased_version/" charts/onechart/Chart.yaml
+        sed -i "s/version: $CHART_VERSION/version: $increased_version/" charts/cron-job/Chart.yaml
 
         git status
         git add .
