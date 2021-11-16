@@ -4,7 +4,7 @@ A generic Helm chart for your application deployments.
 
 Because no-one can remember the Kubernetes yaml syntax.
 
-https://onechart.dev/
+https://gimlet.io/docs
 
 ## Getting started
 
