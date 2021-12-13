@@ -388,7 +388,7 @@
               "description": "Number of seconds after the container has started before the probes is initiated",
               "default": 0,
               "minimum": 0,
-              "maximum": 60
+              "maximum": 180
             },
             "periodSeconds": {
               "$id": "#/properties/probe/properties/settings/properties/periodSeconds",
