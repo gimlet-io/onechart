@@ -39,7 +39,7 @@ spec:
     - host: {{ .ingress.host | quote }}
       http:
         paths:
-          - path: "/"
+          - path: {{ .ingress.path | default  "/" | quote }}
             pathType: "Prefix"
             backend:
               service:
