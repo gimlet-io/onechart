@@ -152,14 +152,14 @@
         "gitSha": {
           "$id": "#/properties/gitSha",
           "type": "string",
-          "title": "Commit hash",
+          "title": "Commit Hash",
           "description": "Fill in the description",
           "default": ""
         },
         "gitRepository": {
           "$id": "#/properties/gitRepository",
           "type": "string",
-          "title": "GitHub repository",
+          "title": "GitHub Repository",
           "description": "Fill in the description",
           "default": ""
         }
@@ -660,7 +660,7 @@
         "ingressPath": {
           "$id": "#/properties/ingress/properties/ingressPath",
           "type": "string",
-          "title": "Ingress path",
+          "title": "Ingress Path",
           "description": "Fill in the description",
           "default": "/",
           "examples": [
@@ -712,7 +712,7 @@
           "existingClaim": {
             "$id": "#/properties/volumes/items/anyOf/0/properties/existingClaim",
             "type": "string",
-            "title": "Existing claim",
+            "title": "Existing Claim",
             "description": "Fill in the description",
             "default": ""
           },
