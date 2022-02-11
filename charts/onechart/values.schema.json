@@ -134,7 +134,7 @@
       "$id": "#/properties/podAnnotations",
       "type": "object",
       "title": "Pod annotations",
-      "description": "Fill in the description",
+      "description": "Annotations to place on pods",
       "default": {},
       "examples": [
         {}
@@ -146,14 +146,14 @@
       "$id": "#/properties/gitSha",
       "type": "string",
       "title": "Commit Hash",
-      "description": "Fill in the description",
+      "description": "The git hash that you are deploying",
       "default": ""
     },
     "gitRepository": {
       "$id": "#/properties/gitRepository",
       "type": "string",
       "title": "GitHub Repository",
-      "description": "Fill in the description",
+      "description": "The git repository that you are deploying",
       "default": ""
     },
     "podSecurityContext": {
@@ -601,8 +601,8 @@
     "secretEnabled": {
       "$id": "#/properties/secretEnabled",
       "type": "boolean",
-      "title": "Enable sealed secrets",
-      "description": "Fill in the description",
+      "title": "Existing secret",
+      "description": "If enabled, a secret will be referenced from the deployment whose name matches the deployment name",
       "default": false
     },
     "sealedSecrets": {
@@ -648,14 +648,14 @@
             "my-release.mycompany.com"
           ]
         },
-        "ingressPath": {
+        "path": {
           "$id": "#/properties/ingress/properties/ingressPath",
           "type": "string",
-          "title": "Ingress Path",
-          "description": "Fill in the description",
+          "title": "Path",
+          "description": "The API path where your service is accessible",
           "default": "/",
           "examples": [
-            "my-release.mycompany.com"
+            "/api/myservice"
           ]
         },
         "tlsEnabled": {
@@ -704,7 +704,7 @@
             "$id": "#/properties/volumes/items/anyOf/0/properties/existingClaim",
             "type": "string",
             "title": "Existing Claim",
-            "description": "Fill in the description",
+            "description": "Use an existing PersistentVolumeClaim",
             "default": ""
           },
           "path": {
