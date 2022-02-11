@@ -484,6 +484,13 @@
       "properties": {},
       "additionalProperties": true
     },
+    "secretEnabled": {
+      "$id": "#/properties/secretEnabled",
+      "type": "boolean",
+      "title": "Enable sealed secrets",
+      "description": "Fill in the description",
+      "default": false
+    },
     "sealedSecrets": {
       "$id": "#/properties/sealedSecrets",
       "type": "object",
