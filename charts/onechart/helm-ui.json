@@ -27,10 +27,30 @@
   },
   {
     "schemaIDs": [
-      "#/properties/probe"
+      "#/properties/probe",
+      "#/properties/livenessProbe"
     ],
     "uiSchema": {
       "#/properties/probe": {
+        "settings": {
+          "initialDelaySeconds": {
+            "ui:widget": "range"
+          },
+          "periodSeconds": {
+            "ui:widget": "range"
+          },
+          "successThreshold": {
+            "ui:widget": "range"
+          },
+          "timeoutSeconds": {
+            "ui:widget": "range"
+          },
+          "failureThreshold": {
+            "ui:widget": "range"
+          }
+        }
+      },
+      "#/properties/livenessProbe": {
         "settings": {
           "initialDelaySeconds": {
             "ui:widget": "range"
