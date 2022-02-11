@@ -534,6 +534,16 @@
             "my-release.mycompany.com"
           ]
         },
+        "ingressPath": {
+          "$id": "#/properties/ingress/properties/ingressPath",
+          "type": "string",
+          "title": "Ingress path",
+          "description": "Fill in the description",
+          "default": "/",
+          "examples": [
+            "my-release.mycompany.com"
+          ]
+        },
         "tlsEnabled": {
           "$id": "#/properties/ingress/properties/tlsEnabled",
           "type": "boolean",
