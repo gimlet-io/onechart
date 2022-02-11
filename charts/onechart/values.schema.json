@@ -712,7 +712,7 @@
           "existingClaim": {
             "$id": "#/properties/volumes/items/anyOf/0/properties/existingClaim",
             "type": "string",
-            "title": "Existing Claim",
+            "title": "Existing claim",
             "description": "Fill in the description",
             "default": ""
           },
