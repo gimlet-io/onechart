@@ -334,7 +334,7 @@
       "$id": "#/properties/probe",
       "type": "object",
       "title": "Healthcheck",
-      "description": "The Kubernetes Readiness probe that determines whether your app is healthy and if should receive traffic",
+      "description": "The Kubernetes Readiness probe determines whether your app is healthy and if it should receive traffic",
       "default": {},
       "examples": [
         {
@@ -385,7 +385,7 @@
               "$id": "#/properties/probe/properties/settings/properties/initialDelaySeconds",
               "type": "integer",
               "title": "Initial Delay Seconds",
-              "description": "Number of seconds after the container has started before the probes is initiated",
+              "description": "Number of seconds after the container has started before the probe is initiated",
               "default": 0,
               "minimum": 0,
               "maximum": 180
@@ -421,7 +421,107 @@
               "$id": "#/properties/probe/properties/settings/properties/failureThreshold",
               "type": "integer",
               "title": "Failure Threshold",
-              "description": "When a probe fails, Kubernetes will tries this many times before giving up. Giving up the pod will be marked Unready and won't get any traffic",
+              "description": "When a probe fails, Kubernetes will try this many times before giving up. Giving up the pod will be marked Unready and won't get any traffic",
+              "default": 3,
+              "minimum": 1,
+              "maximum": 15
+            }
+          }
+        }
+      }
+    },
+    "livenessProbe": {
+      "$id": "#/properties/livenessProbe",
+      "type": "object",
+      "title": "Liveness check",
+      "description": "The Kubernetes Liveness probe determines whether your app is healthy and if it should be restarted",
+      "default": {},
+      "examples": [
+        {
+          "enabled": false,
+          "path": "/"
+        }
+      ],
+      "required": [
+        "enabled",
+        "path"
+      ],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/livenessProbe/properties/enabled",
+          "type": "boolean",
+          "title": "",
+          "description": "",
+          "default": false,
+          "examples": [
+            false
+          ]
+        },
+        "path": {
+          "$id": "#/properties/livenessProbe/properties/path",
+          "type": "string",
+          "title": "Path",
+          "description": "Fill in the description",
+          "default": "/",
+          "examples": [
+            "/"
+          ]
+        },
+        "settings": {
+          "$id": "#/properties/livenessProbe/properties/settings",
+          "type": "object",
+          "title": "Probe thresholds",
+          "description": "Tune the probe behavior",
+          "examples": [
+            {
+              "failureThreshold": 3,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "timeoutSeconds": 10
+            }
+          ],
+          "properties": {
+            "initialDelaySeconds": {
+              "$id": "#/properties/livenessProbe/properties/settings/properties/initialDelaySeconds",
+              "type": "integer",
+              "title": "Initial Delay Seconds",
+              "description": "Number of seconds after the container has started before the probe is initiated",
+              "default": 0,
+              "minimum": 0,
+              "maximum": 180
+            },
+            "periodSeconds": {
+              "$id": "#/properties/livenessProbe/properties/settings/properties/periodSeconds",
+              "type": "integer",
+              "title": "Period",
+              "description": "How often (in seconds) to perform the probe",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 60
+            },
+            "successThreshold": {
+              "$id": "#/properties/livenessProbe/properties/settings/properties/successThreshold",
+              "type": "integer",
+              "title": "Success Threshold",
+              "description": "Minimum consecutive successes for the probe to be considered successful after having failed",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 15
+            },
+            "timeoutSeconds": {
+              "$id": "#/properties/livenessProbe/properties/settings/properties/timeoutSeconds",
+              "type": "integer",
+              "title": "Timeout",
+              "description": "Number of seconds after which the probe times out",
+              "default": 3,
+              "minimum": 1,
+              "maximum": 30
+            },
+            "failureThreshold": {
+              "$id": "#/properties/livenessProbe/properties/settings/properties/failureThreshold",
+              "type": "integer",
+              "title": "Failure Threshold",
+              "description": "When a probe fails, Kubernetes will try this many times before giving up. Giving up the pod will be marked Unready and won't get any traffic",
               "default": 3,
               "minimum": 1,
               "maximum": 15
