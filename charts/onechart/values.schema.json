@@ -130,31 +130,40 @@
         ""
       ]
     },
-    "podAnnotations": {
-      "$id": "#/properties/podAnnotations",
+    "misc": {
+      "$id": "#/properties/misc",
       "type": "object",
-      "title": "Pod annotations",
-      "description": "Fill in the description",
+      "title": "Miscellaneous items",
+      "description": "",
       "default": {},
-      "examples": [
-        {}
-      ],
-      "required": [],
-      "additionalProperties": true
-    },
-    "gitSha": {
-      "$id": "#/properties/gitSha",
-      "type": "string",
-      "title": "Commit hash",
-      "description": "Fill in the description",
-      "default": ""
-    },
-    "gitRepository": {
-      "$id": "#/properties/gitRepository",
-      "type": "string",
-      "title": "GitHub repository",
-      "description": "Fill in the description",
-      "default": ""
+      "properties": {
+        "podAnnotations": {
+          "$id": "#/properties/podAnnotations",
+          "type": "object",
+          "title": "Pod annotations",
+          "description": "Fill in the description",
+          "default": {},
+          "examples": [
+            {}
+          ],
+          "required": [],
+          "additionalProperties": true
+        },
+        "gitSha": {
+          "$id": "#/properties/gitSha",
+          "type": "string",
+          "title": "Commit hash",
+          "description": "Fill in the description",
+          "default": ""
+        },
+        "gitRepository": {
+          "$id": "#/properties/gitRepository",
+          "type": "string",
+          "title": "GitHub repository",
+          "description": "Fill in the description",
+          "default": ""
+        }
+      }
     },
     "podSecurityContext": {
       "$id": "#/properties/podSecurityContext",
