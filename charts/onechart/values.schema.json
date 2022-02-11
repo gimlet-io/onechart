@@ -608,7 +608,7 @@
     "sealedSecrets": {
       "$id": "#/properties/sealedSecrets",
       "type": "object",
-      "title": "Sealed Secrets",
+      "title": "Sealed secrets",
       "description": "",
       "default": {},
       "examples": [
