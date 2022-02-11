@@ -686,6 +686,13 @@
             "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
             "default": "data"
           },
+          "existingClaim": {
+            "$id": "#/properties/volumes/items/anyOf/0/properties/existingClaim",
+            "type": "string",
+            "title": "Existing Claim",
+            "description": "Fill in the description",
+            "default": ""
+          },
           "path": {
             "$id": "#/properties/volumes/items/anyOf/0/properties/path",
             "type": "string",
