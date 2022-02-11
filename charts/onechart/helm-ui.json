@@ -141,7 +141,9 @@
   },
   {
     "schemaIDs": [
-      "#/properties/misc"
+      "#/properties/podAnnotations",
+      "#/properties/gitSha",
+      "#/properties/gitRepository"
     ],
     "uiSchema": {},
     "metaData": {
