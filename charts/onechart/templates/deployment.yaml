@@ -9,6 +9,7 @@ metadata:
   annotations:
     gimlet.io/git-sha: {{ .Values.gitSha }}
   {{- end }}
+    kubectl.kubernetes.io/default-container: {{ template "robustName" .Release.Name }}
 spec:
   replicas: {{ .Values.replicas }}
   selector:
