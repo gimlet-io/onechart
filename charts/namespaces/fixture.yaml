@@ -1,0 +1,18 @@
+namespaces:
+  - name: staging
+    quota:
+      cpu: 32
+      memory: "64Gi"
+      storage: "500Gi"
+    overcommit:
+      cpu: 1
+      memory: 1
+    podMaximumResources:
+      cpu: 4
+      memory: "8Gi"
+    podDefaultResources:
+      cpu: "200m"
+      memory: "200Mi"
+    podResourceOvercommit:
+      cpu: 2
+      memory: 1

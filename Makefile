@@ -12,20 +12,20 @@ kubeval:
 	rm -rf manifests && true
 	mkdir manifests
 	helm template charts/onechart --output-dir manifests
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.13.0
 	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.18.0
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.23.0
 
 	rm -rf manifests && true
 	mkdir manifests
 	helm template charts/cron-job --output-dir manifests
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.13.0
 	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.18.0
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.23.0
 
 	rm -rf manifests && true
 	mkdir manifests
-	helm template charts/namespaces --output-dir manifests
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.13.0
+	helm template charts/namespaces --output-dir manifests -f charts/namespaces/fixture.yaml
 	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.18.0
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.23.0
 
 test:
 	helm dependency update charts/onechart
