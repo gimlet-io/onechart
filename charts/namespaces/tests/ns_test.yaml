@@ -11,6 +11,9 @@ tests:
           path: metadata.name
           value: staging
   - it: Should not set annotations if none provided in values
+    set:
+      namespaces:
+        - name: staging
     asserts:
       - isNull:
           path: metadata.annotations

@@ -2,16 +2,37 @@ suite: test deployment
 templates:
   - resource-quota.yaml
 tests:
-  - it: Should set default quota values
+  - it: Should set namespace specific quotas
     set:
-      namespace:
-        budget:
-          cpu: 32
-          memory: "64Gi"
-          storage: "500Gi"
-        overcommit:
-          cpu: 2
-          memory: 1
+      namespaces:
+        - name: staging
+          quota:
+            cpu: 32
+            memory: "64Gi"
+            storage: "500Gi"
+          overcommit:
+            cpu: 1
+            memory: 1
+    asserts:
+      - equal:
+          path: spec.hard
+          value:
+            limits.cpu: 32
+            limits.memory: "64Gi"
+            requests.cpu: 32
+            requests.memory: "64Gi"
+            requests.storage: "500Gi"
+  - it: Should handle overcommit
+    set:
+      namespaces:
+        - name: staging
+          quota:
+            cpu: 32
+            memory: "64Gi"
+            storage: "500Gi"
+          overcommit:
+            cpu: 2
+            memory: 1
     asserts:
       - equal:
           path: spec.hard
@@ -21,29 +42,3 @@ tests:
             requests.cpu: 32
             requests.memory: "64Gi"
             requests.storage: "500Gi"
-  - it: Should set namespace specific quotas
-    set:
-      namespaces:
-        - name: staging
-          namespace:
-            budget:
-              cpu: 8
-              memory: "16Gi"
-              storage: "100Gi"
-      namespace:
-        budget:
-          cpu: 32
-          memory: "64Gi"
-          storage: "500Gi"
-        overcommit:
-          cpu: 2
-          memory: 1
-    asserts:
-      - equal:
-          path: spec.hard
-          value:
-            limits.cpu: 16
-            limits.memory: "16Gi"
-            requests.cpu: 8
-            requests.memory: "16Gi"
-            requests.storage: "100Gi"
