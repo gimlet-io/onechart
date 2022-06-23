@@ -10,3 +10,7 @@ tests:
       - equal:
           path: metadata.name
           value: staging
+  - it: Should not set annotations if none provided in values
+    asserts:
+      - isNull:
+          path: metadata.annotations
