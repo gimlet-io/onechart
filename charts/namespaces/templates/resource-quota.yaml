@@ -1,16 +1,5 @@
 {{- range .Values.namespaces }}
-{{- $budget := $.Values.namespace.budget }}
-{{- if .namespace }}
-{{- if .namespace.budget }}
-{{- $budget = .namespace.budget }}
-{{- end }}
-{{- end }}
-{{- $overcommit := $.Values.namespace.overcommit }}
-{{- if .namespace }}
-{{- if .namespace.overcommit }}
-{{- $overcommit = .namespace.overcommit }}
-{{- end }}
-{{- end }}
+{{- if and .quota .overcommit }}
 ---
 apiVersion: v1
 kind: ResourceQuota
@@ -18,9 +7,10 @@ metadata:
   name: {{ .name }}
 spec:
   hard:
-    limits.cpu: {{ $budget.cpu | mul $overcommit.cpu }}
-    limits.memory: {{ $budget.memory | regexFind "[1-9]+" | mul $overcommit.memory }}{{ $budget.memory | regexFind "[a-zA-Z]+"  }}
-    requests.cpu: {{ $budget.cpu }}
-    requests.memory: {{ $budget.memory }}
-    requests.storage: {{ $budget.storage }}
+    limits.cpu: {{ .quota.cpu | mul .overcommit.cpu }}
+    limits.memory: {{ .quota.memory | regexFind "[1-9]+" | mul .overcommit.memory }}{{ .quota.memory | regexFind "[a-zA-Z]+"  }}
+    requests.cpu: {{ .quota.cpu }}
+    requests.memory: {{ .quota.memory }}
+    requests.storage: {{ .quota.storage }}
 {{- end }}
+{{- end -}}

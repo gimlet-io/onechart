@@ -1,22 +1,5 @@
 {{- range .Values.namespaces }}
-{{- $limits := $.Values.pod.limits }}
-{{- if .pod }}
-{{- if .pod.limits }}
-{{- $limits = .pod.limits }}
-{{- end }}
-{{- end }}
-{{- $overcommit := $.Values.pod.overcommit }}
-{{- if .pod }}
-{{- if .pod.overcommit }}
-{{- $overcommit = .pod.overcommit }}
-{{- end }}
-{{- end }}
-{{- $defaults := $.Values.pod.defaults }}
-{{- if .pod }}
-{{- if .pod.defaults }}
-{{- $defaults = .pod.defaults }}
-{{- end }}
-{{- end }}
+{{- if and .podMaximumResources (and .podDefaultResources .podResourceOvercommit) }}
 ---
 apiVersion: v1
 kind: LimitRange
@@ -26,19 +9,26 @@ metadata:
 spec:
   limits:
     - type: Container
+      {{- if .podMaximumResources }}
       max:
-        cpu: 4
-        memory: "8Gi"
-      min:
-        cpu: "100m"
-        memory: "50Mi"
+        cpu: {{ .podMaximumResources.cpu }}
+        memory: {{ .podMaximumResources.memory }}
+      {{- end }}
+      {{- if .podDefaultResources }}
       default:
-        cpu: {{ $defaults.cpu }}
-        memory: {{ $defaults.memory }}
+        cpu: {{ .podDefaultResources.cpu }}
+        memory: {{ .podDefaultResources.memory }}
       defaultRequest:
-        cpu: {{ $defaults.cpu }}
-        memory: {{ $defaults.memory }}
+        cpu: {{ .podDefaultResources.cpu }}
+        memory: {{ .podDefaultResources.memory }}
+      {{- end }}
       maxLimitRequestRatio:
-        cpu: {{ $overcommit.cpu }}
-        memory: {{ $overcommit.memory }}
+        {{- if .podResourceOvercommit }}
+        cpu: {{ .podResourceOvercommit.cpu }}
+        memory: {{ .podResourceOvercommit.memory }}
+        {{ else }}
+        cpu: 1
+        memory: 1
+        {{- end }}
+{{- end }}
 {{- end }}
