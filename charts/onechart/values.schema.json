@@ -759,6 +759,29 @@
             "required": [
               "name", "path", "existingClaim"
             ]
+          },
+          {
+            "title": "Use a path from the host",
+            "type": "object",
+            "properties": {
+              "name": {
+                "$id": "#/properties/volumes/items/anyOf/0/properties/name",
+                "type": "string",
+                "title": "Name",
+                "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
+                "default": "data"
+              },
+              "path": {
+                "$id": "#/properties/volumes/items/anyOf/0/properties/hostPath",
+                "type": "string",
+                "title": "Host Path",
+                "description": "Use a path from the host node",
+                "default": ""
+              }
+            },
+            "required": [
+              "name", "path"
+            ]
           }
         ]
       }

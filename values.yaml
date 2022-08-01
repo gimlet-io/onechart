@@ -7,3 +7,12 @@ gitSha: xyz
 
 vars:
   MY_VAR: "value"
+
+volumes:
+  - name: testing
+    path: /deleteme
+    hostPath:
+      path: /deleteme
+  - name: empty
+    path: /deleteme2
+    emptyDir: true 

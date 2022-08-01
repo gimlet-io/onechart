@@ -3,12 +3,22 @@
 volumes:
   {{- range .Values.volumes }}
   - name: {{ .name }}
+    {{- if .emptyDir }}
+    emptyDir: {}
+    {{- else if .hostPath }}
+    hostPath:
+      path: {{ .hostPath.path }}
+      {{- if .hostPath.type }}
+      type: {{ .hostPath.type }}
+      {{- end }}
+    {{- else }}
     persistentVolumeClaim:
       {{- if .existingClaim }}
       claimName: {{ .existingClaim }}
       {{ else }}
       claimName: {{ printf "%s-%s" $.Release.Name .name }}
       {{- end }}
+    {{- end }}
   {{- end }}
   {{- range .Values.sealedFileSecrets }}
   - name: {{ .name }}
