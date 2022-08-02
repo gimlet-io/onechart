@@ -764,9 +764,24 @@
                 "default": "data"
               },
               "hostPath": {
-                "type": "string",
+                "type": "object",
                 "title": "Path on the host",
-                "description": "Use a physical path on the host machine"
+                "description": "Use a physical path on the host machine",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "title": "Path on Host",
+                    "description": "Use a physical path on the host machine"
+                  },
+                  "type": {
+                    "type": "string",
+                    "title": "Path Type",
+                    "enum": ["DirectoryOrCreate", "Directory", "FileOrCreate", "File", "Socket", "CharDevice", "BlockDevice"]
+                  }
+                },
+                "required": [
+                  "path"
+                ]
               },
               "path": {
                 "type": "string",
