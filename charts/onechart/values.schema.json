@@ -692,38 +692,33 @@
       "items": {
         "$id": "#/properties/volumes/items",
         "type": "object",
-        "oneOf": [
+        "anyOf": [
           {
+            "id": "#/properties/volumes/oneOf/0",
             "title": "Volume",
             "type": "object",
               "properties": {
                 "name": {
-                  "$id": "#/properties/volumes/items/anyOf/0/properties/name",
                   "type": "string",
                   "title": "Name",
                   "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
                   "default": "data"
                 },
                 "path": {
-                  "$id": "#/properties/volumes/items/anyOf/0/properties/path",
                   "type": "string",
                   "title": "Path",
                   "description": "The mount path inside the container",
                   "default": "/data"
                 },
                 "size": {
-                  "$id": "#/properties/volumes/items/anyOf/0/properties/size",
                   "type": "string",
                   "title": "Size",
-                  "description": "",
-                  "default": "10Gi"
+                  "description": "eg: 10Gi"
                 },
                 "storageClass": {
-                  "$id": "#/properties/volumes/items/anyOf/0/properties/storageClass",
                   "type": "string",
                   "title": "Storage Class",
-                  "description": "The slug indicating the disk type in your cloud provider. `standard` on Google Cloud, `default` on Azure; `do-block-storage` on Digital Ocean",
-                  "default": ""
+                  "description": "The slug indicating the disk type in your cloud provider. `standard` on Google Cloud, `default` on Azure; `do-block-storage` on Digital Ocean"
                 }
               },
               "required": [
@@ -731,25 +726,22 @@
               ]
           },
           {
+            "id": "#/properties/volumes/oneOf/1",
             "title": "Use existing volume claim",
             "type": "object",
             "properties": {
               "name": {
-                "$id": "#/properties/volumes/items/anyOf/0/properties/name",
                 "type": "string",
                 "title": "Name",
                 "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
                 "default": "data"
               },
               "existingClaim": {
-                "$id": "#/properties/volumes/items/anyOf/0/properties/existingClaim",
                 "type": "string",
                 "title": "Existing Claim",
-                "description": "Use an existing PersistentVolumeClaim",
-                "default": ""
+                "description": "Use an existing PersistentVolumeClaim"
               },
               "path": {
-                "$id": "#/properties/volumes/items/anyOf/0/properties/path",
                 "type": "string",
                 "title": "Path",
                 "description": "The mount path inside the container",
@@ -758,6 +750,76 @@
             },
             "required": [
               "name", "path", "existingClaim"
+            ]
+          },
+          {
+            "id": "#/properties/volumes/oneOf/2",
+            "title": "Use path from the host",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
+                "default": "data"
+              },
+              "hostPath": {
+                "type": "object",
+                "title": "Path on the host",
+                "description": "Use a physical path on the host machine",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "title": "Path on Host",
+                    "description": "Use a physical path on the host machine"
+                  },
+                  "type": {
+                    "type": "string",
+                    "title": "Path Type",
+                    "enum": ["DirectoryOrCreate", "Directory", "FileOrCreate", "File", "Socket", "CharDevice", "BlockDevice"]
+                  }
+                },
+                "required": [
+                  "path"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "title": "Path",
+                "description": "The mount path inside the container",
+                "default": "/data"
+              }
+            },
+            "required": [
+              "name", "path", "hostPath"
+            ]
+          },
+          {
+            "id": "#/properties/volumes/oneOf/3",
+            "title": "Use a non-persistent disk",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
+                "default": "data"
+              },
+              "emptyDir": {
+                "type": "boolean",
+                "title": "Non-persistent disk",
+                "description": "Enable to use a non-persistent disk",
+                "default": true
+              },
+              "path": {
+                "type": "string",
+                "title": "Path",
+                "description": "The mount path inside the container",
+                "default": "/data"
+              }
+            },
+            "required": [
+              "name", "path", "emptyDir"
             ]
           }
         ]

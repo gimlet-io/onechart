@@ -74,3 +74,45 @@ tests:
             - name: data
               persistentVolumeClaim:
                 claimName: my-static-claim
+  - it: Should use emptyDir
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          emptyDir: true
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: data
+              emptyDir: {}
+  - it: Should use hostPath
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          hostPath:
+            path: /somewhere/over/the/rainbow
+            type: DirectoryOrCreate
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: data
+              hostPath:
+                path: /somewhere/over/the/rainbow
+                type: DirectoryOrCreate
+  - it: Should use hostPath without type
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          hostPath:
+            path: /somewhere/over/the/rainbow
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: data
+              hostPath:
+                path: /somewhere/over/the/rainbow
