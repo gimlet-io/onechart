@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/*"
-  to = "https://gimlet.io/onechart/getting-started"
+  to = "https://gimlet.io/docs/onechart-reference"
   status = 301
   force = true
