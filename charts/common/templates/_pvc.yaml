@@ -8,6 +8,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ printf "%s-%s" $robustName .name }}
   namespace: {{ $.Release.Namespace }}
+  {{- if .pvcAnnotations }}
+  annotations:
+    {{- toYaml .pvcAnnotations | nindent 4 }}
+  {{- end }} 
 spec:
   accessModes:
     - {{ .accessMode | default "ReadWriteOnce" }}

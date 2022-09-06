@@ -13,6 +13,20 @@ tests:
       - equal:
           path: spec.storageClassName
           value: default
+  - it: Should assign annotations to the PVC
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          size: 10Gi
+          storageClass: default
+          pvcAnnotations:
+            rancher.io/local-path/volume-type: local
+    asserts:
+      - equal:
+          path: metadata.annotations
+          value:
+            rancher.io/local-path/volume-type: local
   - it: Should not generate a claim when using existing claim
     set:
       volumes:

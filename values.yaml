@@ -2,8 +2,9 @@ ingress:
   host: chart-example.local
   ingressClassName: nginx
 
-gitRepository: github.com/laszlocph/demo-app
-gitSha: xyz
+image:
+  repository: nginx
+  tag: latest
 
 vars:
   MY_VAR: "value"
@@ -11,8 +12,7 @@ vars:
 volumes:
   - name: testing
     path: /deleteme
-    hostPath:
-      path: /deleteme
-  - name: empty
-    path: /deleteme2
-    emptyDir: true 
+    storageClass: test
+    size: 1Gi
+    pvcAnnotations:
+      rancher.io/local-path/volume-type: local

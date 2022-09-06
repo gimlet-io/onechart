@@ -719,6 +719,18 @@
                   "type": "string",
                   "title": "Storage Class",
                   "description": "The slug indicating the disk type in your cloud provider. `standard` on Google Cloud, `default` on Azure; `do-block-storage` on Digital Ocean"
+                },
+                "pvcAnnotations": {
+                  "type": "object",
+                  "title": "Annotations",
+                  "description": "Annotations are used to control the persistance claim behavior.",
+                  "default": {},
+                  "examples": [
+                    {
+                      "rancher.io/local-path/volume-type": "local"
+                    }
+                  ],
+                  "additionalProperties": true
                 }
               },
               "required": [
