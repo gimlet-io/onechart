@@ -226,6 +226,16 @@
       ],
       "required": [],
       "properties": {
+        "ignore": {
+          "$id": "#/properties/resources/properties/ignore",
+          "type": "boolean",
+          "title": "Ignore",
+          "description": "If set to true, resource configuration will be ignored",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
         "requests": {
           "$id": "#/properties/resources/properties/requests",
           "type": "object",
