@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
   
-    - name: Checkout main
+    - name: Checkout release/fork
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
@@ -71,13 +71,13 @@ jobs:
       run: |
         git config --global user.email "action@github.com"
         git config --global user.name "Github Action"
-        git checkout master
+        git checkout release/fork
 
         make package
 
         git add .
         git commit -m "Publishing $TAG_VERSION to the Helm repository"
-        git push origin master
+        git push origin release/fork
       env:
         TAG_VERSION: ${{ steps.versioning.outputs.tag_version }}
 
@@ -85,7 +85,7 @@ jobs:
       run: |
         git config --global user.email "action@github.com"
         git config --global user.name "Github Action"
-        git checkout master
+        git checkout release/fork
 
         without_major_version=${CHART_VERSION#*.}
         without_patch_version=${without_major_version%.*}
@@ -100,6 +100,6 @@ jobs:
         git status
         git add .
         git commit -m "The next release version will be $increased_version"
-        git push origin master
+        git push origin release/fork
       env:
         CHART_VERSION: ${{ steps.chart_version.outputs.chart_version }}
