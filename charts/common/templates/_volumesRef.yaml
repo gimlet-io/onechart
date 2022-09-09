@@ -1,5 +1,5 @@
 {{- define "common.volumesRef.tpl" -}}
-{{- if or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets }}
+{{- if or (or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets) .Values.existingFileSecrets }}
 volumes:
   {{- range .Values.volumes }}
   - name: {{ .name }}
@@ -26,6 +26,11 @@ volumes:
       secretName: {{ printf "%s-%s" $.Release.Name .name }}
   {{- end }}
   {{- range .Values.fileSecrets }}
+  - name: {{ .name }}
+    secret:
+      secretName: {{ printf "%s-%s" $.Release.Name .name }}
+  {{- end }}
+  {{- range .Values.existingFileSecrets }}
   - name: {{ .name }}
     secret:
       secretName: {{ printf "%s-%s" $.Release.Name .name }}
