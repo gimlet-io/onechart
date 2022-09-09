@@ -1,6 +1,6 @@
 {{- define "common.pvc.tpl" -}}
 {{- range .Values.volumes }}
-{{- if not .existingClaim }}
+{{- if not (or .existingClaim .hostPath) }}
 {{- $robustName := include "common.robustName" $.Release.Name }}
 ---
 apiVersion: v1
