@@ -96,8 +96,10 @@ spec:
             {{- end }}
           {{- end }}
           {{- include "common.volumeMountsRef.tpl" . | nindent 10 }}
+          {{- if not .Values.resources.ignore }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- end }}
         {{- if .Values.sidecar }}
         - name: {{ template "robustName" .Release.Name }}-sidecar
           securityContext: *securityContext

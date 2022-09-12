@@ -1,0 +1,18 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+  - configmap.yaml
+tests:
+  - it: Should render resoucres if not ignored by default
+    set:
+      {}
+    asserts:
+      - isNotNull:
+          path: spec.template.spec.containers[0].resources
+  - it: Should ignore resources if ignore flag is set
+    set:
+      resources:
+        ignore: true
+    asserts:
+      - isNull:
+          path: spec.template.spec.containers[0].resources
