@@ -36,3 +36,13 @@ tests:
     asserts:
       - hasDocuments:
           count: 0
+  - it: Should not generate a claim when using host path
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          hostPath:
+            path: /data/test
+    asserts:
+      - hasDocuments:
+          count: 0
