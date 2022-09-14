@@ -33,7 +33,7 @@ volumes:
   {{- range .Values.existingFileSecrets }}
   - name: {{ .name }}
     secret:
-      secretName: {{ printf "%s-%s" $.Release.Name .name }}
+      secretName: {{ .name }}
   {{- end }}
 {{- end }}
 {{- end -}}
