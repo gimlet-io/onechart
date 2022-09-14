@@ -702,7 +702,7 @@
                 "name": {
                   "type": "string",
                   "title": "Name",
-                  "description": "The name of th existing secret to moun",
+                  "description": "The name of the existing secret to mount",
                   "default": "data"
                 },
                 "path": {
