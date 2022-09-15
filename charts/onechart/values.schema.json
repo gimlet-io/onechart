@@ -693,6 +693,48 @@
         }
       }
     },
+    "existingFileSecrets": {
+      "$id": "#/properties/existingFileSecrets",
+      "type": "array",
+      "title": "Existing file secrets",
+      "description": "Allows to mount existing secrets into a container",
+      "default": [],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/existingFileSecrets/items",
+        "type": "object",
+        "anyOf": [
+          {
+            "id": "#/properties/existingFileSecrets/oneOf/0",
+            "title": "existingFileSecrets",
+            "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": "The name of the existing secret to mount",
+                  "default": "data"
+                },
+                "path": {
+                  "type": "string",
+                  "title": "Path",
+                  "description": "The mount path inside the container",
+                  "default": "/data"
+                },
+                "subPath": {
+                  "type": "string",
+                  "title": "SubPath",
+                  "description": "The optinal mount subpath inside the container, to only mount a specific file but not a complete directory.",
+                  "default": "config.yaml"
+                }
+              },
+              "required": [
+                "name", "path"
+              ]
+          }
+        ]
+      }
+    },
     "volumes": {
       "$id": "#/properties/volumes",
       "type": "array",
