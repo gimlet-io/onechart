@@ -3,6 +3,16 @@ image:
   tag: "latest"
   pullPolicy: IfNotPresent
 
+# ingress:
+#   host: chart-example.local
+#   ingressClassName: nginx
+#   tlsEnabled: true
+#   annotations:
+#     cert-manager.io/cluster-issuer: letsencrypt-staging
+
+# vars:
+#   MY_VAR: "value"
+
 replicas: 1
 
 nameOverride: ""
