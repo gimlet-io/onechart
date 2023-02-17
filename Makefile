@@ -12,20 +12,20 @@ kubeval:
 	rm -rf manifests && true
 	mkdir manifests
 	helm template charts/onechart --output-dir manifests
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.18.0
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.23.0
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.20.0
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.24.0
 
 	rm -rf manifests && true
 	mkdir manifests
 	helm template charts/cron-job --output-dir manifests
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.18.0
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.23.0
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.20.0
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.24.0
 
 	rm -rf manifests && true
 	mkdir manifests
 	helm template charts/namespaces --output-dir manifests -f charts/namespaces/fixture.yaml
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.18.0
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.23.0
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.20.0
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.24.0
 
 test:
 	helm dependency update charts/onechart
@@ -37,9 +37,11 @@ test:
 	helm unittest charts/namespaces
 
 package:
+	helm dependency update charts/onechart
 	helm package charts/onechart
 	mv onechart*.tgz docs
 
+	helm dependency update charts/cron-job
 	helm package charts/cron-job
 	mv cron-job*.tgz docs
 
