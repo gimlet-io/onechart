@@ -5,6 +5,9 @@ volumes:
   - name: {{ .name }}
     {{- if .emptyDir }}
     emptyDir: {}
+    {{- else if .configMap }}
+    configMap:
+      name: {{ .name }}
     {{- else if .hostPath }}
     hostPath:
       path: {{ .hostPath.path }}
@@ -34,6 +37,6 @@ volumes:
   - name: {{ .name }}
     secret:
       secretName: {{ .name }}
-  {{- end }}
+  {{- end }} 
 {{- end }}
 {{- end -}}
