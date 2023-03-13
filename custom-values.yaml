@@ -1,15 +1,7 @@
 volumes:
 - name: map
   configMap: true
-  subPath: map.conf
   path: /data/map.conf
+  subPath: map.conf 
   
-# - name: map2
-#   secret: true
-#   subPath: true
-#   path: /data/secrets
-  #size: 1Gi
-# volumeMounts:
-# - name: tinyproxy2
-#   mountPath: /data/secrets/tinyproxy2.conf 
-#   subPath: tinyproxy2.conf    
+   

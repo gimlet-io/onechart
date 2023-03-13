@@ -875,7 +875,7 @@
           },
           {
             "id": "#/properties/volumes/oneOf/3",
-            "title": "Use a ephemeral volumes",
+            "title": "Use ephemeral volumes",
             "type": "object",
             "properties": {
               "name": {
@@ -910,9 +910,8 @@
               },
               "subPath": {
                 "type": "string",
-                "title": "Path",
-                "description": "The mount path inside the container",
-                "default": "/data"
+                "title": "subPath",
+                "description": "mount single file"
               }
             },
             "required": [
