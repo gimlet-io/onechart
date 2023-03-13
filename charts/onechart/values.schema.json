@@ -907,6 +907,12 @@
                 "title": "Path",
                 "description": "The mount path inside the container",
                 "default": "/data"
+              },
+              "subPath": {
+                "type": "string",
+                "title": "Path",
+                "description": "The mount path inside the container",
+                "default": "/data"
               }
             },
             "required": [

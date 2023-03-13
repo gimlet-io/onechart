@@ -4,7 +4,9 @@ volumeMounts: &volumeMounts
 {{- range .Values.volumes }}
   - name: {{ .name }}
     mountPath: {{ .path }}
-{{- end }}
+      {{- if .configMap }}
+      subPath: {{ .subPath }}
+      {{- end }}
 {{- range .Values.sealedFileSecrets }}
   - name: {{ .name }}
     mountPath: {{ .path }}
