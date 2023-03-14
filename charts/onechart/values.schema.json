@@ -953,7 +953,7 @@
             },
             "required": [
               "fileName",
-              "configMapValue",
+              "fileContent",
               "path"
             ]
           }

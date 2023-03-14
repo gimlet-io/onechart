@@ -8,7 +8,7 @@ volumeMounts: &volumeMounts
 {{- $volumeName = .existingConfigMap -}}
 {{- end }}
 {{- if .fileName }}
-{{- $volumeName = .fileName -}}
+{{- $volumeName = include "common.robustName" .fileName -}}
 {{- end }}
 
   - name: {{ $volumeName }}

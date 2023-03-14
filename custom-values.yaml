@@ -1,11 +1,20 @@
 volumes:
-- name: map
-  configMap:
-    map.conf: blabla
-    another.file: |
-      awugihnweiugewrg
-      regregreg
-      regergre
-  existingConfigMap: my-existing-configmap
-  path: /data/map.conf
-  subPath: map.conf 
+- existingClaim: subpath-app-test
+  name: test
+  path: /data 
+
+# test case 1:
+# - existingConfigMap: map
+#   path: /data/map.conf
+#   subPath: map.conf 
+
+# test case 2:
+# - fileName: blabla.conf
+#   fileContent: |
+#      blablaalnalbn
+#      akakasnclascn
+#   path: /data   
+    
+   
+   
+ 

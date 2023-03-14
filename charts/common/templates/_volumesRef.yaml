@@ -8,7 +8,7 @@ volumes:
 {{- $volumeName = .existingConfigMap -}}
 {{- end }}
 {{- if .fileName }}
-{{- $volumeName = .fileName -}}
+{{- $volumeName = include "common.robustName" .fileName -}}
 {{- end }}
 
   - name: {{ $volumeName }}
@@ -19,22 +19,18 @@ volumes:
       name: {{ .existingConfigMap }}
     {{- else if .fileName }}
     configMap:
-      name: {{ .fileName }}
+      name: {{ $volumeName }}
     {{- else if .hostPath }}
     hostPath:
       path: {{ .hostPath.path }}
       {{- if .hostPath.type }}
       type: {{ .hostPath.type }}
       {{- end }}
-    {{- else }}
+    {{- else if .existingClaim }}
     persistentVolumeClaim:
-      {{- if .existingClaim }}
       claimName: {{ .existingClaim }}
-      {{ else }}
-      claimName: {{ printf "%s-%s" $.Release.Name .name }}
-      {{- end }}
-    {{- end }}
-  {{- end }}
+    {{- end }}   
+{{- end }}     
   {{- range .Values.sealedFileSecrets }}
   - name: {{ .name }}
     secret:
