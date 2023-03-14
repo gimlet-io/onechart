@@ -1,7 +1,11 @@
 volumes:
 - name: map
-  configMap: true
+  configMap:
+    map.conf: blabla
+    another.file: |
+      awugihnweiugewrg
+      regregreg
+      regergre
+  existingConfigMap: my-existing-configmap
   path: /data/map.conf
   subPath: map.conf 
-  
-   

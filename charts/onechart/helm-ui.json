@@ -115,10 +115,13 @@
     "uiSchema": {
       "#/properties/volumes": {
         "items": {
-        "emptyDir": {
-          "ui:widget": "hidden"
+          "emptyDir": {
+            "ui:widget": "hidden"
+          },
+          "configMapValue": {
+            "ui:widget": "textarea"
+          }
         }
-      }
       }
     },
     "metaData": {

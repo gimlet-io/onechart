@@ -2,5 +2,3 @@
 manifests
 website/site
 website/awesome_venv
-Dockerfile
-pod.yaml

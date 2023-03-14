@@ -116,3 +116,61 @@ tests:
             - name: data
               hostPath:
                 path: /somewhere/over/the/rainbow
+  - it: Should use emptyDir
+    set:
+      volumes:
+        - name: myScratchDisk
+          path: /randomPath
+          emptyDir: true
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: myScratchDisk
+              emptyDir: {}
+      - equal:
+          path: spec.template.spec.containers[0].volumeMounts
+          value:
+            - name: myScratchDisk
+              mountPath: /randomPath
+  - it: Should use a configMap
+    set:
+      volumes:
+        - existingConfigMap: my-configmap
+          path: /randomPath/app.conf
+          subPath: app.conf
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: my-configmap
+              configMap:
+                name: my-configmap
+      - equal:
+          path: spec.template.spec.containers[0].volumeMounts
+          value:
+            - name: my-configmap
+              mountPath: /randomPath/app.conf
+              subPath: app.conf
+  - it: Should use a configmap with custom value
+    set:
+      volumes:
+        - fileName: myFile.conf
+          fileContent: |
+              blablabla
+              bla
+          path: /randomPath/myFile.conf
+          subPath: myFile.conf
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: myFile.conf
+              configMap:
+                name: myFile.conf
+      - equal:
+          path: spec.template.spec.containers[0].volumeMounts
+          value:
+            - name: myFile.conf
+              mountPath: /randomPath/myFile.conf
+              subPath: myFile.conf

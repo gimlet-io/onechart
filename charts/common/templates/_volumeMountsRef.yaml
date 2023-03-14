@@ -2,7 +2,16 @@
 {{- if or (or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets) .Values.existingFileSecrets }}
 volumeMounts: &volumeMounts
 {{- range .Values.volumes }}
-  - name: {{ .name }}
+
+{{- $volumeName := .name -}}
+{{- if .existingConfigMap }}
+{{- $volumeName = .existingConfigMap -}}
+{{- end }}
+{{- if .fileName }}
+{{- $volumeName = .fileName -}}
+{{- end }}
+
+  - name: {{ $volumeName }}
     mountPath: {{ .path }}
     {{- if .subPath }}
     subPath: {{ .subPath }}

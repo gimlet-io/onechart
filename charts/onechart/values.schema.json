@@ -794,7 +794,7 @@
           },
           {
             "id": "#/properties/volumes/oneOf/1",
-            "title": "Use existing volume claim",
+            "title": "Use an existing volume claim",
             "type": "object",
             "properties": {
               "name": {
@@ -823,7 +823,7 @@
           },
           {
             "id": "#/properties/volumes/oneOf/2",
-            "title": "Use path from the host",
+            "title": "Use a path from the host",
             "type": "object",
             "properties": {
               "name": {
@@ -875,47 +875,85 @@
           },
           {
             "id": "#/properties/volumes/oneOf/3",
-            "title": "Use ephemeral volumes",
+            "title": "Use an ephemeral volume",
             "type": "object",
             "properties": {
               "name": {
                 "type": "string",
                 "title": "Name",
-                "description": "The name of the volume. in case of injecting objects the name must be the same as your objects(configMap or secret)",
-                "default": "data"
+                "default": "ephemeral-volume"
               },
               "emptyDir": {
                 "type": "boolean",
                 "title": "ephemeral volume (emptyDir)",
                 "description": "Enable to use a non-persistent disk",
-                "default": false
+                "default": true
               },
-              "configMap": {
-                "type": "boolean",
-                "title": "ephemeral volume (configMap)",
-                "description": "Enable to enject a configMap to your volume",
-                "default": false
-              },
-              "secret": {
-                "type": "boolean",
-                "title": "ephemeral volume (secret)",
-                "description": "Enable to inject a secret to your volume",
-                "default": false
-              }, 
               "path": {
                 "type": "string",
                 "title": "Path",
                 "description": "The mount path inside the container",
                 "default": "/data"
-              },
-              "subPath": {
-                "type": "string",
-                "title": "subPath",
-                "description": "mount single file"
               }
             },
             "required": [
               "name",
+              "emptyDir",
+              "path"
+            ]
+          },
+          {
+            "id": "#/properties/volumes/oneOf/4",
+            "title": "Mount an existing configMap as a file",
+            "type": "object",
+            "properties": {
+              "existingConfigMap": {
+                "type": "string",
+                "title": "Name",
+                "description": "The name of the configMap to mount",
+                "default": "data"
+              },
+              "path": {
+                "type": "string",
+                "title": "Path",
+                "description": "The mount path inside the container",
+                "default": "/data/dummy.conf"
+              },
+              "subPath": {
+                "type": "string",
+                "title": "subPath",
+                "description": "Mount single file",
+                "default": "dummy.conf"
+              }
+            },
+            "required": [
+              "existingConfigMap",
+              "path"
+            ]
+          },
+          {
+            "id": "#/properties/volumes/oneOf/5",
+            "title": "Custom string to mount as a file",
+            "type": "object",
+            "properties": {
+              "fileName": {
+                "type": "string",
+                "title": "File name"
+              },
+              "fileContent": {
+                "type": "string",
+                "title": "File content"
+              },
+              "path": {
+                "type": "string",
+                "title": "Path",
+                "description": "The mount path inside the container",
+                "default": "/data"
+              }
+            },
+            "required": [
+              "fileName",
+              "configMapValue",
               "path"
             ]
           }
