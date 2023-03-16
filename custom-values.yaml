@@ -8,7 +8,12 @@ volumes:
 # test case 2:
 - existingConfigMap: map
   path: /data/map.conf
-  subPath: map.conf 
+  subPath: map.conf
+
+# test case 3:
+# - emptyDir: true
+#   path: /data
+#   name: empty
 
 # test case 3:
 # - fileName: blabla.conf

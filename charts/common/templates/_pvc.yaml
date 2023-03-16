@@ -1,6 +1,6 @@
 {{- define "common.pvc.tpl" -}}
 {{- range .Values.volumes }}
-{{- if not (or .existingClaim .hostPath .fileName .existingConfigMap) }}
+{{- if not (or .existingClaim .hostPath .fileName .emptyDir .existingConfigMap) }}
 {{- $robustName := include "common.robustName" $.Release.Name }}
 ---
 apiVersion: v1
@@ -24,3 +24,6 @@ spec:
 {{- end }}
 {{- end }}
 {{- end -}}
+- emptyDir: true
+  path: /data
+  name: empty
