@@ -24,6 +24,3 @@ spec:
 {{- end }}
 {{- end }}
 {{- end -}}
-- emptyDir: true
-  path: /data
-  name: empty
