@@ -165,12 +165,12 @@ tests:
       - equal:
           path: spec.template.spec.volumes
           value:
-            - name: myFile.conf
+            - name: myFile-conf
               configMap:
                 name: myFile.conf
       - equal:
           path: spec.template.spec.containers[0].volumeMounts
           value:
-            - name: myFile.conf
+            - name: myFile-conf
               mountPath: /randomPath/myFile.conf
               subPath: myFile.conf

@@ -5,12 +5,12 @@ tests:
   - it: Should create configmaps for custom string files
     set:
       volumes:
-        - fileName: myFile.conf
+        - fileName: myFile-conf
           fileContent: |
               blablabla
               bla
-          path: /randomPath/myFile.conf
-          subPath: myFile.conf
+          path: /randomPath/myFile-conf
+          subPath: myFile-conf
     asserts:
       - hasDocuments:
           count: 1
