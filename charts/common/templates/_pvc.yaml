@@ -3,7 +3,7 @@
 {{- if or (or .existingClaim .hostPath ) }}
 {{- $robustName := include "common.robustName" $.Release.Name }}
 ---
-apiVersion: v1
+apiVersion: v2
 kind: PersistentVolumeClaim
 metadata:
   name: {{ printf "%s-%s" $robustName .name }}
