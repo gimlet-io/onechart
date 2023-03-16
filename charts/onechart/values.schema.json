@@ -708,29 +708,30 @@
             "id": "#/properties/existingFileSecrets/oneOf/0",
             "title": "existingFileSecrets",
             "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "title": "Name",
-                  "description": "The name of the existing secret to mount",
-                  "default": "data"
-                },
-                "path": {
-                  "type": "string",
-                  "title": "Path",
-                  "description": "The mount path inside the container",
-                  "default": "/data"
-                },
-                "subPath": {
-                  "type": "string",
-                  "title": "SubPath",
-                  "description": "The optinal mount subpath inside the container, to only mount a specific file but not a complete directory.",
-                  "default": "config.yaml"
-                }
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "description": "The name of the existing secret to mount",
+                "default": "data"
               },
-              "required": [
-                "name", "path"
-              ]
+              "path": {
+                "type": "string",
+                "title": "Path",
+                "description": "The mount path inside the container",
+                "default": "/data"
+              },
+              "subPath": {
+                "type": "string",
+                "title": "SubPath",
+                "description": "The optinal mount subpath inside the container, to only mount a specific file but not a complete directory.",
+                "default": "config.yaml"
+              }
+            },
+            "required": [
+              "name",
+              "path"
+            ]
           }
         ]
       }
@@ -749,49 +750,51 @@
             "id": "#/properties/volumes/oneOf/0",
             "title": "Volume",
             "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "title": "Name",
-                  "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
-                  "default": "data"
-                },
-                "path": {
-                  "type": "string",
-                  "title": "Path",
-                  "description": "The mount path inside the container",
-                  "default": "/data"
-                },
-                "size": {
-                  "type": "string",
-                  "title": "Size",
-                  "description": "eg: 10Gi"
-                },
-                "storageClass": {
-                  "type": "string",
-                  "title": "Storage Class",
-                  "description": "The slug indicating the disk type in your cloud provider. `standard` on Google Cloud, `default` on Azure; `do-block-storage` on Digital Ocean"
-                },
-                "pvcAnnotations": {
-                  "type": "object",
-                  "title": "Annotations",
-                  "description": "Annotations are used to control the persistance claim behavior.",
-                  "default": {},
-                  "examples": [
-                    {
-                      "rancher.io/local-path/volume-type": "local"
-                    }
-                  ],
-                  "additionalProperties": true
-                }
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
+                "default": "data"
               },
-              "required": [
-                "name", "path", "size"
-              ]
+              "path": {
+                "type": "string",
+                "title": "Path",
+                "description": "The mount path inside the container",
+                "default": "/data"
+              },
+              "size": {
+                "type": "string",
+                "title": "Size",
+                "description": "eg: 10Gi"
+              },
+              "storageClass": {
+                "type": "string",
+                "title": "Storage Class",
+                "description": "The slug indicating the disk type in your cloud provider. `standard` on Google Cloud, `default` on Azure; `do-block-storage` on Digital Ocean"
+              },
+              "pvcAnnotations": {
+                "type": "object",
+                "title": "Annotations",
+                "description": "Annotations are used to control the persistance claim behavior.",
+                "default": {},
+                "examples": [
+                  {
+                    "rancher.io/local-path/volume-type": "local"
+                  }
+                ],
+                "additionalProperties": true
+              }
+            },
+            "required": [
+              "name",
+              "path",
+              "size"
+            ]
           },
           {
             "id": "#/properties/volumes/oneOf/1",
-            "title": "Use existing volume claim",
+            "title": "Use an existing volume claim",
             "type": "object",
             "properties": {
               "name": {
@@ -813,12 +816,14 @@
               }
             },
             "required": [
-              "name", "path", "existingClaim"
+              "name",
+              "path",
+              "existingClaim"
             ]
           },
           {
             "id": "#/properties/volumes/oneOf/2",
-            "title": "Use path from the host",
+            "title": "Use a path from the host",
             "type": "object",
             "properties": {
               "name": {
@@ -840,7 +845,15 @@
                   "type": {
                     "type": "string",
                     "title": "Path Type",
-                    "enum": ["DirectoryOrCreate", "Directory", "FileOrCreate", "File", "Socket", "CharDevice", "BlockDevice"]
+                    "enum": [
+                      "DirectoryOrCreate",
+                      "Directory",
+                      "FileOrCreate",
+                      "File",
+                      "Socket",
+                      "CharDevice",
+                      "BlockDevice"
+                    ]
                   }
                 },
                 "required": [
@@ -855,23 +868,24 @@
               }
             },
             "required": [
-              "name", "path", "hostPath"
+              "name",
+              "path",
+              "hostPath"
             ]
           },
           {
             "id": "#/properties/volumes/oneOf/3",
-            "title": "Use a non-persistent disk",
+            "title": "Use an ephemeral volume",
             "type": "object",
             "properties": {
               "name": {
                 "type": "string",
                 "title": "Name",
-                "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
-                "default": "data"
+                "default": "ephemeral-volume"
               },
               "emptyDir": {
                 "type": "boolean",
-                "title": "Non-persistent disk",
+                "title": "ephemeral volume (emptyDir)",
                 "description": "Enable to use a non-persistent disk",
                 "default": true
               },
@@ -883,7 +897,64 @@
               }
             },
             "required": [
-              "name", "path", "emptyDir"
+              "name",
+              "emptyDir",
+              "path"
+            ]
+          },
+          {
+            "id": "#/properties/volumes/oneOf/4",
+            "title": "Mount an existing configMap as a file",
+            "type": "object",
+            "properties": {
+              "existingConfigMap": {
+                "type": "string",
+                "title": "Name",
+                "description": "The name of the configMap to mount",
+                "default": "data"
+              },
+              "path": {
+                "type": "string",
+                "title": "Path",
+                "description": "The mount path inside the container",
+                "default": "/data/dummy.conf"
+              },
+              "subPath": {
+                "type": "string",
+                "title": "subPath",
+                "description": "Mount single file",
+                "default": "dummy.conf"
+              }
+            },
+            "required": [
+              "existingConfigMap",
+              "path"
+            ]
+          },
+          {
+            "id": "#/properties/volumes/oneOf/5",
+            "title": "Custom string to mount as a file",
+            "type": "object",
+            "properties": {
+              "fileName": {
+                "type": "string",
+                "title": "File name"
+              },
+              "fileContent": {
+                "type": "string",
+                "title": "File content"
+              },
+              "path": {
+                "type": "string",
+                "title": "Path",
+                "description": "The mount path inside the container",
+                "default": "/data"
+              }
+            },
+            "required": [
+              "fileName",
+              "fileContent",
+              "path"
             ]
           }
         ]

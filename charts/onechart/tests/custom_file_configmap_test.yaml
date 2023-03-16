@@ -1,0 +1,22 @@
+suite: test deployment
+templates:
+  - custom-file-configmap.yaml
+tests:
+  - it: Should create configmaps for custom string files
+    set:
+      volumes:
+        - fileName: myFile.conf
+          fileContent: |
+              blablabla
+              bla
+          path: /randomPath/myFile.conf
+          subPath: myFile.conf
+    asserts:
+      - hasDocuments:
+          count: 1
+      - equal:
+          path: data
+          value:
+            myFile.conf: |
+              blablabla
+              bla
