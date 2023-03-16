@@ -1,7 +1,8 @@
 volumes:
-- existingClaim: subpath-app-test
-  name: test
-  path: /data 
+- path: /data
+  name: pvc
+  size: 1Gi
+  storageClass: local-path
 
 # test case 1:
 # - existingConfigMap: map

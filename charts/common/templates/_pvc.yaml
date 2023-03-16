@@ -1,9 +1,9 @@
 {{- define "common.pvc.tpl" -}}
 {{- range .Values.volumes }}
-{{- if or (or .existingClaim .hostPath ) }}
+{{- if not (or .existingClaim .hostPath ) }}
 {{- $robustName := include "common.robustName" $.Release.Name }}
 ---
-apiVersion: v2
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ printf "%s-%s" $robustName .name }}

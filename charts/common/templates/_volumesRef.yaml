@@ -26,10 +26,14 @@ volumes:
       {{- if .hostPath.type }}
       type: {{ .hostPath.type }}
       {{- end }}
-    {{- else if .existingClaim }}
+    {{- else }}
     persistentVolumeClaim:
+      {{- if .existingClaim }}
       claimName: {{ .existingClaim }}
-    {{- end }}   
+      {{ else }}
+      claimName: {{ printf "%s-%s" $.Release.Name .name }}
+      {{- end }}
+      {{- end }}
 {{- end }}     
   {{- range .Values.sealedFileSecrets }}
   - name: {{ .name }}
