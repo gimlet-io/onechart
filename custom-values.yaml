@@ -1,15 +1,16 @@
 volumes:
-- path: /data
-  name: pvc
-  size: 1Gi
-  storageClass: local-path
-
 # test case 1:
-# - existingConfigMap: map
-#   path: /data/map.conf
-#   subPath: map.conf 
+# - path: /data
+#   name: pvc
+#   size: 1Gi
+#   storageClass: local-path
 
 # test case 2:
+- existingConfigMap: map
+  path: /data/map.conf
+  subPath: map.conf 
+
+# test case 3:
 # - fileName: blabla.conf
 #   fileContent: |
 #      blablaalnalbn
