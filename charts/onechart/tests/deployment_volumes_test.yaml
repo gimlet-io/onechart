@@ -137,25 +137,27 @@ tests:
     set:
       volumes:
         - existingConfigMap: my-configmap
+          name: volume-name
           path: /randomPath/app.conf
           subPath: app.conf
     asserts:
       - equal:
           path: spec.template.spec.volumes
           value:
-            - name: my-configmap
+            - name: volume-name
               configMap:
                 name: my-configmap
       - equal:
           path: spec.template.spec.containers[0].volumeMounts
           value:
-            - name: my-configmap
+            - name: volume-name
               mountPath: /randomPath/app.conf
               subPath: app.conf
   - it: Should use a configmap with custom value
     set:
       volumes:
-        - fileName: myfile.conf
+        - name: volume-name
+          fileName: myfile.conf
           fileContent: |
               blablabla
               bla
@@ -165,12 +167,56 @@ tests:
       - equal:
           path: spec.template.spec.volumes
           value:
-            - name: myfile-conf
+            - name: volume-name
               configMap:
                 name: myfile-conf
       - equal:
           path: spec.template.spec.containers[0].volumeMounts
           value:
-            - name: myfile-conf
+            - name: volume-name
               mountPath: /randomPath/myfile.conf
               subPath: myfile.conf
+  - it: Should mount a volume only for the init container
+    set:
+      initContainers:
+        - name : pod
+      volumes:
+        - name: init-volume
+          path: /data
+          emptyDir: true
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+          - name: init-volume
+            emptyDir: {} 
+      - equal: 
+          path: spec.template.spec.initContainers[0].volumeMounts
+          value:
+          - name: init-volume
+            mountPath: /data 
+      - notEqual:
+          path: spec.template.spec.containers[0].volumeMounts
+          value:
+          - name: init-volume
+            emptyDir: {}
+
+  - it: Should mount a shared volume between the main container and the init container
+    set:
+      initContainers:
+        - name: pod
+      volumes:
+        - name: shared-volume
+          path: /data
+          emptyDir: true
+    asserts:
+      - equal: 
+          path: spec.template.spec.initContainers[0].volumeMounts
+          value:
+          - name: shared-volume
+            mountPath: /data
+      - equal: 
+          path: spec.template.spec.containers[0].volumeMounts
+          value:
+          - name: shared-volume
+            mountPath: /data      

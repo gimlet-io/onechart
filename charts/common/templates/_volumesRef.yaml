@@ -2,16 +2,7 @@
 {{- if or (or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets) .Values.existingFileSecrets }}
 volumes:
   {{- range .Values.volumes }}
-
-{{- $volumeName := .name -}}
-{{- if .existingConfigMap }}
-{{- $volumeName = .existingConfigMap -}}
-{{- end }}
-{{- if .fileName }}
-{{- $volumeName = include "common.robustName" .fileName -}}
-{{- end }}
-
-  - name: {{ $volumeName }}
+  - name: {{ .name }}
     {{- if .emptyDir }}
     emptyDir: {}
     {{- else if .existingConfigMap }}
@@ -19,7 +10,7 @@ volumes:
       name: {{ .existingConfigMap }}
     {{- else if .fileName }}
     configMap:
-      name: {{ $volumeName }}
+      name: {{ template "common.robustName" .fileName }}
     {{- else if .hostPath }}
     hostPath:
       path: {{ .hostPath.path }}

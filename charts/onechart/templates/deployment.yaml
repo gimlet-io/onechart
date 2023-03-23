@@ -53,23 +53,17 @@ spec:
       initContainers:
         {{- range .Values.initContainers }}  
         - name:  {{ .name }}
-          image: "{{ .image }}:{{ .tag | default $.Chart.AppVersion }}"
+          image: "{{ .image }}:{{ .tag }}"
           imagePullPolicy: {{ .pullPolicy }}
           command:
             - {{ $.Values.shell }}
             - -c
           {{- if .command }}
-            - |
-            {{ .command | nindent 14}}
+            - {{ .command | quote}} 
           {{- end }}
-          {{- if .args }}
-          args:
-            - |
-            {{ .args |  nindent 14}}  
-          {{- end}}
+          volumeMounts:
           {{- range $.Values.volumes }}  
           {{if (or (hasPrefix "shared-" .name) (hasPrefix "init-" .name))}}
-          volumeMounts:
           - mountPath: {{ .path }}
             name: {{ .name }}
           {{- end }}
