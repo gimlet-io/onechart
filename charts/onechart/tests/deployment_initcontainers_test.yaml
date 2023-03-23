@@ -9,7 +9,6 @@ tests:
           - name: pod1
             image: nginx
             tag: 1.2.2
-            
     asserts:
       - equal:
           path: spec.template.spec.initContainers[0].name
@@ -17,7 +16,6 @@ tests:
       - equal:
           path: spec.template.spec.initContainers[0].image
           value: "nginx:1.2.2"
-
   - it: Should set command  
     set:
       initContainers:

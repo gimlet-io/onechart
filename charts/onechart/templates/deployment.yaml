@@ -54,11 +54,11 @@ spec:
         {{- range .Values.initContainers }}  
         - name:  {{ .name }}
           image: "{{ .image }}:{{ .tag }}"
-          imagePullPolicy: {{ .pullPolicy }}
+          imagePullPolicy: {{ .imagePullPolicy | default "IfNotPresent" }}
+          {{- if .command }}
           command:
             - {{ $.Values.shell }}
             - -c
-          {{- if .command }}
             - {{ .command | quote}} 
           {{- end }}
           volumeMounts:

@@ -88,14 +88,54 @@
       "$id": "#/properties/initcontainers",
       "type": "array",
       "title": "Init Containers",
-      "description": "Init Containers",
-      "default": {},
-      "examples": [
-        [
-          "nginx",
-          "latest"
+      "default": [],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/initcontainers/items",
+        "type": "object",
+        "anyOf": [
+          {
+            "id": "#/properties/volumes/oneOf/0",
+            "title": "InitContainer",
+            "type": "object",
+            "properties": {
+
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "description": "the name of the init container",
+                "default": "data"
+              },
+              "image": {
+                "type": "string",
+                "title": "Image"
+              },
+              "tag": {
+                "type": "string",
+                "title": "Tag"
+              },
+              "imagePullPolicy": {
+                "type": "string",
+                "title": "Command",
+                "default": "IfNotPresent"
+              },
+              "command": {
+                "type": "string",
+                "title": "Command"
+              }
+
+
+            },
+            "required": [
+              "name",
+              "image",
+              "tag"
+            ]
+          }
         ]
-      ]
+      }
+      
+      
     },
     "replicas": {
       "$id": "#/properties/replicas",

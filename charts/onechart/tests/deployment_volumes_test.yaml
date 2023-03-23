@@ -200,7 +200,6 @@ tests:
           value:
           - name: init-volume
             emptyDir: {}
-
   - it: Should mount a shared volume between the main container and the init container
     set:
       initContainers:
