@@ -84,6 +84,19 @@
         }
       }
     },
+    "initContainers": {
+      "$id": "#/properties/initcontainers",
+      "type": "array",
+      "title": "Init Containers",
+      "description": "Init Containers",
+      "default": {},
+      "examples": [
+        [
+          "nginx",
+          "latest"
+        ]
+      ]
+    },
     "replicas": {
       "$id": "#/properties/replicas",
       "type": "integer",

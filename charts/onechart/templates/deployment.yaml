@@ -50,6 +50,31 @@ spec:
       {{- if .Values.serviceAccount }}
       serviceAccountName: {{ .Values.serviceAccount }}
       {{- end }}
+      initContainers:
+        {{- range .Values.initContainers }}  
+        - name:  {{ .name }}
+          image: "{{ .image }}:{{ .tag | default $.Chart.AppVersion }}"
+          imagePullPolicy: {{ .pullPolicy }}
+          command:
+            - {{ $.Values.shell }}
+            - -c
+          {{- if .command }}
+            - |
+            {{ .command | nindent 14}}
+          {{- end }}
+          {{- if .args }}
+          args:
+            - |
+            {{ .args |  nindent 14}}  
+          {{- end}}
+          {{- range $.Values.volumes }}  
+          {{if (or (hasPrefix "shared-" .name) (hasPrefix "init-" .name))}}
+          volumeMounts:
+          - mountPath: {{ .path }}
+            name: {{ .name }}
+          {{- end }}
+          {{- end }}   
+        {{- end }}      
       containers:
         - name: {{ template "robustName" .Release.Name }}
           securityContext: &securityContext

@@ -2,7 +2,6 @@
 {{- if or (or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets) .Values.existingFileSecrets }}
 volumeMounts: &volumeMounts
 {{- range .Values.volumes }}
-
 {{- $volumeName := .name -}}
 {{- if .existingConfigMap }}
 {{- $volumeName = .existingConfigMap -}}
@@ -10,12 +9,13 @@ volumeMounts: &volumeMounts
 {{- if .fileName }}
 {{- $volumeName = include "common.robustName" .fileName -}}
 {{- end }}
-
+{{- if not (hasPrefix "init-" $volumeName) }}
   - name: {{ $volumeName }}
     mountPath: {{ .path }}
     {{- if .subPath }}
     subPath: {{ .subPath }}
     {{- end }}
+{{- end }}    
 {{- end }}    
 {{- range .Values.sealedFileSecrets }}
   - name: {{ .name }}

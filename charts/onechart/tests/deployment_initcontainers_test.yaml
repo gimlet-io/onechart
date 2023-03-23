@@ -1,0 +1,15 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+  - configmap.yaml
+tests:
+  - it: Should set Init Container 
+    set:
+      initContainers:
+          name: nginx
+    asserts:
+      - equal:
+          path: spec.template.spec.initContainers[0].name
+          value: nginx
+    
+  
