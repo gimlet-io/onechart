@@ -99,7 +99,6 @@
             "title": "InitContainer",
             "type": "object",
             "properties": {
-
               "name": {
                 "type": "string",
                 "title": "Name",
@@ -123,8 +122,6 @@
                 "type": "string",
                 "title": "Command"
               }
-
-
             },
             "required": [
               "name",
@@ -134,8 +131,6 @@
           }
         ]
       }
-      
-      
     },
     "replicas": {
       "$id": "#/properties/replicas",
