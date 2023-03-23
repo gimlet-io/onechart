@@ -102,8 +102,7 @@
               "name": {
                 "type": "string",
                 "title": "Name",
-                "description": "the name of the init container",
-                "default": "data"
+                "description": "The name of the init container"
               },
               "image": {
                 "type": "string",
