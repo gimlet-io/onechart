@@ -50,6 +50,25 @@ spec:
       {{- if .Values.serviceAccount }}
       serviceAccountName: {{ .Values.serviceAccount }}
       {{- end }}
+      initContainers:
+        {{- range .Values.initContainers }}  
+        - name:  {{ .name }}
+          image: "{{ .image }}:{{ .tag }}"
+          imagePullPolicy: {{ .imagePullPolicy | default "IfNotPresent" }}
+          {{- if .command }}
+          command:
+            - {{ $.Values.shell }}
+            - -c
+            - {{ .command | quote}} 
+          {{- end }}
+          volumeMounts:
+          {{- range $.Values.volumes }}  
+          {{if (or (hasPrefix "shared-" .name) (hasPrefix "init-" .name))}}
+          - mountPath: {{ .path }}
+            name: {{ .name }}
+          {{- end }}
+          {{- end }}   
+        {{- end }}      
       containers:
         - name: {{ template "robustName" .Release.Name }}
           securityContext: &securityContext

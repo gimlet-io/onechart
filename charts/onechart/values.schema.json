@@ -84,6 +84,53 @@
         }
       }
     },
+    "initContainers": {
+      "$id": "#/properties/initcontainers",
+      "type": "array",
+      "title": "Init Containers",
+      "default": [],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/initcontainers/items",
+        "type": "object",
+        "anyOf": [
+          {
+            "id": "#/properties/volumes/oneOf/0",
+            "title": "InitContainer",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "description": "The name of the init container"
+              },
+              "image": {
+                "type": "string",
+                "title": "Image"
+              },
+              "tag": {
+                "type": "string",
+                "title": "Tag"
+              },
+              "imagePullPolicy": {
+                "type": "string",
+                "title": "Command",
+                "default": "IfNotPresent"
+              },
+              "command": {
+                "type": "string",
+                "title": "Command"
+              }
+            },
+            "required": [
+              "name",
+              "image",
+              "tag"
+            ]
+          }
+        ]
+      }
+    },
     "replicas": {
       "$id": "#/properties/replicas",
       "type": "integer",
