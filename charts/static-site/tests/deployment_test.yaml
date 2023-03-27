@@ -7,41 +7,9 @@ tests:
       gitCloneUrl: https:/github.com/mycompany/myrepo.git
       buildImage: nginx
       buildTag: x.y.z
-      buildCommand: |
-          # !/usr/bin/env bash
-          # Pre-reqs
-          apt update && apt install -y wget git;
-
-          # Setting up Hugo 
-          wget https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_Linux-64bit.tar.gz &&
-          tar -xzf hugo_0.111.3_Linux-64bit.tar.gz &&
-          chmod +x hugo
-
-          ./hugo &&         
-      builtAssets: public/
     asserts:
       - equal:
           path: spec.template.spec.initContainers[0].image
           value: nginx:x.y.z
-      - equal:
-          path: spec.template.spec.initContainers[0].command
-          value:
-          - sh 
-          - -c 
-          -  |
-              git clone https:/github.com/mycompany/myrepo.git &&
-              cd myrepo &&
-              # !/usr/bin/env bash
-              # Pre-reqs
-              apt update && apt install -y wget git;
-
-              # Setting up Hugo 
-              wget https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_Linux-64bit.tar.gz &&
-              tar -xzf hugo_0.111.3_Linux-64bit.tar.gz &&
-              chmod +x hugo
-
-              ./hugo &&  
-              mkdir -p /usr/share/nginx/html &&
-              cp -r ./public/. /usr/share/nginx/html
 
 

@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "gitCloneUrl": "",
+      "buildImage": "node",
+      "buildTag": "latest",
+      "buildScript": "npm install && npm install -g gatsby-cli && gatsby build",
+      "builtAssets": "public/"
+    }
+  ],
+  "required": [
+    "gitCloneUrl",
+    "buildImage",
+    "buildTag",
+    "buildScript",
+    "builtAssets"
+  ],
+  "properties": {
+    "gitCloneUrl": {
+      "$id": "#/properties/gitCloneUrl",
+      "type": "string",
+      "title": "Static site's git repo",
+      "required": [
+        "gitCloneUrl"
+      ]
+    },
+    "buildImage": {
+      "$id": "#/properties/buildImage",
+      "type": "string",
+      "title": "The image that will be used for the build proccess"
+    },
+    "buildTag": {
+      "$id": "#/properties/buildImage",
+      "type": "string",
+      "title": "Image tag"
+    },
+    "buildScript": {
+      "$id": "#/properties/buildScript",
+      "type": "string",
+      "title": "Commands required for the build to be completed"
+    },
+    "builtAssets": {
+      "$id": "#/properties/builtAssets",
+      "type": "string",
+      "title": "the folder containing the build's generated files"
+    }
+  },
+  "additionalProperties": true
+}

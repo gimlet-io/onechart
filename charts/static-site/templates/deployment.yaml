@@ -31,15 +31,15 @@ spec:
         emptyDir: {}  
       initContainers:
       - name: init-con
-        image: {{ .Values.buildImage }}:{{ .Values.buildTag}}
-        {{- if .Values.buildCommand}}
+        image: {{ .Values.buildImage }}:{{ .Values.buildTag }}
+        {{- if .Values.buildScript }}
         command:
         - sh 
         - -c 
         - |
            git clone {{ .Values.gitCloneUrl}} &&
            cd {{ regexFind "([^\\/]+$)" .Values.gitCloneUrl | replace ".git" "" }} &&
-           {{ .Values.buildCommand | nindent 11}}
+           {{ .Values.buildScript | nindent 11}}
            mkdir -p /usr/share/nginx/html &&
            cp -r ./{{ .Values.builtAssets }}. /usr/share/nginx/html
         {{- end }}
@@ -50,7 +50,7 @@ spec:
         - name: {{ template "robustName" .Release.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
           - name: static-files
