@@ -1,0 +1,14 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+  - configmap.yaml
+tests:
+  - it: Should set image and tag
+    set:
+      staticSite.buildImage: nginx
+      staticSite.buildTag: x.y.z
+    asserts:
+      - equal:
+          path: spec.template.spec.initContainers[0].image
+          value: nginx:x.y.
+

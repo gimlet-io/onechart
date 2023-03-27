@@ -1,0 +1,65 @@
+{{- $websiteDirectory := regexFind "([^\\/]+$)" .Values.staticSite.gitCloneUrl | replace ".git" "" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "robustName" .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "staticSite.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "staticSite.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "staticSite.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "staticSite.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+      - name: static-files
+        emptyDir: {}
+      initContainers:
+      - name: init-con
+        image: {{ .Values.staticSite.buildImage }}:{{ .Values.staticSite.buildTag}}
+        {{- if .Values.staticSite.buildCommand}}
+        command:
+        - sh 
+        - -c 
+        - |
+           git clone {{ .Values.staticSite.gitCloneUrl}} &&
+           cd {{ $websiteDirectory }} &&
+           {{ .Values.staticSite.buildCommand}} &&
+           mkdir -p /usr/share/nginx/html &&
+           cp -r ./{{ .Values.staticSite.builtAssets }}. /usr/share/nginx/html
+        {{- end }}
+        volumeMounts:
+        - name: static-files
+          mountPath: /usr/share/nginx/html  
+      containers:
+        - name: {{ template "robustName" .Release.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+          - name: static-files
+            mountPath: /usr/share/nginx/html
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+      
