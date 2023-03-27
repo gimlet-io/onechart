@@ -7,7 +7,7 @@
   "default": {},
   "examples": [
     {
-      "gitCloneUrl": "",
+      "gitCloneUrl": "https://github.com/gimlet-io/hugo-site.git",
       "buildImage": "node",
       "buildTag": "latest",
       "buildScript": "npm install && npm install -g gatsby-cli && gatsby build",
@@ -25,10 +25,7 @@
     "gitCloneUrl": {
       "$id": "#/properties/gitCloneUrl",
       "type": "string",
-      "title": "Static site's git repo",
-      "required": [
-        "gitCloneUrl"
-      ]
+      "title": "Static site's git repo"
     },
     "buildImage": {
       "$id": "#/properties/buildImage",
