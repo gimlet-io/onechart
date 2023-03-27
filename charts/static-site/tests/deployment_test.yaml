@@ -1,0 +1,29 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+tests:
+  - it: Should set image, tag and command
+    set:
+      staticSite.gitCloneUrl: https:/github.com/mycompany/myrepo.git
+      staticSite.buildImage: nginx
+      staticSite.buildTag: x.y.z
+      staticSite.buildCommand: "npm run build &&
+                                bla bla"             
+      staticSite.builtAssets: public/
+    asserts:
+      - equal:
+          path: spec.template.spec.initContainers[0].image
+          value: nginx:x.y.z
+      - equal:
+          path: spec.template.spec.initContainers[0].command
+          value:
+          - sh 
+          - -c 
+          - |
+            git clone https:/github.com/mycompany/myrepo.git &&
+            cd myrepo &&
+            npm run build && bla bla &&
+            mkdir -p /usr/share/nginx/html &&
+            cp -r ./public/. /usr/share/nginx/html
+
+
