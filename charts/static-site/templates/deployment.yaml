@@ -31,17 +31,17 @@ spec:
         emptyDir: {}  
       initContainers:
       - name: init-con
-        image: {{ .Values.staticSite.buildImage }}:{{ .Values.staticSite.buildTag}}
-        {{- if .Values.staticSite.buildCommand}}
+        image: {{ .Values.buildImage }}:{{ .Values.buildTag}}
+        {{- if .Values.buildCommand}}
         command:
         - sh 
         - -c 
         - |
-           git clone {{ .Values.staticSite.gitCloneUrl}} &&
-           cd {{ regexFind "([^\\/]+$)" .Values.staticSite.gitCloneUrl | replace ".git" "" }} &&
-           {{ .Values.staticSite.buildCommand}} &&
+           git clone {{ .Values.gitCloneUrl}} &&
+           cd {{ regexFind "([^\\/]+$)" .Values.gitCloneUrl | replace ".git" "" }} &&
+           {{ .Values.buildCommand | nindent 11}}
            mkdir -p /usr/share/nginx/html &&
-           cp -r ./{{ .Values.staticSite.builtAssets }}. /usr/share/nginx/html
+           cp -r ./{{ .Values.builtAssets }}. /usr/share/nginx/html
         {{- end }}
         volumeMounts:
         - name: static-files
@@ -50,7 +50,7 @@ spec:
         - name: {{ template "robustName" .Release.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
           - name: static-files

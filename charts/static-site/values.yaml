@@ -71,9 +71,18 @@ tolerations: []
 affinity: {}
 
 # values to build and deploy static sites
-staticSite: 
-  # gitCloneUrl: https:/github.com/mycompany/myrepo.git
-  # buildImage: node
-  # buildTag: latest
-  # buildCommand: "npm run build"
-  # builtAssets: public/ 
+gitCloneUrl: https://github.com/YoucefGuichi/hugo-site.git
+buildImage: node
+buildTag: latest
+buildCommand: |
+    # !/usr/bin/env bash
+    # Pre-reqs
+    apt update && apt install -y wget git;
+
+    # Setting up Hugo 
+    wget https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_Linux-64bit.tar.gz &&
+    tar -xzf hugo_0.111.3_Linux-64bit.tar.gz &&
+    chmod +x hugo
+
+    ./hugo &&
+builtAssets: public/ 
