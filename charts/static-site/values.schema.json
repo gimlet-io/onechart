@@ -25,27 +25,31 @@
     "gitCloneUrl": {
       "$id": "#/properties/gitCloneUrl",
       "type": "string",
-      "title": "Static site's git repo"
+      "title": "Repo url",
+      "description": "The static site's git repository"
     },
     "buildImage": {
       "$id": "#/properties/buildImage",
       "type": "string",
-      "title": "The image that will be used for the build proccess"
+      "title": "Build image",
+      "description": "The image that will be used for the build proccess"
     },
     "buildTag": {
-      "$id": "#/properties/buildImage",
+      "$id": "#/properties/buildTag",
       "type": "string",
       "title": "Image tag"
     },
     "buildScript": {
       "$id": "#/properties/buildScript",
       "type": "string",
-      "title": "Commands required for the build to be completed"
+      "title": "Build script",
+      "description": "Commands required for the build to be completed"
     },
     "builtAssets": {
       "$id": "#/properties/builtAssets",
       "type": "string",
-      "title": "the folder containing the build's generated files"
+      "title": "Built assets",
+      "description": "The folder containing the build's generated files"
     }
   },
   "additionalProperties": true

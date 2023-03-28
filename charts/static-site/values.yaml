@@ -71,10 +71,12 @@ affinity: {}
 
 # values to build and deploy static sites
 gitCloneUrl: https://github.com/gimlet-io/hugo-site.git
-buildImage: alpine/git # the image must have git installed
+buildImage: bitnami/git # the image must have git installed
 buildTag: latest
 buildScript: |
     # !/usr/bin/env bash
+    # pre -reqs
+    apt-get update && apt-get install -y wget
 
     # Setting up Hugo 
     wget https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_Linux-64bit.tar.gz &&
