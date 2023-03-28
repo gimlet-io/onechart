@@ -36,7 +36,6 @@ test:
 
 	helm unittest charts/namespaces
 
-	helm dependency update charts/static-site
 	helm unittest charts/static-site
 
 package:
