@@ -7,6 +7,7 @@ lint:
 	helm lint charts/onechart/
 	helm lint charts/cron-job/
 	helm lint charts/namespaces/
+	helm lint charts/static-site
 
 kubeval:
 	rm -rf manifests && true
@@ -24,6 +25,12 @@ kubeval:
 	rm -rf manifests && true
 	mkdir manifests
 	helm template charts/namespaces --output-dir manifests -f charts/namespaces/fixture.yaml
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.20.0
+	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.24.0
+
+	rm -rf manifests && true
+	mkdir manifests
+	helm template charts/static-site --output-dir manifests
 	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.20.0
 	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.24.0
 
@@ -49,6 +56,9 @@ package:
 
 	helm package charts/namespaces
 	mv namespaces*.tgz docs
+
+	helm package charts/static-site
+	mv static-site*.tgz docs
 
 	helm repo index docs --url https://chart.onechart.dev
 
