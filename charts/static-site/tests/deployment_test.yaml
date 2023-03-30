@@ -1,0 +1,15 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+tests:
+  - it: Should set image, tag and command
+    set:
+      gitCloneUrl: https:/github.com/mycompany/myrepo.git
+      buildImage: nginx
+      buildTag: x.y.z
+    asserts:
+      - equal:
+          path: spec.template.spec.initContainers[0].image
+          value: nginx:x.y.z
+
+

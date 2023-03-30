@@ -1,0 +1,52 @@
+{{/* OneChart ingress snippet */}}
+{{- define "onechart.ingress" }}
+{{- $robustName := include "robustName" .root.Release.Name -}}
+{{- $resourceName := $robustName -}}
+{{- if .longName }}
+{{- $resourceName = printf "%s-%s" $robustName (include "robustName" .ingress.host) -}}
+{{- end }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:  
+  name: {{ $resourceName }}
+  namespace: {{ .root.Release.Namespace }}
+  labels:
+    {{- include "staticSite.labels" .root | nindent 4 }}
+  {{- if or (or .root.Values.gitSha .ingress.annotations) .root.Values.gitRepository }}
+  annotations:
+    {{- if .ingress.annotations }}
+      {{- toYaml .ingress.annotations | nindent 4 }}
+    {{- end }}
+  {{- end }}
+spec:
+  {{- if .ingress.ingressClassName }}
+  ingressClassName: {{ .ingress.ingressClassName }}
+  {{- end }}
+  {{- if default false .ingress.tlsEnabled }}
+  tls:
+    - hosts:
+        - {{ .ingress.host | quote }}
+      secretName: {{ printf "tls-%s" $resourceName }}
+  {{- end }}
+  rules:
+    - host: {{ .ingress.host | quote }}
+      http:
+        paths:
+          - path: {{ .ingress.path | default  "/" | quote }}
+            pathType: "Prefix"
+            backend:
+              service:
+                name: {{ $robustName }}
+                port:
+                  number: {{ .root.Values.service.port }}
+{{- end }}
+
+{{- with .Values.ingress }}
+  {{- template "onechart.ingress" (dict "root" $ "ingress" .) }}
+{{- end }}
+
+{{- range .Values.ingresses }}
+{{template "onechart.ingress" (dict "root" $ "ingress" . "longName" true) }}
+{{- end }}
+ 

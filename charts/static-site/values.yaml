@@ -1,0 +1,79 @@
+# Default values for static-site.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: 
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  runAsUser: 0
+
+service:
+  type: ClusterIP
+  port: 80
+
+# ingress:
+#   host: dummyapp.127.0.0.1.nip.io
+#   ingressClassName: nginx
+#   tlsEnabled: false
+#   annotations:
+#     cert-manager.io/cluster-issuer: letsencrypt-staging
+
+
+resources: 
+  requests:
+    cpu: 200m
+    memory: 200Mi
+  limits:
+    cpu: 200m
+    memory: 200Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# values to build and deploy static sites
+gitCloneUrl: https://github.com/gimlet-io/hugo-site.git
+buildImage: bitnami/git # the image must have git installed
+buildTag: latest
+buildScript: |
+    # !/usr/bin/env bash
+    # pre -reqs
+    apt-get update && apt-get install -y wget
+
+    # Setting up Hugo 
+    wget https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_Linux-64bit.tar.gz &&
+    tar -xzf hugo_0.111.3_Linux-64bit.tar.gz &&
+    chmod +x hugo
+
+    ./hugo
+builtAssets: public/ 

@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "gitCloneUrl": "https://github.com/gimlet-io/hugo-site.git",
+      "buildImage": "node",
+      "buildTag": "latest",
+      "buildScript": "npm install && npm install -g gatsby-cli && gatsby build",
+      "builtAssets": "public/"
+    }
+  ],
+  "required": [
+    "gitCloneUrl",
+    "buildImage",
+    "buildTag",
+    "buildScript",
+    "builtAssets"
+  ],
+  "properties": {
+    "gitCloneUrl": {
+      "$id": "#/properties/gitCloneUrl",
+      "type": "string",
+      "title": "Repo url",
+      "description": "The static site's git repository",
+      "default": "https://github.com/gimlet-io/hugo-site.git"
+    },
+    "buildImage": {
+      "$id": "#/properties/buildImage",
+      "type": "string",
+      "title": "Build image",
+      "description": "The image that will be used for the build proccess",
+      "default":"bitnami/git"
+    },
+    "buildTag": {
+      "$id": "#/properties/buildTag",
+      "type": "string",
+      "title": "Image tag",
+      "default": "latest"
+    },
+    "buildScript": {
+      "$id": "#/properties/buildScript",
+      "type": "string",
+      "title": "Build script",
+      "description": "Commands required for the build to be completed",
+      "default": "# !/usr/bin/env bash\n# pre -reqs\napt-get update && apt-get install -y wget\n\n# Setting up Hugo \nwget https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_Linux-64bit.tar.gz &&\ntar -xzf hugo_0.111.3_Linux-64bit.tar.gz &&\nchmod +x hugo\n\n./hugo"
+
+    },
+    "builtAssets": {
+      "$id": "#/properties/builtAssets",
+      "type": "string",
+      "title": "Built assets",
+      "description": "The folder containing the build's generated files",
+      "default": "public/"
+    },
+    "ingress": {
+      "$id": "#/properties/ingress",
+      "type": "object",
+      "title": "Incoming traffic",
+      "description": "",
+      "default": {},
+      "examples": [
+        {
+          "tlsEnabled": false,
+          "annotations": {
+            "kubernetes.io/ingress.class": "nginx"
+          },
+          "host": "my-release.mycompany.com"
+        }
+      ],
+      "required": [],
+      "properties": {
+        "host": {
+          "$id": "#/properties/ingress/properties/host",
+          "type": "string",
+          "title": "Host Name",
+          "description": "Where your application will be accessible",
+          "default": "",
+          "examples": [
+            "my-release.mycompany.com"
+          ]
+        },
+        "path": {
+          "$id": "#/properties/ingress/properties/ingressPath",
+          "type": "string",
+          "title": "Path",
+          "description": "The API path where your service is accessible",
+          "default": "/",
+          "examples": [
+            "/api/myservice"
+          ]
+        },
+        "tlsEnabled": {
+          "$id": "#/properties/ingress/properties/tlsEnabled",
+          "type": "boolean",
+          "title": "HTTPS",
+          "description": "",
+          "default": false,
+          "examples": [
+            false
+          ]
+        },
+        "annotations": {
+          "$id": "#/properties/ingress/properties/annotations",
+          "type": "object",
+          "title": "Annotations",
+          "description": "Annotations are used to control ingress behavior. See the full list for the Ingress Nginx project at https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/. Use the `cert-manager.io/cluster-issuer:\"letsencrypt\"` one to request TLS certificates, `kubernetes.io/ingress.class: \"nginx\"` to select an ingress controller.",
+          "default": {},
+          "examples": [
+            {
+              "kubernetes.io/ingress.class": "nginx"
+            }
+          ],
+          "additionalProperties": true
+        }
+      }
+    }
+
+  },
+  "additionalProperties": true
+}

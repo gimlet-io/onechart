@@ -36,6 +36,8 @@ test:
 
 	helm unittest charts/namespaces
 
+	helm unittest charts/static-site
+
 package:
 	helm dependency update charts/onechart
 	helm package charts/onechart

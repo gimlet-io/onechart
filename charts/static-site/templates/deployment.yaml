@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "robustName" .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "staticSite.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "staticSite.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "staticSite.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ template "robustName" .Release.Name  }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }} 
+      volumes:
+      - name: static-files
+        emptyDir: {}  
+      initContainers:
+      - name: init-con
+        image: {{ .Values.buildImage }}:{{ .Values.buildTag }}
+        {{- if .Values.buildScript }}
+        command:
+        - sh 
+        - -c 
+        - |
+           git clone {{ .Values.gitCloneUrl}} &&
+           cd {{ regexFind "([^\\/]+$)" .Values.gitCloneUrl | replace ".git" "" }} &&
+           {{ .Values.buildScript | nindent 12}}
+           mkdir -p /usr/share/nginx/html &&
+           cp -r ./{{ .Values.builtAssets }}. /usr/share/nginx/html
+        {{- end }}
+        volumeMounts:
+        - name: static-files
+          mountPath: /usr/share/nginx/html   
+      containers:
+        - name: {{ template "robustName" .Release.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+          - name: static-files
+            mountPath: /usr/share/nginx/html
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
