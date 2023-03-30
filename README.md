@@ -4,7 +4,7 @@ A generic Helm chart for your application deployments.
 
 Because no-one can remember the Kubernetes yaml syntax.
 
-https://gimlet.io/docs
+https://gimlet.io/docs/onechart-reference
 
 ## Getting started
 
@@ -30,7 +30,7 @@ helm install my-release onechart/onechart \
   --set image.tag=1.19.3
 ```
 
-See all [Examples](/examples/deploying-an-image)
+See all [Examples](/website/docs/examples/)
 
 ## Contribution Guidelines
 
