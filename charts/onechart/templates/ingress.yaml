@@ -8,7 +8,7 @@
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
-metadata:  
+metadata:
   name: {{ $resourceName }}
   namespace: {{ .root.Release.Namespace }}
   labels:
