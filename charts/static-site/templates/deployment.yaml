@@ -23,7 +23,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "staticSite.serviceAccountName" . }}
+      serviceAccountName: {{ template "robustName" .Release.Name  }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }} 
       volumes:
