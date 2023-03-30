@@ -30,7 +30,7 @@ helm install my-release onechart/onechart \
   --set image.tag=1.19.3
 ```
 
-See all [Examples](/examples/deploying-an-image)
+See all [Examples](/website/docs/examples/)
 
 ## Contribution Guidelines
 
