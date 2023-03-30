@@ -1,61 +1,58 @@
-{{- if .Values.ingress.enabled -}}
-{{- $fullName := include "staticSite.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
-{{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
-  {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
-  {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
-  {{- end }}
+{{/* OneChart ingress snippet */}}
+{{- define "onechart.ingress" }}
+{{- $robustName := include "robustName" .root.Release.Name -}}
+{{- $resourceName := $robustName -}}
+{{- if .longName }}
+{{- $resourceName = printf "%s-%s" $robustName (include "robustName" .ingress.host) -}}
 {{- end }}
-{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+---
 apiVersion: networking.k8s.io/v1
-{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
-apiVersion: extensions/v1beta1
-{{- end }}
 kind: Ingress
-metadata:
-  name: {{ $fullName }}
+metadata:  
+  name: {{ $resourceName }}
+  namespace: {{ .root.Release.Namespace }}
   labels:
-    {{- include "staticSite.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+    {{- include "staticSite.labels" .root | nindent 4 }}
+  {{- if or (or .root.Values.gitSha .ingress.annotations) .root.Values.gitRepository }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+    {{- if .ingress.annotations }}
+      {{- toYaml .ingress.annotations | nindent 4 }}
+    {{- end }}
+    {{- if .root.Values.gitSha }}
+    gimlet.io/git-sha: {{ .root.Values.gitSha }}
+    {{- end }}
+    {{- if .root.Values.gitRepository }}
+    gimlet.io/git-repository: {{ .root.Values.gitRepository }}
+    {{- end }}
   {{- end }}
 spec:
-  {{- if and .Values.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
-  ingressClassName: {{ .Values.ingress.className }}
+  {{- if .ingress.ingressClassName }}
+  ingressClassName: {{ .ingress.ingressClassName }}
   {{- end }}
-  {{- if .Values.ingress.tls }}
+  {{- if default false .ingress.tlsEnabled }}
   tls:
-    {{- range .Values.ingress.tls }}
     - hosts:
-        {{- range .hosts }}
-        - {{ . | quote }}
-        {{- end }}
-      secretName: {{ .secretName }}
-    {{- end }}
+        - {{ .ingress.host | quote }}
+      secretName: {{ printf "tls-%s" $resourceName }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ .ingress.host | quote }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ .path }}
-            {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
-            pathType: {{ .pathType }}
-            {{- end }}
+          - path: {{ .ingress.path | default  "/" | quote }}
+            pathType: "Prefix"
             backend:
-              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ $fullName }}
+                name: {{ $robustName }}
                 port:
-                  number: {{ $svcPort }}
-              {{- else }}
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
-              {{- end }}
-          {{- end }}
-    {{- end }}
+                  number: {{ if .root.Values.svcPort }}{{ .root.Values.svcPort }}{{ else }}{{ .root.Values.containerPort }}{{ end }}
 {{- end }}
+
+{{- with .Values.ingress }}
+  {{- template "onechart.ingress" (dict "root" $ "ingress" .) }}
+{{- end }}
+
+{{- range .Values.ingresses }}
+{{template "onechart.ingress" (dict "root" $ "ingress" . "longName" true) }}
+{{- end }}
+ 
