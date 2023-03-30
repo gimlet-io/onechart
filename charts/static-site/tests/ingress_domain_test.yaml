@@ -1,0 +1,120 @@
+suite: test deployment
+templates:
+  - ingress.yaml
+tests:
+  - it: Should set Ingress host name
+    set:
+      ingress:
+        host: chart-example.local
+        tlsEnabled: true
+    asserts:
+      - equal:
+          path: spec.tls
+          value:
+            - hosts:
+                - chart-example.local
+              secretName: tls-release-name
+      - equal:
+          path: spec.rules
+          value:
+            - host: chart-example.local
+              http:
+                paths:
+                  - path: "/"
+                    pathType: "Prefix"
+                    backend:
+                      service:
+                        name: release-name
+                        port:
+                          number: 80
+  - it: Should pass ingress host name as is, user must sanitize it
+    set:
+      ingress:
+        host: feature/my_branch.local
+        tlsEnabled: true
+    asserts:
+      - equal:
+          path: spec.tls
+          value:
+            - hosts:
+                - feature/my_branch.local
+              secretName: tls-release-name
+      - equal:
+          path: spec.rules
+          value:
+            - host: feature/my_branch.local
+              http:
+                paths:
+                  - path: "/"
+                    pathType: "Prefix"
+                    backend:
+                      service:
+                        name: release-name
+                        port:
+                          number: 80
+  - it: Should set Ingress annotation
+    set:
+      ingress:
+        host: chart-example.local
+        annotations:
+          just/a-random: annotation
+    asserts:
+      - equal:
+          path: metadata.annotations
+          value:
+            just/a-random: annotation
+  - it: Should set ingress class
+    set:
+      ingress:
+        host: chart-example.local
+        ingressClassName: nginx
+    asserts:
+      - equal:
+          path: spec.ingressClassName
+          value: nginx
+  - it: Should generate multiple ingresses
+    set:
+      ingresses:
+      - host: chart-example.local
+        annotations:
+          kubernetes.io/ingress.class: nginx
+      - host: another.local
+        annotations:
+          kubernetes.io/ingress.class: nginx
+    asserts:
+      - hasDocuments:
+          count: 2
+  - it: Should generate multiple ingresses
+    set:
+      ingress:
+        host: chart-example.local
+        annotations:
+          kubernetes.io/ingress.class: nginx
+      ingresses:
+        - host: chart-example.local
+          annotations:
+            kubernetes.io/ingress.class: nginx
+        - host: another.local
+          annotations:
+            kubernetes.io/ingress.class: nginx
+    asserts:
+      - hasDocuments:
+          count: 3
+  - it: Should have unique TLS secret names
+    set:
+      ingresses:
+        - host: chart-example.local
+          tlsEnabled: true
+          annotations:
+            kubernetes.io/ingress.class: nginx
+        - host: another.local
+          tlsEnabled: true
+          annotations:
+            kubernetes.io/ingress.class: nginx
+    asserts:
+      - equal:
+          path: spec.tls
+          value:
+            - hosts:
+                - chart-example.local
+              secretName: tls-release-name-chart-example-local

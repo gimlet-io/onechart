@@ -1,0 +1,12 @@
+suite: test deployment
+templates:
+  - ingress.yaml
+tests:
+  - it: Should use service port
+    set:
+      ingress:
+        host: chart-example.local
+      asserts:
+        - equal:
+            path: spec.rules[0].http.paths[0].backend.service.port.number
+            value: 1234

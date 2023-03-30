@@ -39,14 +39,13 @@ service:
   type: ClusterIP
   port: 80
 
-ingress:
-  host: dummyapp.127.0.0.1.nip.io
-  ingressClassName: nginx
-  tlsEnabled: false
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+# ingress:
+#   host: dummyapp.127.0.0.1.nip.io
+#   ingressClassName: nginx
+#   tlsEnabled: false
+#   annotations:
+#     cert-manager.io/cluster-issuer: letsencrypt-staging
 
-svcPort: 80
 
 resources: 
   requests:

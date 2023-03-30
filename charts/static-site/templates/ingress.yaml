@@ -18,12 +18,6 @@ metadata:
     {{- if .ingress.annotations }}
       {{- toYaml .ingress.annotations | nindent 4 }}
     {{- end }}
-    {{- if .root.Values.gitSha }}
-    gimlet.io/git-sha: {{ .root.Values.gitSha }}
-    {{- end }}
-    {{- if .root.Values.gitRepository }}
-    gimlet.io/git-repository: {{ .root.Values.gitRepository }}
-    {{- end }}
   {{- end }}
 spec:
   {{- if .ingress.ingressClassName }}
@@ -45,7 +39,7 @@ spec:
               service:
                 name: {{ $robustName }}
                 port:
-                  number: {{ if .root.Values.svcPort }}{{ .root.Values.svcPort }}{{ else }}{{ .root.Values.containerPort }}{{ end }}
+                  number: {{ .root.Values.service.port }}
 {{- end }}
 
 {{- with .Values.ingress }}
