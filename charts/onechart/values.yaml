@@ -69,3 +69,7 @@ podDisruptionBudgetEnabled: true
 spreadAcrossNodes: false
 
 nodePortEnabled: false
+
+# Set true to enable service monitor.
+monitor:
+  enabled: false

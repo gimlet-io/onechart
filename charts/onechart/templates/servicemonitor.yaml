@@ -1,0 +1,42 @@
+{{ if .Values.monitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "robustName" .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "helm-chart.labels" . | nindent 4 }}
+  {{- if or .Values.gitRepository .Values.gitSha }}
+  annotations:
+    {{- if .Values.gitRepository }}
+    gimlet.io/git-repository: {{ .Values.gitRepository }}
+    {{- end }}
+    {{- if .Values.gitSha }}
+    gimlet.io/git-sha: {{ .Values.gitSha }}
+    {{- end }}
+  {{- end }}
+spec:
+  endpoints:
+  - interval: 60s
+    params:
+      format:
+      - prometheus
+    path: {{ default "/metrics" .Values.monitor.path }} 
+    {{ if .Values.monitor.portName }}
+    port: {{ .Values.monitor.portName }}
+    {{ else if not .Values.ports }}
+    port: http
+    {{ else }}
+    port: {{ index .Values.ports 0 "name" }}
+    {{ end }}
+    scheme: {{ default "http" .Values.monitor.scheme }}
+    {{ if .Values.monitor.scrapeTimeout }}
+    scrapeTimeout: {{ .Values.monitor.scrapeTimeout }}
+    {{ end }}
+  namespaceSelector:
+    matchNames:
+    - "{{ .Release.Namespace }}"
+  selector:
+    matchLabels:
+        {{- include "helm-chart.selectorLabels" . | nindent 6 }}
+{{ end }}
