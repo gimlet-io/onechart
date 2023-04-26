@@ -1,0 +1,146 @@
+{{- if .Values.cloudrun }}
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: {{ template "robustName" .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- if .Values.region }}
+    cloud.googleapis.com/location: {{ .Values.region }}
+    {{- end }}
+  annotations:
+    {{- if .Values.launch_stage  }}
+    run.googleapis.com/launch-stage: {{ .Values.launch_stage }}
+    {{- end }}
+    run.googleapis.com/description: {{ .Values.description | quote }}
+    run.googleapis.com/ingress: {{ .Values.cr_ingress }}
+    {{- if .Values.policy  }}
+    run.googleapis.com/binary-authorization: {{ .Values.policy | default "default"}}
+    {{- end }}
+    {{- if .Values.justification  }}
+    run.googleapis.com/binary-authorization-breakglass: {{ .Values.justification | quote }}
+    {{- end }}
+spec:
+  template:
+    metadata:
+      name: {{ template "CRrevision" . }}
+      annotations:
+        autoscaling.knative.dev/minScale: {{ .Values.replicas_minimum | quote}}
+        autoscaling.knative.dev/maxScale: {{ .Values.replicas_maximum | quote }}
+        run.googleapis.com/cpu-throttling: {{ .Values.cpu_allocation | quote }}
+        run.googleapis.com/startup-cpu-boost: {{ .Values.cpu_allocation | quote }}
+        run.googleapis.com/sessionAffinity: {{ .Values.cpu_allocation | quote }}
+        {{- if .Values.cloud_sql_connection  }}
+        run.googleapis.com/cloudsql-instances: {{ .Values.cloud_sql_connection }}
+        {{- end }}
+        {{- if .Values.execution_environment  }}
+        run.googleapis.com/execution-environment: {{ .Values.execution_environment }}
+        {{- end }}
+        {{- if .Values.serverless_vpc_connector  }}
+        run.googleapis.com/vpc-access-connector: {{ .Values.serverless_vpc_connector }}
+        {{- end }}
+        {{- if .Values.egress }}
+        run.googleapis.com/vpc-access-egress: {{ .Values.egress }}
+        {{- end }}
+        {{- if .Values.cmek }}
+        run.googleapis.com/encryption-key: {{ .Values.cmek }}
+        {{- end }}
+    spec:
+      containerConcurrency: {{ .Values.max_concurrency }}
+      timeoutSeconds: {{ .Values.request_timeout }}
+      {{- if .Values.service_account_email }}
+      serviceAccountName: {{ .Values.service_account_email }}
+      {{- end }}
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        {{- if .Values.command }}
+        command:
+         - {{ .Values.shell }}
+         - -c
+         - {{ .Values.command | quote }}
+        args:
+         - ARGUMENT1
+         - ARGUMENT2
+        {{- end }}
+        {{- include "cloudrunEnv" . | nindent 8 }}
+        ports:
+          {{- if not .Values.ports }}
+            - name: http1
+              containerPort: {{ .Values.containerPort }}
+              protocol: TCP
+            {{ else }}
+            {{- range .Values.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .containerPort }}
+              protocol: TCP
+            {{- end }}
+          {{- end }}
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+        {{- if .Values.probe.enabled }}
+        startupProbe:
+          httpGet:
+            path: {{ .Values.probe.path }}
+            port: {{ .Values.containerPort }}
+            {{- if .Values.probe.httpHeaders }}
+            httpHeaders:
+            {{- with .Values.probe.httpHeaders }}
+            {{- toYaml . | nindent 14 }}
+            {{- end }}
+            {{- end }}
+          {{- if .Values.probe.tcpSocket }}
+          tcpSocket:
+            port: {{ .Values.probe.tcpSocket }}
+          {{- end }}
+          {{- if .Values.probe.grpc }}
+          grpc:
+            service: {{ .Values.probe.grpc.service }}
+            port: {{ .Values.probe.grpc.port }}
+          {{- end }}
+          {{- with .Values.probe.settings }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.probe.enabled }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.livenessProbe.path }}
+            port: {{ .Values.containerPort }}
+            {{- if .Values.livenessProbe.httpHeaders }}
+            httpHeaders:
+            {{- with .Values.livenessProbe.httpHeaders }}
+            {{- toYaml . | nindent 14 }}
+            {{- end }}
+            {{- end }}
+          {{- if .Values.livenessProbe.tcpSocket }}
+          tcpSocket:
+            port: {{ .Values.livenessProbe.tcpSocket }}
+          {{- end }}
+          {{- if .Values.livenessProbe.grpc }}
+          grpc:
+            service: {{ .Values.livenessProbe.grpc.service }}
+            port: {{ .Values.livenessProbe.grpc.port }}
+          {{- end }}
+          {{- with .Values.livenessProbe.settings }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.volumeName }}
+        volumeMounts:
+        - name: {{ .Values.volumeName}}
+          readOnly: true
+          mountPath: {{ .Values.volumeMountPath}}
+        {{- end }}
+      {{- if .Values.volumeName }}
+      volumes:
+      - name: {{ .Values.volumeName}}
+        secret:
+          secretName: {{ .Values.secretName }}
+          items:
+          - key: {{ .Values.secretVersion | quote}}
+            path: {{ .Values.secretPath }}
+      {{- end }}
+  traffic:
+  - percent: 100
+    latestRevision: true
+{{- end }}
