@@ -1,1 +1,3 @@
+{{- if not .Values.cloudrun }}
 {{- include "common.pvc.tpl" . -}}
+{{- end }}
