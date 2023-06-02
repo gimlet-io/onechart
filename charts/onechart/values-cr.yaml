@@ -1,0 +1,102 @@
+#cloudrun: true for cloud run, false for kubernetes
+#please note that most kubernetes resources will be ignored in case of cloudrun
+cloudrun: true
+
+#Belgium - low co2 dc
+region: "europe-west1"
+
+# namespace must be project ID or quoted number for Cloud Run
+namespace: "heimdall-onechart"
+
+description: "Human readable description of Cloud Run service - yattaa"
+
+# launch stage: set to BETA for preview capabilities
+launch_stage: ""
+# {all|internal|internal-and-cloud-load-balancing}
+cr_ingress: "all"
+
+#binary-authorization
+policy: ""
+#justification for breakglass event if binary-auth policy is set
+justification: "why u break glass??"
+
+image:
+  repository: nginx
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+replicas: 1
+replicas_minimum: 1
+replicas_maximum: 10
+
+# by default CPU is only allocatd during request prosessing. You can change this by setting this to true
+cpu_allocation: false
+cpu_boost: false
+session_affinity: false
+cloud_sql_connection: ""
+execution_environment: ""
+serverless_vpc_connector: ""
+egress: ""
+cmek: ""
+
+# cpu cannot be lower than 1 if concurrency is > 1
+# Total memory < 512 Mi is not supported with cpu unthrottled
+resources:
+  requests:
+    cpu: "1"
+    memory: "512Mi"
+  limits:
+    cpu: "1"
+    memory: "512Mi"
+
+#You can configure the maximum concurrent requests per instance. By default each Cloud Run container instance can receive up to 80 requests at the same time; you can increase this to a maximum of 1000.
+#Although you should use the default value, if needed you can lower the maximum concurrency. For example, if your code cannot process parallel requests, set concurrency to 1.
+max_concurrency: 1000
+
+#For Cloud Run services, the request timeout setting specifies the time within which a response must be returned by services deployed to Cloud Run. If a response isn't returned within the time specified, the request ends and error 504 is returned.
+#The timeout is set by default to 5 minutes and can be extended up to 60 minutes. 
+request_timeout: 60
+service_account_email: ""
+
+revision: "my-revision12"
+
+# there are no volumes data volumes in cloud run
+#volumes:
+
+volumeName: "my-volume"
+volumeMountPath: "/tmp/my-secret"
+secretName: "my-secret"
+secretVersion: "1"
+secretPath: "secretPath"
+
+#vars:
+#  MY_VAR: "value"
+
+# onle one probe action shoudl be defined at a time
+probe:
+  enabled: true
+  path: "/"
+  httpHeaders:
+    - name: "header-name"
+      value: "header-value"
+#  tcpSocket: 8081
+  settings:
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 3
+    failureThreshold: 3
+#  grpc:
+#    service: "grpc_service"
+#    port: 8082
+
+# Before you use a liveness probe: https://srcco.de/posts/kubernetes-liveness-probes-are-dangerous.html
+livenessProbe:
+  enabled: false
+  path: "/"
+  settings:
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 3
+    failureThreshold: 3

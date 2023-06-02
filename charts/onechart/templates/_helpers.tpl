@@ -25,10 +25,25 @@ If release name contains chart name it will be used as a full name.
 {{- end }}
 
 {{/*
+Create a Cloud Run Revision name
+*/}}
+{{- define "CRrevision" -}}
+{{- $name := .Release.Name }}
+{{- printf "%s-%s" $name .Values.revision | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
 Create chart name and version as used by the chart label.
 */}}
 {{- define "helm-chart.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Decide chart target (k8s or cloudrun). 
+*/}}
+{{- define "cloudrun" -}}
+{{- printf "%s" .cloudrun}}
 {{- end }}
 
 {{/*
@@ -69,4 +84,17 @@ Create robustName that can be used as Kubernetes resource name, and as subdomain
 */}}
 {{- define "robustName" -}}
 {{ regexReplaceAll "\\W+" . "-" | replace "_" "-" | lower | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+
+{{/*
+If there are variables defined , create env variables from them .
+FIXME : this doesnt work, need to use different parsing as vars are NAME: value
+*/}}
+{{- define "cloudrunEnv" -}}
+{{- if .Values.vars }}
+env:
+  - name: {{  .Values.vars.name }}
+    value: {{ .Values.vars.value }}
+{{- end }}
 {{- end }}
