@@ -13,11 +13,17 @@ volumeMounts: &volumeMounts
 {{- range .Values.sealedFileSecrets }}
   - name: {{ .name }}
     mountPath: {{ .path }}
+    {{- if .subPath}}
+    subPath: {{ .subPath }}
+    {{- end }} 
     readOnly: true
 {{- end }}
 {{- range .Values.fileSecrets }}
   - name: {{ .name }}
     mountPath: {{ .path }}
+    {{- if .subPath}}
+    subPath: {{ .subPath }}
+    {{- end }} 
     readOnly: true
 {{- end }}
 {{- range .Values.existingFileSecrets }}
