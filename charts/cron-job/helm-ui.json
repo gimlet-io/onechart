@@ -1,11 +1,10 @@
 [
   {
     "schemaIDs": [
+      "#/properties/schedule",
       "#/properties/image",
       "#/properties/shell",
-      "#/properties/schedule",
       "#/properties/command"
-      
     ],
     "uiSchema": {
       "#/properties/replicas": {
