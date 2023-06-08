@@ -3,7 +3,8 @@
     "schemaIDs": [
       "#/properties/image",
       "#/properties/shell",
-      "#/properties/command"
+      "#/properties/command",
+      "#/properties/schedule"
     ],
     "uiSchema": {
       "#/properties/replicas": {
