@@ -1,6 +1,7 @@
 [
   {
     "schemaIDs": [
+      "#/properties/schedule",
       "#/properties/image",
       "#/properties/shell",
       "#/properties/command"

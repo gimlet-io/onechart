@@ -1,0 +1,11 @@
+suite: test cron job
+templates:
+  - cronJob.yaml
+tests:
+  - it: Should set schedule
+    set:
+      schedule: "*/1 * * * *"
+    asserts:
+      - equal:
+          path: spec.schedule
+          value: "*/1 * * * *"

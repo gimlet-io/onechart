@@ -238,6 +238,13 @@
       "description": "The command to run in the cronjob",
       "default": "echo \"I'm alive\""
     },
+    "schedule": {
+      "$id": "#/properties/schedule",
+      "type": "string",
+      "title": "Schedule",
+      "description": "Schedule your cronjob",
+      "default": "*/1 * * * *"
+    },
     "vars": {
       "$id": "#/properties/vars",
       "type": "object",
