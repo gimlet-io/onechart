@@ -283,6 +283,16 @@
             true
           ]
         },
+        "ignoreLimits": {
+          "$id": "#/properties/resources/properties/ignoreLimits",
+          "type": "boolean",
+          "title": "Ignore limits",
+          "description": "If set to true, limits in resource configuration will be ignored",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
         "requests": {
           "$id": "#/properties/resources/properties/requests",
           "type": "object",
