@@ -117,7 +117,12 @@ spec:
           {{- include "common.volumeMountsRef.tpl" . | nindent 10 }}
           {{- if not .Values.resources.ignore }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- if .Values.resources.ignoreLimits }}
+            requests:
+              {{- toYaml .Values.resources.requests | nindent 14 }}
+            {{- else }}
+             {{- toYaml .Values.resources | nindent 12 }}
+            {{- end }}
           {{- end }}
         {{- if .Values.sidecar }}
         - name: {{ template "robustName" .Release.Name }}-sidecar

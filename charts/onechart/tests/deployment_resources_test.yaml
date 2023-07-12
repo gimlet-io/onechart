@@ -16,3 +16,25 @@ tests:
     asserts:
       - isNull:
           path: spec.template.spec.containers[0].resources
+  - it: Should ignore resources limits when ignoreLimits flag is set
+    set:
+      resources:
+        ignoreLimits: true
+    asserts:
+      - isNull:
+          path: spec.template.spec.containers[0].resources.limits
+      - isNotNull:
+          path: spec.template.spec.containers[0].resources.requests
+  - it: Should create requests when ignoreLimits flag is set
+    set:
+      resources:
+        ignoreLimits: true
+        requests:
+          cpu: "1000m"
+          memory: "200Mi"
+    asserts:
+      - isNotNull:
+          path: spec.template.spec.containers[0].resources.requests
+      - equal:
+          path: spec.template.spec.containers[0].resources.requests.cpu
+          value: 1000m
