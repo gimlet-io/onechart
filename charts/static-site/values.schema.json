@@ -8,8 +8,7 @@
   "examples": [
     {
       "gitCloneUrl": "https://github.com/gimlet-io/hugo-site.git",
-      "buildImage": "node",
-      "buildTag": "latest",
+      "buildImage": "node:latest",
       "buildScript": "npm install && npm install -g gatsby-cli && gatsby build",
       "builtAssets": "public/"
     }
@@ -17,7 +16,6 @@
   "required": [
     "gitCloneUrl",
     "buildImage",
-    "buildTag",
     "buildScript",
     "builtAssets"
   ],
@@ -34,13 +32,7 @@
       "type": "string",
       "title": "Build image",
       "description": "The image that will be used for the build proccess",
-      "default":"bitnami/git"
-    },
-    "buildTag": {
-      "$id": "#/properties/buildTag",
-      "type": "string",
-      "title": "Image tag",
-      "default": "latest"
+      "default": "bitnami/git:latest"
     },
     "buildScript": {
       "$id": "#/properties/buildScript",
@@ -119,7 +111,6 @@
         }
       }
     }
-
   },
   "additionalProperties": true
 }
