@@ -31,7 +31,7 @@ spec:
         emptyDir: {}  
       initContainers:
       - name: init-con
-        image: {{ .Values.buildImage }}:{{ .Values.buildTag }}
+        image: {{ .Values.buildImage }}
         {{- if .Values.buildScript }}
         command:
         - sh 
