@@ -8,8 +8,7 @@
   "examples": [
     {
       "gitCloneUrl": "https://github.com/gimlet-io/hugo-site.git",
-      "buildImage": "node",
-      "buildTag": "latest",
+      "buildImage": "node:latest",
       "buildScript": "npm install && npm install -g gatsby-cli && gatsby build",
       "builtAssets": "public/"
     }
@@ -17,7 +16,6 @@
   "required": [
     "gitCloneUrl",
     "buildImage",
-    "buildTag",
     "buildScript",
     "builtAssets"
   ],
@@ -34,13 +32,7 @@
       "type": "string",
       "title": "Build image",
       "description": "The image that will be used for the build proccess",
-      "default":"bitnami/git"
-    },
-    "buildTag": {
-      "$id": "#/properties/buildTag",
-      "type": "string",
-      "title": "Image tag",
-      "default": "latest"
+      "default": "bitnami/git:latest"
     },
     "buildScript": {
       "$id": "#/properties/buildScript",
@@ -48,7 +40,6 @@
       "title": "Build script",
       "description": "Commands required for the build to be completed",
       "default": "# !/usr/bin/env bash\n# pre -reqs\napt-get update && apt-get install -y wget\n\n# Setting up Hugo \nwget https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_Linux-64bit.tar.gz &&\ntar -xzf hugo_0.111.3_Linux-64bit.tar.gz &&\nchmod +x hugo\n\n./hugo"
-
     },
     "builtAssets": {
       "$id": "#/properties/builtAssets",
@@ -119,7 +110,6 @@
         }
       }
     }
-
   },
   "additionalProperties": true
 }

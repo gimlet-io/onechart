@@ -3,14 +3,13 @@
     "schemaIDs": [
       "#/properties/gitCloneUrl",
       "#/properties/buildImage",
-      "#/properties/buildTag",
       "#/properties/buildScript",
       "#/properties/builtAssets"
-
     ],
     "uiSchema": {
-      "#/properties/buildScript":{
-        "ui:widget": "textarea"
+      "#/properties/buildScript": {
+        "ui:widget": "textarea",
+        "ui:rows": 10
       }
     },
     "metaData": {
