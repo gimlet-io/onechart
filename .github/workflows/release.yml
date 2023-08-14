@@ -96,6 +96,7 @@ jobs:
 
         sed -i "s/version: $CHART_VERSION/version: $increased_version/" charts/onechart/Chart.yaml
         sed -i "s/version: $CHART_VERSION/version: $increased_version/" charts/cron-job/Chart.yaml
+        sed -i "s/version: $CHART_VERSION/version: $increased_version/" charts/static-site/Chart.yaml
 
         git status
         git add .

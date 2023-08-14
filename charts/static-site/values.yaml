@@ -63,8 +63,7 @@ affinity: {}
 
 # values to build and deploy static sites
 gitCloneUrl: https://github.com/gimlet-io/hugo-site.git
-buildImage: bitnami/git # the image must have git installed
-buildTag: latest
+buildImage: bitnami/git:latest # the image must have git installed
 buildScript: |
     # !/usr/bin/env bash
     # pre -reqs
