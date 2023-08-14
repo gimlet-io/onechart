@@ -67,7 +67,11 @@ spec:
           - mountPath: {{ .path }}
             name: {{ .name }}
           {{- end }}
-          {{- end }}   
+          {{- end }}
+          {{if .securityContext }}
+          securityContext:
+          {{- toYaml .securityContext | nindent 12 }}
+          {{- end}}
         {{- end }}      
       containers:
         - name: {{ template "robustName" .Release.Name }}
