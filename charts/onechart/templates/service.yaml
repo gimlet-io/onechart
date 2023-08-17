@@ -31,7 +31,7 @@ spec:
       {{- if .Values.nodePort }}
       nodePort: {{ .Values.nodePort }}
       {{- end }}
-    {{ else }}
+    {{- else }}
     {{- range .Values.ports }}
     - name: {{ .name }}
       port: {{ if .svcPort }}{{ .svcPort }}{{ else }}{{ .containerPort }}{{ end }}
