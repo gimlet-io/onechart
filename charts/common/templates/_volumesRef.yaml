@@ -1,5 +1,5 @@
 {{- define "common.volumesRef.tpl" -}}
-{{- if or (or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets) .Values.existingFileSecrets }}
+{{- if or (or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets) .Values.existingFileSecrets -}}
 volumes:
   {{- range .Values.volumes }}
   - name: {{ .name }}

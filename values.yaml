@@ -5,8 +5,6 @@ ingress:
 gitRepository: github.com/laszlocph/demo-app
 gitSha: xyz
 
-vars:
-  MY_VAR: "value"
 
 volumes:
   - name: testing
@@ -15,4 +13,8 @@ volumes:
       path: /deleteme
   - name: empty
     path: /deleteme2
-    emptyDir: true 
+    emptyDir: true
+
+vars:
+  var1: value1
+  var2: value2

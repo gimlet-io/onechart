@@ -63,12 +63,12 @@ spec:
           {{- end }}
           volumeMounts:
           {{- range $.Values.volumes }}  
-          {{if (or (hasPrefix "shared-" .name) (hasPrefix "init-" .name))}}
+          {{- if (or (hasPrefix "shared-" .name) (hasPrefix "init-" .name))}}
           - mountPath: {{ .path }}
             name: {{ .name }}
           {{- end }}
           {{- end }}
-          {{if .securityContext }}
+          {{- if .securityContext }}
           securityContext:
           {{- toYaml .securityContext | nindent 12 }}
           {{- end}}
@@ -91,7 +91,7 @@ spec:
             - name: http
               containerPort: {{ .Values.containerPort }}
               protocol: TCP
-            {{ else }}
+            {{- else }}
             {{- range .Values.ports }}
             - name: {{ .name }}
               containerPort: {{ .containerPort }}

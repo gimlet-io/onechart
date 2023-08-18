@@ -1,5 +1,5 @@
 {{- define "common.envFromRef.tpl" -}}
-{{- if or (or (or (.Values.vars) (.Values.secretEnabled)) .Values.sealedSecrets) .Values.secretName }}
+{{- if or (or (or (.Values.vars) (.Values.secretEnabled)) .Values.sealedSecrets) .Values.secretName -}}
 envFrom: &envFrom
 {{- if .Values.vars }}
   - configMapRef:
