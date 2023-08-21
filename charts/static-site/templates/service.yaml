@@ -5,6 +5,15 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "staticSite.labels" . | nindent 4 }}
+  {{- if or .Values.gitRepository .Values.gitSha }}
+  annotations:
+    {{- if .Values.gitRepository }}
+    gimlet.io/git-repository: {{ .Values.gitRepository }}
+    {{- end }}
+    {{- if .Values.gitSha }}
+    gimlet.io/git-sha: {{ .Values.gitSha }}
+    {{- end }}
+  {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
