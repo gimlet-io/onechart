@@ -53,17 +53,8 @@ tolerations: []
 affinity: {}
 
 # values to build and deploy static sites
-gitCloneUrl: https://github.com/gimlet-io/hugo-site.git
-buildImage: bitnami/git:latest # the image must have git installed
+gitCloneUrl: https://github.com/gimlet-io/reactjs-test-app.git
+buildImage: "node:latest"
 buildScript: |
-    # !/usr/bin/env bash
-    # pre -reqs
-    apt-get update && apt-get install -y wget
-
-    # Setting up Hugo 
-    wget https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_Linux-64bit.tar.gz &&
-    tar -xzf hugo_0.111.3_Linux-64bit.tar.gz &&
-    chmod +x hugo
-
-    ./hugo
-builtAssets: public/ 
+  npm install && npm run build
+builtAssets: build/ 
