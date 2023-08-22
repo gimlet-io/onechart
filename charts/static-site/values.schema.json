@@ -25,21 +25,21 @@
       "type": "string",
       "title": "Repo url",
       "description": "The static site's git repository",
-      "default": "https://github.com/gimlet-io/hugo-site.git"
+      "default": "https://github.com/gimlet-io/reactjs-test-app.git"
     },
     "buildImage": {
       "$id": "#/properties/buildImage",
       "type": "string",
       "title": "Build image",
       "description": "The image that will be used for the build proccess",
-      "default": "bitnami/git:latest"
+      "default": "node:latest"
     },
     "buildScript": {
       "$id": "#/properties/buildScript",
       "type": "string",
       "title": "Build script",
       "description": "Commands required for the build to be completed",
-      "default": "# !/usr/bin/env bash\n# pre -reqs\napt-get update && apt-get install -y wget\n\n# Setting up Hugo \nwget https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_0.111.3_Linux-64bit.tar.gz &&\ntar -xzf hugo_0.111.3_Linux-64bit.tar.gz &&\nchmod +x hugo\n\n./hugo"
+      "default": "# !/usr/bin/env bash\n\nnpm install\nnpm run build"
 
     },
     "builtAssets": {
@@ -47,7 +47,7 @@
       "type": "string",
       "title": "Built assets",
       "description": "The folder containing the build's generated files",
-      "default": "public/"
+      "default": "build/"
     },
     "ingress": {
       "$id": "#/properties/ingress",
