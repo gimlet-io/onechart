@@ -14,7 +14,21 @@ tests:
           content:
             configMapRef:
               name: release-name
-  - it: Should not reference configmap if vars are not set
+  - it: Should reference to existing configmaps
+    set:
+      envFrom:
+        existingConfigMaps:
+        - name: firstcm
+          optional: true
+        - name: secondcm
+          optional: true
     asserts:
-      - isNull:
+      - contains:
           path: spec.template.spec.containers[0].envFrom
+          content:
+            configMapRef:
+              name: firstcm
+              optional: true
+            configMapRef:
+              name: secondcm
+              optional: true        
