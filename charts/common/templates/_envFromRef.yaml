@@ -8,30 +8,24 @@ envFrom: &envFrom
 {{- range .Values.existingSecrets }}
   - secretRef:
       name: {{ .name }}
-      optional: {{ .optional }}
+      optional: {{ .optional | default false }}
 {{- end }}
-
 {{- range .Values.existingConfigMaps }}
   - configMapRef:
       name: {{ .name }}
-      optional: {{ .optional }}
+      optional: {{ .optional | default false }}
 {{- end }}
-
 {{- if .Values.secretEnabled }}
   - secretRef:
       name: {{ include "common.robustName" $.Release.Name }}
 {{- end }}
-
-
 {{- if .Values.secretName }}
   - secretRef:
       name: {{ .Values.secretName }}
 {{- end }}
-
 {{- if .Values.sealedSecrets }}
   - secretRef:
       name: {{ template "common.robustName" .Release.Name }}
 {{- end }}
-
 {{- end }}
 {{- end }}
