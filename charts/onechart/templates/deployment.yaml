@@ -138,7 +138,7 @@ spec:
             - -c
             - {{ .Values.sidecar.command | quote }}
           {{- end }}
-          {{- if or (or (.Values.vars) (.Values.secretEnabled) (.Values.envFrom)) .Values.sealedSecrets }}
+          {{- if or (or (or (or (or (.Values.vars) (.Values.secretEnabled)) .Values.sealedSecrets) .Values.secretName) .Values.existingConfigMaps) .Values.existingSecrets }}
           envFrom: *envFrom
           {{- end }}
           {{- if or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets }}
