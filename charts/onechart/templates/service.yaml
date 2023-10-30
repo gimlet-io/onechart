@@ -9,9 +9,13 @@ metadata:
   annotations:
     {{- if .Values.gitRepository }}
     gimlet.io/git-repository: {{ .Values.gitRepository }}
+    {{- $parts := split "/" .Values.gitRepository }}
+    opensca.dev/v0.1.0/vcs/owner: {{ $parts._0 }}
+    opensca.dev/v0.1.0/vcs/name: {{ $parts._1 }}
     {{- end }}
     {{- if .Values.gitSha }}
     gimlet.io/git-sha: {{ .Values.gitSha }}
+    opensca.dev/v0.1.0/version/sha: {{ .Values.gitSha }}
     {{- end }}
   {{- end }}
 spec:

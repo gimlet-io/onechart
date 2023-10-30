@@ -4,11 +4,14 @@ templates:
 tests:
   - it: Should set Gimlet taxonomy
     set:
-      gitRepository: github.com/laszlocph/demo-app
+      gitRepository: laszlocph/demo-app
       gitSha: xyz
     asserts:
       - equal:
           path: metadata.annotations
           value:
-            gimlet.io/git-repository: github.com/laszlocph/demo-app
+            gimlet.io/git-repository: laszlocph/demo-app
             gimlet.io/git-sha: xyz
+            opensca.dev/v0.1.0/vcs/owner: laszlocph
+            opensca.dev/v0.1.0/vcs/name: demo-app
+            opensca.dev/v0.1.0/version/sha: xyz
