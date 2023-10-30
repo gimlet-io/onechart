@@ -18,16 +18,16 @@ metadata:
     opensca.dev/v0.1.0/version/sha: {{ .Values.gitSha }}
     {{- end }}
     {{- if .Values.serviceName }}
-    opensca.dev/v0.1.0/name: {{ .Values.service-name }}
+    opensca.dev/v0.1.0/name: {{ .Values.serviceName }}
     {{- end }}
     {{- if .Values.serviceDescription }}
-    opensca.dev/v0.1.0/description: {{ .Values.service-description }}
+    opensca.dev/v0.1.0/description: {{ .Values.serviceDescription }}
     {{- end }}
     {{- if .Values.ownerName }}
-    opensca.dev/v0.1.0/owner/name: {{ .Values.owner-name }}
+    opensca.dev/v0.1.0/owner/name: {{ .Values.ownerName }}
     {{- end }}
     {{- if .Values.ownerIm }}
-    opensca.dev/v0.1.0/owner/im: {{ .Values.owner-im }}
+    opensca.dev/v0.1.0/owner/im: {{ .Values.ownerIm }}
     {{- end }}
     {{- if .Values.documentation }}
     opensca.dev/v0.1.0/documentation: {{ .Values.documentation }}
