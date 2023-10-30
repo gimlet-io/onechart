@@ -255,7 +255,7 @@
     "gitSha": {
       "$id": "#/properties/gitSha",
       "type": "string",
-      "title": "Commit Hash", 
+      "title": "Commit Hash",
       "description": "The git hash that you are deploying",
       "default": ""
     },
