@@ -153,8 +153,17 @@
   },
   {
     "schemaIDs": [
+      "#/properties/name",
+      "#/properties/description",
+      "#/properties/ownerName",
+      "#/properties/ownerIm",
       "#/properties/gitSha",
-      "#/properties/gitRepository"
+      "#/properties/gitRepository",
+      "#/properties/documentation",
+      "#/properties/logs",
+      "#/properties/metrics",
+      "#/properties/traces",
+      "#/properties/issues"
     ],
     "uiSchema": {},
     "metaData": {
