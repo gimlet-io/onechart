@@ -17,7 +17,18 @@ metadata:
     gimlet.io/git-sha: {{ .Values.gitSha }}
     opensca.dev/v0.1.0/version/sha: {{ .Values.gitSha }}
     {{- end }}
-  {{- end }}
+    {{- if .Values.service-name }}
+    opensca.dev/v0.1.0/name: {{ .Values.service-name }}
+    {{- end }}
+    {{- if .Values.service-description }}
+    opensca.dev/v0.1.0/description: {{ .Values.service-description }}
+    {{- end }}
+    {{- if .Values.owner-name }}
+    opensca.dev/v0.1.0/owner/name: {{ .Values.owner-name }}
+    {{- end }}
+    {{- if .Values.owner-im }}
+    opensca.dev/v0.1.0/owner/im: {{ .Values.owner-im }}
+    {{- end }}
 spec:
   type: {{ if .Values.nodePortEnabled }}NodePort{{ else if .Values.loadbalancerEnabled }}LoadBalancer{{ else }}ClusterIP{{ end }}
   {{- if .Values.stickySessions }}
