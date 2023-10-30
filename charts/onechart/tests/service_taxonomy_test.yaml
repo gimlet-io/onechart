@@ -4,11 +4,32 @@ templates:
 tests:
   - it: Should set Gimlet taxonomy
     set:
-      gitRepository: github.com/laszlocph/demo-app
+      gitRepository: laszlocph/demo-app
       gitSha: xyz
+      serviceName: cart-backend
+      serviceDescription: "Backend to manage shopping cart state, written in Go"
+      ownerName: "backend-team"
+      ownerIm: "#backend-team"
+      documentation: https://confluence.mycompany.com/cart-backend
+      logs: https://grafana.mycompany.com/logs
+      metrics: https://grafana.mycompany.com/cart-dashboard
+      issues: https://jira.mycompany.com/cart-backend
+      traces: https://jaeger.mycompany.com/cart-dashboard
     asserts:
       - equal:
           path: metadata.annotations
           value:
-            gimlet.io/git-repository: github.com/laszlocph/demo-app
+            gimlet.io/git-repository: laszlocph/demo-app
             gimlet.io/git-sha: xyz
+            opensca.dev/v0.1.0/vcs/owner: laszlocph
+            opensca.dev/v0.1.0/vcs/name: demo-app
+            opensca.dev/v0.1.0/version/sha: xyz
+            opensca.dev/v0.1.0/name: cart-backend
+            opensca.dev/v0.1.0/description: "Backend to manage shopping cart state, written in Go"
+            opensca.dev/v0.1.0/owner/name: "backend-team"
+            opensca.dev/v0.1.0/owner/im: "#backend-team"
+            opensca.dev/v0.1.0/documentation: https://confluence.mycompany.com/cart-backend
+            opensca.dev/v0.1.0/logs: https://grafana.mycompany.com/logs
+            opensca.dev/v0.1.0/metrics: https://grafana.mycompany.com/cart-dashboard
+            opensca.dev/v0.1.0/issues: https://jira.mycompany.com/cart-backend
+            opensca.dev/v0.1.0/traces: https://jaeger.mycompany.com/cart-dashboard

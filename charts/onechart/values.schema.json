@@ -189,6 +189,69 @@
       "required": [],
       "additionalProperties": true
     },
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "Service Name",
+      "description": "The service name for unique identification",
+      "default": ""
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "Service Description",
+      "description": "Human readable text description of the service",
+      "default": ""
+    },
+    "ownerName": {
+      "$id": "#/properties/ownerName",
+      "type": "string",
+      "title": "Owner",
+      "description": "The person or team who is responsible for this service",
+      "default": ""
+    },
+    "ownerIm": {
+      "$id": "#/properties/ownerIm",
+      "type": "string",
+      "title": "Owner IM",
+      "description": "Instant messaging channel, or direct message handle of the owner. prefix with # for channels, prefix with @ for direct messages.",
+      "default": ""
+    },
+    "documentation": {
+      "$id": "#/properties/documentation",
+      "type": "string",
+      "title": "Link to Documentation",
+      "description": "Link to documentation. The link's preferred usage is in a href html tag.",
+      "default": ""
+    },
+    "logs": {
+      "$id": "#/properties/logs",
+      "type": "string",
+      "title": "Link to Logs",
+      "description": "Link to log aggregation platform. The link's preferred usage is in a href html tag.",
+      "default": ""
+    },
+    "metrics": {
+      "$id": "#/properties/metrics",
+      "type": "string",
+      "title": "Link to Metrics",
+      "description": "Link to metrics dashboard. The link's preferred usage is in a href html tag.",
+      "default": ""
+    },
+    "issues": {
+      "$id": "#/properties/issues",
+      "type": "string",
+      "title": "Link to Issues",
+      "description": "Link to issue tracker. The link's preferred usage is in a href html tag.",
+      "default": ""
+    },
+    "traces": {
+      "$id": "#/properties/traces",
+      "type": "string",
+      "title": "Link to Traces",
+      "description": "Link to application traces. The link's preferred usage is in a href html tag.",
+      "default": ""
+    },
     "gitSha": {
       "$id": "#/properties/gitSha",
       "type": "string",

@@ -5,13 +5,44 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "helm-chart.labels" . | nindent 4 }}
-  {{- if or .Values.gitRepository .Values.gitSha }}
+  {{- if or (or (or (or (or .Values.gitRepository .Values.gitSha) .Values.serviceName) .Values.serviceDescription) .Values.ownerName) .Values.ownerIm }}
   annotations:
     {{- if .Values.gitRepository }}
     gimlet.io/git-repository: {{ .Values.gitRepository }}
+    {{- $parts := split "/" .Values.gitRepository }}
+    opensca.dev/v0.1.0/vcs/owner: {{ $parts._0 }}
+    opensca.dev/v0.1.0/vcs/name: {{ $parts._1 }}
     {{- end }}
     {{- if .Values.gitSha }}
     gimlet.io/git-sha: {{ .Values.gitSha }}
+    opensca.dev/v0.1.0/version/sha: {{ .Values.gitSha }}
+    {{- end }}
+    {{- if .Values.serviceName }}
+    opensca.dev/v0.1.0/name: {{ .Values.serviceName | quote }}
+    {{- end }}
+    {{- if .Values.serviceDescription }}
+    opensca.dev/v0.1.0/description: {{ .Values.serviceDescription | quote }}
+    {{- end }}
+    {{- if .Values.ownerName }}
+    opensca.dev/v0.1.0/owner/name: {{ .Values.ownerName | quote }}
+    {{- end }}
+    {{- if .Values.ownerIm }}
+    opensca.dev/v0.1.0/owner/im: {{ .Values.ownerIm | quote }}
+    {{- end }}
+    {{- if .Values.documentation }}
+    opensca.dev/v0.1.0/documentation: {{ .Values.documentation | quote }}
+    {{- end }}
+    {{- if .Values.logs }}
+    opensca.dev/v0.1.0/logs: {{ .Values.logs | quote }}
+    {{- end }}
+    {{- if .Values.metrics }}
+    opensca.dev/v0.1.0/metrics: {{ .Values.metrics | quote }}
+    {{- end }}
+    {{- if .Values.issues }}
+    opensca.dev/v0.1.0/issues: {{ .Values.issues | quote }}
+    {{- end }}
+    {{- if .Values.traces }}
+    opensca.dev/v0.1.0/traces: {{ .Values.traces | quote }}
     {{- end }}
   {{- end }}
 spec:
