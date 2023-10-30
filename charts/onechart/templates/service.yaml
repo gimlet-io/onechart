@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "helm-chart.labels" . | nindent 4 }}
-  {{- if or (or (or .Values.gitRepository .Values.gitSha) .Values.serviceName) .Values.serviceDescription}}
+  {{- if or (or (or (or (or .Values.gitRepository .Values.gitSha) .Values.serviceName) .Values.serviceDescription) .Values.ownerName) .Values.ownerIm }}
   annotations:
     {{- if .Values.gitRepository }}
     gimlet.io/git-repository: {{ .Values.gitRepository }}
