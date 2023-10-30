@@ -17,17 +17,32 @@ metadata:
     gimlet.io/git-sha: {{ .Values.gitSha }}
     opensca.dev/v0.1.0/version/sha: {{ .Values.gitSha }}
     {{- end }}
-    {{- if .Values.service-name }}
+    {{- if .Values.serviceName }}
     opensca.dev/v0.1.0/name: {{ .Values.service-name }}
     {{- end }}
-    {{- if .Values.service-description }}
+    {{- if .Values.serviceDescription }}
     opensca.dev/v0.1.0/description: {{ .Values.service-description }}
     {{- end }}
-    {{- if .Values.owner-name }}
+    {{- if .Values.ownerName }}
     opensca.dev/v0.1.0/owner/name: {{ .Values.owner-name }}
     {{- end }}
-    {{- if .Values.owner-im }}
+    {{- if .Values.ownerIm }}
     opensca.dev/v0.1.0/owner/im: {{ .Values.owner-im }}
+    {{- end }}
+    {{- if .Values.documentation }}
+    opensca.dev/v0.1.0/documentation: {{ .Values.documentation }}
+    {{- end }}
+    {{- if .Values.logs }}
+    opensca.dev/v0.1.0/logs: {{ .Values.logs }}
+    {{- end }}
+    {{- if .Values.metrics }}
+    opensca.dev/v0.1.0/metrics: {{ .Values.metrics }}
+    {{- end }}
+    {{- if .Values.issues }}
+    opensca.dev/v0.1.0/issues: {{ .Values.issues }}
+    {{- end }}
+    {{- if .Values.traces }}
+    opensca.dev/v0.1.0/traces: {{ .Values.traces }}
     {{- end }}
 spec:
   type: {{ if .Values.nodePortEnabled }}NodePort{{ else if .Values.loadbalancerEnabled }}LoadBalancer{{ else }}ClusterIP{{ end }}

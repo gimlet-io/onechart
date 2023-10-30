@@ -6,10 +6,10 @@ tests:
     set:
       gitRepository: laszlocph/demo-app
       gitSha: xyz
-      service-name: cart-backend
-      service-description: "Backend to manage shopping cart state, written in Go"
-      owner-name: "backend-team"
-      owner-im: "#backend-team"
+      serviceName: cart-backend
+      serviceDescription: "Backend to manage shopping cart state, written in Go"
+      ownerName: "backend-team"
+      ownerIm: "#backend-team"
       documentation: https://confluence.mycompany.com/cart-backend
       logs: https://grafana.mycompany.com/logs
       metrics: https://grafana.mycompany.com/cart-dashboard
