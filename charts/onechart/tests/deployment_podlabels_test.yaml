@@ -1,0 +1,17 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+  - configmap.yaml
+tests:
+  - it: Should set custom labels
+    set:
+      podLabels:
+        label1: val1
+        label2: val2
+    asserts:
+      - equal:
+          path: spec.template.metadata.labels.label1
+          value: val1
+      - equal:
+          path: spec.template.metadata.labels.label2
+          value: val2
