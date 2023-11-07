@@ -20,6 +20,8 @@ fullnameOverride: ""
 
 podAnnotations: {}
 
+podLabels: {}
+
 podSecurityContext:
   fsGroup: 999
 
@@ -38,7 +40,6 @@ resources:
 nodeSelector: {}
 
 tolerations: []
-
 
 probe:
   enabled: false

@@ -143,7 +143,8 @@
     "schemaIDs": [
       "#/properties/podDisruptionBudgetEnabled",
       "#/properties/spreadAcrossNodes",
-      "#/properties/podAnnotations"
+      "#/properties/podAnnotations",
+      "#/properties/podLabels"
     ],
     "uiSchema": {},
     "metaData": {

@@ -15,6 +15,7 @@
       "nameOverride": "",
       "fullnameOverride": "",
       "podAnnotations": {},
+      "podLabels": {},
       "podSecurityContext": {
         "fsGroup": 999
       },
@@ -181,6 +182,18 @@
       "$id": "#/properties/podAnnotations",
       "type": "object",
       "title": "Pod annotations",
+      "description": "Annotations to place on pods",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    },
+    "podLabels": {
+      "$id": "#/properties/podLabels",
+      "type": "object",
+      "title": "Pod labels",
       "description": "Annotations to place on pods",
       "default": {},
       "examples": [

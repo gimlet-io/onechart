@@ -39,6 +39,9 @@ spec:
         gimlet.io/git-repository: {{ .Values.gitRepository }}
         {{- end }}
       labels:
+        {{- with .Values.podLabels }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
         {{- include "helm-chart.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
