@@ -194,7 +194,7 @@
       "$id": "#/properties/podLabels",
       "type": "object",
       "title": "Pod labels",
-      "description": "Annotations to place on pods",
+      "description": "Labels to place on pods",
       "default": {},
       "examples": [
         {}
