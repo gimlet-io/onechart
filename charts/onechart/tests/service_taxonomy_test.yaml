@@ -21,15 +21,15 @@ tests:
           value:
             gimlet.io/git-repository: laszlocph/demo-app
             gimlet.io/git-sha: xyz
-            opensca.dev/v0.1.0/vcs/owner: laszlocph
-            opensca.dev/v0.1.0/vcs/name: demo-app
-            opensca.dev/v0.1.0/version/sha: xyz
-            opensca.dev/v0.1.0/name: cart-backend
-            opensca.dev/v0.1.0/description: "Backend to manage shopping cart state, written in Go"
-            opensca.dev/v0.1.0/owner/name: "backend-team"
-            opensca.dev/v0.1.0/owner/im: "#backend-team"
-            opensca.dev/v0.1.0/documentation: https://confluence.mycompany.com/cart-backend
-            opensca.dev/v0.1.0/logs: https://grafana.mycompany.com/logs
-            opensca.dev/v0.1.0/metrics: https://grafana.mycompany.com/cart-dashboard
-            opensca.dev/v0.1.0/issues: https://jira.mycompany.com/cart-backend
-            opensca.dev/v0.1.0/traces: https://jaeger.mycompany.com/cart-dashboard
+            v1alpha1.opensca.dev/vcs.owner: laszlocph
+            v1alpha1.opensca.dev/vcs.name: demo-app
+            v1alpha1.opensca.dev/version.sha: xyz
+            v1alpha1.opensca.dev/name: cart-backend
+            v1alpha1.opensca.dev/description: "Backend to manage shopping cart state, written in Go"
+            v1alpha1.opensca.dev/owner.name: "backend-team"
+            v1alpha1.opensca.dev/owner.im: "#backend-team"
+            v1alpha1.opensca.dev/documentation: https://confluence.mycompany.com/cart-backend
+            v1alpha1.opensca.dev/logs: https://grafana.mycompany.com/logs
+            v1alpha1.opensca.dev/metrics: https://grafana.mycompany.com/cart-dashboard
+            v1alpha1.opensca.dev/issues: https://jira.mycompany.com/cart-backend
+            v1alpha1.opensca.dev/traces: https://jaeger.mycompany.com/cart-dashboard
