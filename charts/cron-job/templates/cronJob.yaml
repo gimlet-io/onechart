@@ -25,10 +25,12 @@ spec:
               {{- if .Values.vars }}
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               {{- end }}
+              {{- if .Values.overrideCommand }}
               command:
                 - {{ .Values.shell }}
                 - -c
                 - {{ .Values.command | quote }}
+              {{- end }}
               {{- include "common.envFromRef.tpl" . | nindent 14 }}
               {{- include "common.volumeMountsRef.tpl" . | nindent 14 }}
               resources:
