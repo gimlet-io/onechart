@@ -5,7 +5,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "common.robustName" .fileName }}
+  name: {{ template "common.robustName" (printf "%s-%s" $.Release.Name .name) }}
   namespace: {{ $.Release.Namespace }}
 data:
   {{ .fileName }}: |
