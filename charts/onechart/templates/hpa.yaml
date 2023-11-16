@@ -1,4 +1,4 @@
-{{ if  .Values.hpa.enabled   }}
+{{ if  .Values.hpa.enabled  }}
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -7,7 +7,7 @@ metadata:
 spec:
   minReplicas: {{  .Values.hpa.minReplicas }}
   maxReplicas: {{  .Values.hpa.maxReplicas }}
-  
+
   {{- with  .Values.hpa.behavior }}
   behavior: {{- toYaml . | nindent 4 }}
   {{- end }}
