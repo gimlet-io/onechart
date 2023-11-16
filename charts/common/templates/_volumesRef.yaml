@@ -10,7 +10,7 @@ volumes:
       name: {{ .existingConfigMap }}
     {{- else if .fileName }}
     configMap:
-      name: {{ template "common.robustName" .fileName }}
+      name: {{ template "common.robustName" (printf "%s-%s" $.Release.Name .name) }}
     {{- else if .hostPath }}
     hostPath:
       path: {{ .hostPath.path }}

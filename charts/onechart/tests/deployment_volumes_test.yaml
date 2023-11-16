@@ -169,7 +169,7 @@ tests:
           value:
             - name: volume-name
               configMap:
-                name: myfile-conf
+                name: release-name-volume-name
       - equal:
           path: spec.template.spec.containers[0].volumeMounts
           value:
