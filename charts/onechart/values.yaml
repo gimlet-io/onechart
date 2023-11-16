@@ -74,3 +74,22 @@ nodePortEnabled: false
 # Set true to enable service monitor.
 monitor:
   enabled: false
+
+# Set true to enable HPA.
+hpa:
+  enabled: false
+  # minReplicas: 2
+  # maxReplicas: 5
+  # metrics:
+  #   - resource:
+  #       name: cpu
+  #       target:
+  #         type: Utilization
+  #         averageUtilization: 80
+  #     type: Resource
+  #   - resource:
+  #       name: memory
+  #       target:
+  #         type: Utilization
+  #         averageUtilization: 80
+  #     type: Resource

@@ -1,0 +1,23 @@
+suite: test hpa
+templates:
+  - hpa.yaml
+tests:
+  - it: Should enable HPA
+    set:
+      hpa.enabled: true
+    asserts:
+      - equal:
+          path: kind
+          value: HorizontalPodAutoscaler
+  - it: Should set min replicas to 4 and max to 8 
+    set:
+      hpa.enabled: true
+      hpa.minReplicas: 4
+      hpa.maxReplicas: 8
+    asserts:
+      - equal:
+          path: spec.minReplicas
+          value: 4
+      - equal:
+          path: spec.maxReplicas
+          value: 8

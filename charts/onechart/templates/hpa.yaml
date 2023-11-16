@@ -1,0 +1,21 @@
+{{ if  .Values.hpa.enabled   }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ template "robustName" .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  minReplicas: {{  .Values.hpa.minReplicas }}
+  maxReplicas: {{  .Values.hpa.maxReplicas }}
+  
+  {{- with  .Values.hpa.behavior }}
+  behavior: {{- toYaml . | nindent 4 }}
+  {{- end }}
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ .Release.Name }} 
+  {{- with  .Values.hpa.metrics }}
+  metrics: {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- end }}
