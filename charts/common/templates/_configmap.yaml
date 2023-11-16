@@ -1,5 +1,6 @@
 {{- define "common.configmap.tpl" -}}
 {{- if .Values.vars }}
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
