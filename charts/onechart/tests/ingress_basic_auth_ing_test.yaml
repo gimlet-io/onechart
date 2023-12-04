@@ -1,0 +1,29 @@
+suite: test nginx basic auth ingress
+templates:
+  - ingress.yaml
+tests:
+  - it: Should set nginx specific annotations
+    set:
+      ingress:
+        host: chart-example.local
+        nginxBasicAuth:
+          user: admin1
+          password: secret1
+    asserts:
+      - equal:
+          path: metadata.annotations
+          value:
+            nginx.ingress.kubernetes.io/auth-type: basic
+            nginx.ingress.kubernetes.io/auth-secret: basic-auth
+            nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - basic'
+      - hasDocuments:
+          count: 1
+  - it: Should NOT set nginx specific annotations
+    set:
+      ingress:
+        host: chart-example.local
+    asserts:
+      - notExists:
+          path: metadata.annotations
+      - hasDocuments:
+          count: 1

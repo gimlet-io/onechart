@@ -13,8 +13,13 @@ metadata:
   namespace: {{ .root.Release.Namespace }}
   labels:
     {{- include "helm-chart.labels" .root | nindent 4 }}
-  {{- if or (or .root.Values.gitSha .ingress.annotations) .root.Values.gitRepository }}
+  {{- if or (or (or .root.Values.gitSha .ingress.nginxBasicAuth) .ingress.annotations) .root.Values.gitRepository }}
   annotations:
+    {{- if .ingress.nginxBasicAuth }}
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: {{ $resourceName }}-basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - basic'
+    {{- end }}
     {{- if .ingress.annotations }}
       {{- toYaml .ingress.annotations | nindent 4 }}
     {{- end }}

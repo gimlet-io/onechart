@@ -9,6 +9,9 @@ image:
 #   tlsEnabled: true
 #   annotations:
 #     cert-manager.io/cluster-issuer: letsencrypt-staging
+#   nginxBasicAuth:
+#     user: admin
+#     password: secret
 
 # vars:
 #   MY_VAR: "value"
