@@ -78,15 +78,18 @@ jobs:
         git config --global user.email "action@github.com"
         git config --global user.name "Github Action"
         git checkout master
+
         without_major_version=${CHART_VERSION#*.}
         without_patch_version=${without_major_version%.*}
         increased_minor_version=$(($without_patch_version + 1))
         major_version=${CHART_VERSION%%.*}
         increased_version="$major_version.$increased_minor_version.0"
         echo "The new version will be $increased_version"
+
         sed -i "s/version: $CHART_VERSION/version: $increased_version/" charts/onechart/Chart.yaml
         sed -i "s/version: $CHART_VERSION/version: $increased_version/" charts/cron-job/Chart.yaml
         sed -i "s/version: $CHART_VERSION/version: $increased_version/" charts/static-site/Chart.yaml
+
         git status
         git add .
         git commit -m "The next release version will be $increased_version"
