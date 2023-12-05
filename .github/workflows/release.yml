@@ -12,7 +12,7 @@ jobs:
     steps:
   
     - name: Checkout main
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
     
@@ -56,17 +56,13 @@ jobs:
         CHART_VERSION: ${{ steps.chart_version.outputs.chart_version }}
         CRON_JOB_CHART_VERSION: ${{ steps.chart_version.outputs.cron_job_chart_version }}
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
+    - name: Create a Release
+      uses: elgohr/Github-Release-Action@v5
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-
+        title: Release ${{ github.ref }}
+    
     - name: Create and push chart to GHCR
       uses: appany/helm-oci-chart-releaser@v0.4.1
       with:
