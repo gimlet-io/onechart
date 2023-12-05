@@ -44,8 +44,8 @@ spec:
     - host: {{ .ingress.host | quote }}
       http:
         paths:
-          - path: {{ .ingress.path | default  "/" | quote }}
-            pathType: "Prefix"
+          - path: {{ .ingress.path | default "/" | quote }}
+            pathType: {{ .ingress.pathType | default "Prefix" | quote }}
             backend:
               service:
                 name: {{ $robustName }}
