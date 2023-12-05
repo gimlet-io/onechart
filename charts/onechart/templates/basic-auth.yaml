@@ -1,0 +1,9 @@
+{{ if .Values.ingress }}{{ if .Values.ingress.nginxBasicAuth }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ $resourceName }}-basic-auth
+  namespace: {{ .root.Release.Namespace }}
+data:
+  auth: {{ htpasswd .Values.ingress.nginxBasicAuth.user .Values.ingress.nginxBasicAuth.password  | b64enc }}
+{{ end }}{{ end }}
