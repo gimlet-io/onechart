@@ -14,7 +14,9 @@ tests:
     asserts:
       - hasDocuments:
           count: 1
-      - equal:
+      - template: custom-file-configmap.yaml
+        documentIndex: 0
+        equal:
           path: data
           value:
             myFile.conf: |

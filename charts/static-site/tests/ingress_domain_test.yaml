@@ -112,7 +112,9 @@ tests:
           annotations:
             kubernetes.io/ingress.class: nginx
     asserts:
-      - equal:
+      - template: ingress.yaml
+        documentIndex: 0
+        equal:
           path: spec.tls
           value:
             - hosts:

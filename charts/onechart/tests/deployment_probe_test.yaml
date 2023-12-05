@@ -8,7 +8,9 @@ tests:
       probe:
         enabled: true
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].readinessProbe
           value:
             httpGet:
@@ -22,7 +24,9 @@ tests:
             failureThreshold: 3
   - it: Should not set a readinessProbe
     asserts:
-      - isNull:
+      - template: deployment.yaml
+        documentIndex: 0
+        isNull:
           path: spec.template.spec.containers[0].readinessProbe
   - it: Should tune readiness probe
     set:
@@ -31,7 +35,9 @@ tests:
         settings:
           periodSeconds: 30
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].readinessProbe
           value:
             httpGet:

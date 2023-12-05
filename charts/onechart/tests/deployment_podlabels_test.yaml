@@ -9,9 +9,13 @@ tests:
         label1: val1
         label2: val2
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.metadata.labels.label1
           value: val1
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.metadata.labels.label2
           value: val2

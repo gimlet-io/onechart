@@ -8,7 +8,9 @@ tests:
       livenessProbe:
         enabled: true
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].livenessProbe
           value:
             httpGet:
@@ -22,7 +24,9 @@ tests:
             failureThreshold: 3
   - it: Should not set a livenessProbe
     asserts:
-      - isNull:
+      - template: deployment.yaml
+        documentIndex: 0
+        isNull:
           path: spec.template.spec.containers[0].livenessProbe
   - it: Should tune liveness probe
     set:
@@ -31,7 +35,9 @@ tests:
         settings:
           periodSeconds: 30
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].livenessProbe
           value:
             httpGet:

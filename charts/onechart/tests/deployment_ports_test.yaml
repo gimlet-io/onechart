@@ -13,7 +13,9 @@ tests:
         - containerPort: 3002
           name: passive-2
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].ports
           value:
             - name: ftp
@@ -27,7 +29,9 @@ tests:
               protocol: TCP
   - it: Should set default port
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].ports
           value:
             - name: http

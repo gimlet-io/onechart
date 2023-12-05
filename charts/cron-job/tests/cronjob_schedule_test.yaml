@@ -6,6 +6,8 @@ tests:
     set:
       schedule: "*/1 * * * *"
     asserts:
-      - equal:
+      - template: cronJob.yaml
+        documentIndex: 0
+        equal:
           path: spec.schedule
           value: "*/1 * * * *"

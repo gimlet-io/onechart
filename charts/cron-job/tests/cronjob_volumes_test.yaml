@@ -12,7 +12,9 @@ tests:
           size: 10Gi
           storageClass: default
     asserts:
-      - equal:
+      - template: cronJob.yaml
+        documentIndex: 0
+        equal:
           path: spec.jobTemplate.spec.template.spec.containers[0].volumeMounts
           value:
             - name: data
@@ -25,7 +27,9 @@ tests:
           size: 10Gi
           storageClass: default
     asserts:
-      - equal:
+      - template: cronJob.yaml
+        documentIndex: 0
+        equal:
           path: spec.jobTemplate.spec.template.spec.volumes
           value:
             - name: data

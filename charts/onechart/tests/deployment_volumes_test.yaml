@@ -12,7 +12,9 @@ tests:
           size: 10Gi
           storageClass: default
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].volumeMounts
           value:
             - name: data
@@ -25,7 +27,9 @@ tests:
           size: 10Gi
           storageClass: default
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.volumes
           value:
             - name: data
@@ -39,7 +43,9 @@ tests:
           size: 10Gi
           storageClass: default
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.strategy.type
           value: Recreate
   - it: Should strategy take precedence
@@ -51,14 +57,18 @@ tests:
           storageClass: default
       strategy: RollingUpdate
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.strategy.type
           value: RollingUpdate
   - it: Should strategy be set
     set:
       strategy: Dummy
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.strategy.type
           value: Dummy
   - it: Should use the existing claim
@@ -68,7 +78,9 @@ tests:
           path: /var/lib/1clickinfra/data
           existingClaim: my-static-claim
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.volumes
           value:
             - name: data
@@ -81,7 +93,9 @@ tests:
           path: /var/lib/1clickinfra/data
           emptyDir: true
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.volumes
           value:
             - name: data
@@ -95,7 +109,9 @@ tests:
             path: /somewhere/over/the/rainbow
             type: DirectoryOrCreate
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.volumes
           value:
             - name: data
@@ -110,7 +126,9 @@ tests:
           hostPath:
             path: /somewhere/over/the/rainbow
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.volumes
           value:
             - name: data
@@ -123,12 +141,16 @@ tests:
           path: /randomPath
           emptyDir: true
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.volumes
           value:
             - name: myScratchDisk
               emptyDir: {}
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].volumeMounts
           value:
             - name: myScratchDisk
@@ -141,13 +163,17 @@ tests:
           path: /randomPath/app.conf
           subPath: app.conf
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.volumes
           value:
             - name: volume-name
               configMap:
                 name: my-configmap
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].volumeMounts
           value:
             - name: volume-name
@@ -164,13 +190,17 @@ tests:
           path: /randomPath/myfile.conf
           subPath: myfile.conf
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.volumes
           value:
             - name: volume-name
               configMap:
                 name: release-name-volume-name
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].volumeMounts
           value:
             - name: volume-name
@@ -180,22 +210,30 @@ tests:
     set:
       initContainers:
         - name : pod
+          image: debian
+          tag: v1.0.0
       volumes:
         - name: init-volume
           path: /data
           emptyDir: true
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.volumes
           value:
           - name: init-volume
             emptyDir: {} 
-      - equal: 
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.initContainers[0].volumeMounts
           value:
           - name: init-volume
             mountPath: /data 
-      - notEqual:
+      - template: deployment.yaml
+        documentIndex: 0
+        notEqual:
           path: spec.template.spec.containers[0].volumeMounts
           value:
           - name: init-volume
@@ -203,18 +241,24 @@ tests:
   - it: Should mount a shared volume between the main container and the init container
     set:
       initContainers:
-        - name: pod
+        - name : pod
+          image: debian
+          tag: v1.0.0
       volumes:
         - name: shared-volume
           path: /data
           emptyDir: true
     asserts:
-      - equal: 
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.initContainers[0].volumeMounts
           value:
           - name: shared-volume
             mountPath: /data
-      - equal: 
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].volumeMounts
           value:
           - name: shared-volume

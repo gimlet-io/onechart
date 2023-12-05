@@ -6,7 +6,9 @@ tests:
     set:
       ingress:
         host: chart-example.local
-      asserts:
-        - equal:
-            path: spec.rules[0].http.paths[0].backend.service.port.number
-            value: 1234
+    asserts:
+    - template: ingress.yaml
+      documentIndex: 0
+      equal:
+        path: spec.rules[0].http.paths[0].backend.service.port.number
+        value: 80
