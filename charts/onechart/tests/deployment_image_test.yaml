@@ -8,7 +8,9 @@ tests:
       image.repository: nginx
       image.tag: x.y.z
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].image
           value: nginx:x.y.z
   - it: Should set an ImagePullSecret
@@ -16,7 +18,9 @@ tests:
       imagePullSecrets:
         - name: regcred
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.imagePullSecrets
           value:
             - name: regcred

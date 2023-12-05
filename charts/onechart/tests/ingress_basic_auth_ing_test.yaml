@@ -14,7 +14,7 @@ tests:
           path: metadata.annotations
           value:
             nginx.ingress.kubernetes.io/auth-type: basic
-            nginx.ingress.kubernetes.io/auth-secret: basic-auth
+            nginx.ingress.kubernetes.io/auth-secret: release-name-basic-auth
             nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - basic'
       - hasDocuments:
           count: 1

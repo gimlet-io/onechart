@@ -7,23 +7,31 @@ tests:
     set:
       {}
     asserts:
-      - isNotNull:
+      - template: deployment.yaml
+        documentIndex: 0
+        isNotNull:
           path: spec.template.spec.containers[0].resources
   - it: Should ignore resources if ignore flag is set
     set:
       resources:
         ignore: true
     asserts:
-      - isNull:
+      - template: deployment.yaml
+        documentIndex: 0
+        isNull:
           path: spec.template.spec.containers[0].resources
   - it: Should ignore resources limits when ignoreLimits flag is set
     set:
       resources:
         ignoreLimits: true
     asserts:
-      - isNull:
+      - template: deployment.yaml
+        documentIndex: 0
+        isNull:
           path: spec.template.spec.containers[0].resources.limits
-      - isNotNull:
+      - template: deployment.yaml
+        documentIndex: 0
+        isNotNull:
           path: spec.template.spec.containers[0].resources.requests
   - it: Should create requests when ignoreLimits flag is set
     set:
@@ -33,8 +41,12 @@ tests:
           cpu: "1000m"
           memory: "200Mi"
     asserts:
-      - isNotNull:
+      - template: deployment.yaml
+        documentIndex: 0
+        isNotNull:
           path: spec.template.spec.containers[0].resources.requests
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[0].resources.requests.cpu
           value: 1000m

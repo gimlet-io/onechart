@@ -8,7 +8,9 @@ tests:
         var1: value1
         var2: value2
     asserts:
-      - equal:
+      - template: configmap.yaml
+        documentIndex: 0
+        equal:
           path: data
           value:
             var1: value1

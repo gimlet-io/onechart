@@ -9,12 +9,16 @@ tests:
         var1: value1
         var2: value2
     asserts:
-      - contains:
+      - template: cronJob.yaml
+        documentIndex: 0
+        contains:
           path: spec.jobTemplate.spec.template.spec.containers[0].envFrom
           content:
             configMapRef:
               name: release-name
   - it: Should not reference configmap if vars are not set
     asserts:
-      - isNull:
+      - template: cronJob.yaml
+        documentIndex: 0
+        isNull:
           path: spec.jobTemplate.spec.template.spec.containers[0].envFrom

@@ -17,7 +17,7 @@ tests:
         host: chart-example.local
       svcPort: 1234
       containerPort: 5678
-      asserts:
-        - equal:
-            path: spec.rules[0].http.paths[0].backend.service.port.number
-            value: 1234
+    asserts:
+      - equal:
+          path: spec.rules[0].http.paths[0].backend.service.port.number
+          value: 1234

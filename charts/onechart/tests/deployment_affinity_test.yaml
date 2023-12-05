@@ -7,7 +7,9 @@ tests:
     set:
       spreadAcrossNodes: true
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.affinity
           value:
             podAntiAffinity:
@@ -23,5 +25,7 @@ tests:
     set:
       spreadAcrossNodes: false
     asserts:
-      - isNull:
+      - template: deployment.yaml
+        documentIndex: 0
+        isNull:
           path: spec.template.spec.affinity

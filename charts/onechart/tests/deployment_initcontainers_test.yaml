@@ -6,33 +6,47 @@ tests:
   - it: Should set name, image and tag  
     set:
       initContainers:
-          - name: pod1
-            image: nginx
-            tag: 1.2.2
+        - name: pod1
+          image: nginx
+          tag: 1.2.2
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.initContainers[0].name
           value: pod1
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.initContainers[0].image
           value: "nginx:1.2.2"
   - it: Should set command  
     set:
       initContainers:
-          - command: "while true; do date; sleep 2; done &&
+        - name: pod1
+          image: nginx
+          tag: 1.2.2
+          command: "while true; do date; sleep 2; done &&
                       ls /data &&
                       printf something"
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.initContainers[0].command
           value: ['/bin/sh', '-c', 'while true; do date; sleep 2; done && ls /data && printf something']
 
   - it: Should set security context
     set:
       initContainers:
-          - securityContext:
-              runAsNonRoot: true
+        - name: pod1
+          image: nginx
+          tag: 1.2.2
+          securityContext:
+            runAsNonRoot: true
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.initContainers[0].securityContext.runAsNonRoot
           value: true

@@ -9,7 +9,9 @@ tests:
         repository: debian
         tag: stable-slim
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[1].image
           value: debian:stable-slim
   - it: Should inject a debug sidecar with shell and command specified
@@ -20,6 +22,8 @@ tests:
         shell: "/bin/bash"
         command: "while true; do sleep 30; done;"
     asserts:
-      - equal:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
           path: spec.template.spec.containers[1].image
           value: debian:stable-slim
