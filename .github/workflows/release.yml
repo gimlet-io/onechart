@@ -67,7 +67,7 @@ jobs:
       uses: appany/helm-oci-chart-releaser@v0.4.1
       with:
         name: onechart
-        repository: ${{ github.repository }}
+        repository: helm
         tag: ${{ steps.versioning.outputs.tag_version }}
         registry: ghcr.io
         registry_username: ${{ github.actor }}
