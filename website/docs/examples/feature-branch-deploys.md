@@ -12,7 +12,7 @@ Release name is unique in Helm too, so it makes it a good tool to drive resource
 One good practice can be to add a `-$BRANCH` suffix to the feature branch instance:
 
 ```
-helm template my-release-my-branch onechart/onechart -f values.yaml
+helm template my-release-my-branch oci://ghcr.io/gimlet-io/onechart -f values.yaml
 ```
 
 ### Avoiding domain name collision
@@ -29,13 +29,13 @@ ingress:
     kubernetes.io/ingress.class: nginx
   host: my-release.mycompany.com
 
-helm template my-release-my-branch onechart/onechart -f values.yaml
+helm template my-release-my-branch oci://ghcr.io/gimlet-io/onechart -f values.yaml
 ```
 
 The `ingress.host` name should also be dynamic to avoid the collision:
 
 ```
-helm template my-release-my-branch onechart/onechart\
+helm template my-release-my-branch oci://ghcr.io/gimlet-io/onechart \
   -f values.yaml \
   --set ingress.host=my-release-my-branch.mycompany.com
 ```
@@ -45,7 +45,7 @@ helm template my-release-my-branch onechart/onechart\
 In CI the above command needs to be templated:
 
 ```
-helm template my-release-$BRANCH onechart/onechart\
+helm template my-release-$BRANCH oci://ghcr.io/gimlet-io/onechart \
   -f values.yaml \
   --set ingress.host=my-release-$BRANCH.mycompany.com
 ```
