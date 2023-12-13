@@ -88,7 +88,7 @@ jobs:
 
     - name: Publish to to GHCR
       run: |
-        echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ghcr.io --username ${{ github.actor }} --password-stdin
+        echo ${{ secrets.HELM_TOKEN }} | helm registry login ghcr.io --username ${{ github.actor }} --password-stdin
         helm push docs/onechart-${CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
         helm push docs/namespaces-${NAMESPACES_CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
         helm push docs/cron-job-${CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
