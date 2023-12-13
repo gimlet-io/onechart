@@ -79,10 +79,12 @@ jobs:
     - name: Publish to to GHCR
       run: |
         echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ghcr.io --username ${{ github.actor }} --password-stdin
-        helm push docs/onechart-$CHART_VERSION.tgz  oci://ghcr.io/onechart
-        helm push docs/namespaces-$CHART_VERSION.tgz  oci://ghcr.io/onechart
-        helm push docs/cron-job-$CHART_VERSION.tgz  oci://ghcr.io/onechart
-        helm push docs/static-site-$CHART_VERSION.tgz  oci://ghcr.io/onechart
+        helm push docs/onechart-${CHART_VERSION}.tgz  oci://ghcr.io/onechart
+        helm push docs/namespaces-${CHART_VERSION}.tgz  oci://ghcr.io/onechart
+        helm push docs/cron-job-${CHART_VERSION}.tgz  oci://ghcr.io/onechart
+        helm push docs/static-site-${CHART_VERSION}.tgz  oci://ghcr.io/onechart
+      env:
+        CHART_VERSION: ${{ steps.chart_version.outputs.chart_version }}
     - name: Preparing the next release version
       run: |
         git config --global user.email "action@github.com"
