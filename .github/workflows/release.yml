@@ -90,9 +90,9 @@ jobs:
       run: |
         echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ghcr.io --username ${{ github.actor }} --password-stdin
         helm push docs/onechart-${CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
-        helm push docs/namespaces-${CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
+        helm push docs/namespaces-${NAMESPACES_CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
         helm push docs/cron-job-${CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
-        helm push docs/static-site-${CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
+        helm push docs/static-site-${STATIC_SITE_CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
       env:
         CHART_VERSION: ${{ steps.chart_version.outputs.chart_version }}
         STATIC_SITE_CHART_VERSION: ${{ steps.chart_version.outputs.static_site_chart_version }}
