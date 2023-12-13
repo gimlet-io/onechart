@@ -62,17 +62,27 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         title: Release ${{ github.ref }}
-    
-    - name: Create and push chart to GHCR
-      uses: appany/helm-oci-chart-releaser@v0.4.1
-      with:
-        name: onechart
-        repository: ${{ github.actor }}
-        tag: ${{ steps.versioning.outputs.tag_version }}
-        registry: ghcr.io
-        registry_username: ${{ github.actor }}
-        registry_password: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Publishing to the Helm repository
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "Github Action"
+        git checkout master
+        make package
+        git add .
+        git commit -m "Publishing $TAG_VERSION to the Helm repository"
+        git push origin master
+      env:
+        TAG_VERSION: ${{ steps.versioning.outputs.tag_version }}
+        title: Release ${{ github.ref }}
+
+    - name: Publish to to GHCR
+      run: |
+        echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ghcr.io --username ${{ github.actor }} --password-stdin
+        helm push docs/onechart-${CHART_VERSION}.tgz  oci://ghcr.io/onechart
+        helm push docs/namespaces-${CHART_VERSION}.tgz  oci://ghcr.io/onechart
+        helm push docs/cron-job-${CHART_VERSION}.tgz  oci://ghcr.io/onechart
+        helm push docs/static-site-${CHART_VERSION}.tgz  oci://ghcr.io/onechart
     - name: Preparing the next release version
       run: |
         git config --global user.email "action@github.com"
