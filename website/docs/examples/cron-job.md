@@ -23,7 +23,7 @@ command: |
   echo "hello"
 EOF
 
-helm template my-release onechart/cron-job -f values.yaml
+helm template my-release oci://ghcr.io/gimlet-io/cron-job --version 0.65.0-rc.1
 ```
 
 !!! warning
