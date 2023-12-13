@@ -25,7 +25,7 @@ ingress:
   host: my-release.mycompany.com
 EOF
 
-helm template my-release onechart/onechart -f values.yaml
+helm template my-release oci://ghcr.io/gimlet-io/onechart -f values.yaml
 ```
 
 !!! warning
@@ -48,5 +48,5 @@ ingress:
   tlsEnabled: true
 EOF
 
-helm template my-release onechart/onechart -f values.yaml
+helm template my-release oci://ghcr.io/gimlet-io/onechart -f values.yaml
 ```

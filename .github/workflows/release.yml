@@ -12,7 +12,7 @@ jobs:
     steps:
   
     - name: Checkout main
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
     
@@ -56,30 +56,22 @@ jobs:
         CHART_VERSION: ${{ steps.chart_version.outputs.chart_version }}
         CRON_JOB_CHART_VERSION: ${{ steps.chart_version.outputs.cron_job_chart_version }}
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
+    - name: Create a Release
+      uses: elgohr/Github-Release-Action@v5
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-
-    - name: Publishing to the Helm repository
-      run: |
-        git config --global user.email "action@github.com"
-        git config --global user.name "Github Action"
-        git checkout master
-
-        make package
-
-        git add .
-        git commit -m "Publishing $TAG_VERSION to the Helm repository"
-        git push origin master
-      env:
-        TAG_VERSION: ${{ steps.versioning.outputs.tag_version }}
+        title: Release ${{ github.ref }}
+    
+    - name: Create and push chart to GHCR
+      uses: appany/helm-oci-chart-releaser@v0.4.1
+      with:
+        name: onechart
+        repository: ${{ github.actor }}
+        tag: ${{ steps.versioning.outputs.tag_version }}
+        registry: ghcr.io
+        registry_username: ${{ github.actor }}
+        registry_password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Preparing the next release version
       run: |

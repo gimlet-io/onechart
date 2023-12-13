@@ -21,7 +21,7 @@ command: |
   while true; do date; sleep 2; done
 EOF
 
-helm template my-release onechart/onechart -f values.yaml
+helm template my-release oci://ghcr.io/gimlet-io/onechart -f values.yaml
 ```
 
 ### Using bash
@@ -37,7 +37,7 @@ command: |
 shell: "/bin/bash"
 EOF
 
-helm template my-release onechart/onechart -f values.yaml
+helm template my-release oci://ghcr.io/gimlet-io/onechart -f values.yaml
 ```
 
 ### Running a command in Alpine Linux
@@ -53,5 +53,5 @@ command: |
 shell: "/bin/ash"
 EOF
 
-helm template my-release onechart/onechart -f values.yaml
+helm template my-release oci://ghcr.io/gimlet-io/onechart -f values.yaml
 ```
