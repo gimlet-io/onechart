@@ -36,6 +36,16 @@ jobs:
         echo $CHART_VERSION
         echo ::set-output name=cron_job_chart_version::$CHART_VERSION
 
+        CHART_VERSION=$(cat charts/namespaces/Chart.yaml | grep ^version:)
+        CHART_VERSION=${CHART_VERSION#version: }
+        echo $CHART_VERSION
+        echo ::set-output name=namespaces_chart_version::$CHART_VERSION
+
+        CHART_VERSION=$(cat charts/static-site/Chart.yaml | grep ^version:)
+        CHART_VERSION=${CHART_VERSION#version: }
+        echo $CHART_VERSION
+        echo ::set-output name=static_site_chart_version::$CHART_VERSION
+
     - name: Ensure tag and chart version matches
       run: |
         echo "$TAG_VERSION"
@@ -78,13 +88,15 @@ jobs:
 
     - name: Publish to to GHCR
       run: |
-        echo ${{ secrets.HELM_TOKEN }} | helm registry login ghcr.io --username ${{ github.actor }} --password-stdin
+        echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ghcr.io --username ${{ github.actor }} --password-stdin
         helm push docs/onechart-${CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
-        helm push docs/namespaces-${CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
+        helm push docs/namespaces-${NAMESPACES_CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
         helm push docs/cron-job-${CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
-        helm push docs/static-site-${CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
+        helm push docs/static-site-${STATIC_SITE_CHART_VERSION}.tgz  oci://ghcr.io/gimlet-io
       env:
         CHART_VERSION: ${{ steps.chart_version.outputs.chart_version }}
+        STATIC_SITE_CHART_VERSION: ${{ steps.chart_version.outputs.static_site_chart_version }}
+        NAMESPACES_CHART_VERSION: ${{ steps.chart_version.outputs.namespaces_chart_version }}
     - name: Preparing the next release version
       run: |
         git config --global user.email "action@github.com"
