@@ -12,7 +12,7 @@ Release name is unique in Helm too, so it makes it a good tool to drive resource
 One good practice can be to add a `-$BRANCH` suffix to the feature branch instance:
 
 ```
-helm template my-release-my-branch oci://ghcr.io/gimlet-io/onechart -f values.yaml
+helm template my-release-my-branch oci://ghcr.io/gimlet-io/onechart --version 0.62.0 -f values.yaml
 ```
 
 ### Avoiding domain name collision

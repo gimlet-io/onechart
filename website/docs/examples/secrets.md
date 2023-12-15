@@ -25,7 +25,7 @@ secret:
   enabled: true
 EOF
 
-helm template my-release oci://ghcr.io/gimlet-io/onechart -f values.yaml
+helm template my-release oci://ghcr.io/gimlet-io/onechart --version 0.62.0 -f values.yaml
 ```
 
 ### Using encrypted secret values
