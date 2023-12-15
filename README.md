@@ -70,7 +70,7 @@ The source for OneChart is under `charts/onechart` where you can locate the `Cha
 
 We write unit tests for our helm charts. Pull requests are only accepted with proper test coverage.
 
-The tests are located under `charts/onechart/test` and use the https://github.com/DataDog/helm-unittest.git Helm plugin to run the tests.
+The tests are located under `charts/onechart/test` and use the https://github.com/helm-unittest/helm-unittest Helm plugin to run the tests.
 
 For installation, refer to the CI workflow at `.github/workflows/build.yaml`.
 
