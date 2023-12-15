@@ -26,7 +26,7 @@ You can also template and install onechart from an OCI repository as follows:
 Check the generated Kubernetes yaml:
 
 ```bash
-helm template my-release oci://ghcr.io/gimlet-io/onechart --version 0.66.0 \
+helm template my-release oci://ghcr.io/gimlet-io/onechart --version 0.62.0 \
   --set image.repository=nginx \
   --set image.tag=1.19.3
 ```
@@ -34,7 +34,7 @@ helm template my-release oci://ghcr.io/gimlet-io/onechart --version 0.66.0 \
 Deploy with Helm:
 
 ```bash
-helm install my-release oci://ghcr.io/gimlet-io/onechart --version 0.66.0 \
+helm install my-release oci://ghcr.io/gimlet-io/onechart --version 0.62.0 \
   --set image.repository=nginx \
   --set image.tag=1.19.3
 ```

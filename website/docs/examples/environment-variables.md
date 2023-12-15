@@ -21,7 +21,7 @@ image:
 
 EOF
 
-helm template my-release oci://ghcr.io/gimlet-io/onechart --version 0.65.0-rc.1 -f values.yaml
+helm template my-release oci://ghcr.io/gimlet-io/onechart --version 0.62.0 -f values.yaml
 ```
 
 !!! note

@@ -23,7 +23,7 @@ command: |
   echo "hello"
 EOF
 
-helm template my-release oci://ghcr.io/gimlet-io/cron-job --version 0.65.0-rc.1
+helm template my-release oci://ghcr.io/gimlet-io/cron-job --version 0.62.0
 ```
 
 !!! warning
