@@ -1,0 +1,14 @@
+suite: test deployment
+templates:
+  - deployment.yaml
+  - configmap.yaml
+tests:
+  - it: Should add hostNetwork
+    set:
+      podSpec:
+        hostNetwork: true
+    asserts:
+      - template: deployment.yaml
+        equal:
+          path: spec.template.spec.hostNetwork
+          value: true

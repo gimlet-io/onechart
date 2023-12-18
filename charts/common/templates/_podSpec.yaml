@@ -1,0 +1,80 @@
+{{- define "common.podSpec.tpl" -}}
+{{- with .Values.imagePullSecrets }}
+imagePullSecrets:
+  {{- toYaml . | nindent 2 }}
+{{- end }}
+securityContext:
+  {{- toYaml .Values.podSecurityContext | nindent 2 }}
+{{- if .Values.serviceAccount }}
+serviceAccountName: {{ .Values.serviceAccount }}
+{{- end }}
+initContainers:
+  {{- range .Values.initContainers }}  
+  - name:  {{ .name }}
+    image: "{{ .image }}:{{ .tag }}"
+    imagePullPolicy: {{ .imagePullPolicy | default "IfNotPresent" }}
+    {{- if .command }}
+    command:
+      - {{ $.Values.shell }}
+      - -c
+      - {{ .command | quote}} 
+    {{- end }}
+    volumeMounts:
+    {{- range $.Values.volumes }}  
+    {{- if (or (hasPrefix "shared-" .name) (hasPrefix "init-" .name))}}
+    - mountPath: {{ .path }}
+      name: {{ .name }}
+    {{- end }}
+    {{- end }}
+    {{- if .securityContext }}
+    securityContext:
+    {{- toYaml .securityContext | nindent 6 }}
+    {{- end}}
+  {{- end }}      
+containers:
+  {{- $containerTpl := include "common.container.tpl" . | fromYaml }}
+  {{- $container := mergeOverwrite $containerTpl .Values.container }}
+  - {{ toYaml $container | nindent 4 }}
+    {{- include "common.envFromRef.tpl" . | nindent 4 }}
+    {{- include "common.volumeMountsRef.tpl" . | nindent 4 }}
+  {{- if .Values.sidecar }}
+  - name: {{ template "robustName" .Release.Name }}-sidecar
+    securityContext:
+      {{- toYaml .Values.securityContext | nindent 6 }}
+    image: {{ .Values.sidecar.repository }}:{{ .Values.sidecar.tag }}
+    {{- if .Values.sidecar.command }}
+    command:
+      - {{ .Values.sidecar.shell }}
+      - -c
+      - {{ .Values.sidecar.command | quote }}
+    {{- end }}
+    {{- include "common.envFromRef.tpl" . | nindent 4 }}
+    {{- include "common.volumeMountsRef.tpl" . | nindent 4 }}
+  {{- end }}
+{{- include "common.volumesRef.tpl" . }}
+{{- with .Values.nodeSelector }}
+nodeSelector:
+  {{- toYaml . | nindent 2 }}
+{{- end }}
+{{- if or .Values.spreadAcrossNodes .Values.affinity }}
+affinity:
+  {{- if .Values.spreadAcrossNodes }}
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: "app.kubernetes.io/instance"
+              operator: In
+              values:
+                - {{ template "robustName" .Release.Name }}
+        topologyKey: "kubernetes.io/hostname"
+  {{- end }}
+  {{- if .Values.affinity }}
+  {{- toYaml .Values.affinity | nindent 2 }}
+  {{- end }}
+{{- end }}
+{{- with .Values.tolerations }}
+tolerations:
+  {{- toYaml . | nindent 2 }}
+{{- end }}
+{{- end }}

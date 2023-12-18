@@ -79,3 +79,4 @@ monitor:
   enabled: false
 
 container: {}
+podSpec: {}
