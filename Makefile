@@ -64,7 +64,7 @@ package:
 
 debug:
 	helm dependency update charts/onechart
-	helm template my+release charts/onechart/ -f values.yaml --debug
+	helm template my-release charts/onechart/ -f values.yaml --debug
 
 debug-cron-job:
 	helm dependency update charts/cron-job

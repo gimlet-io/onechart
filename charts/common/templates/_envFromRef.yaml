@@ -1,6 +1,6 @@
 {{- define "common.envFromRef.tpl" -}}
 {{- if or (or (or (or (or (.Values.vars) (.Values.secretEnabled)) .Values.sealedSecrets) .Values.secretName) .Values.existingConfigMaps) .Values.existingSecrets -}}
-envFrom: &envFrom
+envFrom:
 {{- if .Values.vars }}
   - configMapRef:
       name: {{ template "common.robustName" .Release.Name }}

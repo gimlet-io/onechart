@@ -78,7 +78,7 @@ spec:
         {{- end }}      
       containers:
         - name: {{ template "robustName" .Release.Name }}
-          securityContext: &securityContext
+          securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -133,7 +133,8 @@ spec:
           {{- end }}
         {{- if .Values.sidecar }}
         - name: {{ template "robustName" .Release.Name }}-sidecar
-          securityContext: *securityContext
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
           image: {{ .Values.sidecar.repository }}:{{ .Values.sidecar.tag }}
           {{- if .Values.sidecar.command }}
           command:
@@ -141,12 +142,8 @@ spec:
             - -c
             - {{ .Values.sidecar.command | quote }}
           {{- end }}
-          {{- if or (or (or (or (or (.Values.vars) (.Values.secretEnabled)) .Values.sealedSecrets) .Values.secretName) .Values.existingConfigMaps) .Values.existingSecrets }}
-          envFrom: *envFrom
-          {{- end }}
-          {{- if or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets }}
-          volumeMounts: *volumeMounts
-          {{- end }}
+          {{- include "common.envFromRef.tpl" . | nindent 10 }}
+          {{- include "common.volumeMountsRef.tpl" . | nindent 10 }}
         {{- end }}
       {{- include "common.volumesRef.tpl" . | nindent 6 }}
       {{- with .Values.nodeSelector }}

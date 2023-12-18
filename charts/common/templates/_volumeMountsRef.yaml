@@ -1,6 +1,6 @@
 {{- define "common.volumeMountsRef.tpl" -}}
 {{- if or (or (or (.Values.volumes) (.Values.sealedFileSecrets)) .Values.fileSecrets) .Values.existingFileSecrets -}}
-volumeMounts: &volumeMounts
+volumeMounts:
 {{- range .Values.volumes }}
 {{- if not (hasPrefix "init-" .name) }}
   - name: {{ .name }}
