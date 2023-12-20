@@ -1,0 +1,54 @@
+{{- define "common.container.tpl" -}}
+name: {{ template "robustName" .Release.Name }}
+securityContext:
+  {{- toYaml .Values.securityContext | nindent 2 }}
+image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+imagePullPolicy: {{ .Values.image.pullPolicy }}
+{{- if .Values.command }}
+command:
+  - {{ .Values.shell }}
+  - -c
+  - {{ .Values.command | quote }}
+{{- end }}
+ports:
+  {{- if not .Values.ports }}
+  - name: http
+    containerPort: {{ .Values.containerPort }}
+    protocol: TCP
+  {{- else }}
+  {{- range .Values.ports }}
+  - name: {{ .name }}
+    containerPort: {{ .containerPort }}
+    protocol: TCP
+  {{- end }}
+  {{- end }}
+{{- if .Values.probe.enabled }}
+readinessProbe:
+  httpGet:
+    path: {{ .Values.probe.path }}
+    port: {{ .Values.containerPort }}
+    scheme: HTTP
+  {{- with .Values.probe.settings }}
+  {{- toYaml . | nindent 2 }}
+  {{- end }}
+{{- end }}
+{{- if .Values.livenessProbe.enabled }}
+livenessProbe:
+  httpGet:
+    path: {{ .Values.livenessProbe.path }}
+    port: {{ .Values.containerPort }}
+    scheme: HTTP
+  {{- with .Values.livenessProbe.settings }}
+  {{- toYaml . | nindent 2 }}
+  {{- end }}
+{{- end }}
+{{- if not .Values.resources.ignore }}
+resources:
+  {{- if .Values.resources.ignoreLimits }}
+  requests:
+    {{- toYaml .Values.resources.requests | nindent 4 }}
+  {{- else }}
+    {{- toYaml .Values.resources | nindent 2 }}
+  {{- end }}
+{{- end }}
+{{- end }}

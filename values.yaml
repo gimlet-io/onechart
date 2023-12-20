@@ -18,3 +18,11 @@ volumes:
 vars:
   var1: value1
   var2: value2
+
+probe:
+  enabled: true
+  settings:
+    periodSeconds: 30
+
+podSpec:
+  hostNetwork: true
