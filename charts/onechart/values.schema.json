@@ -132,6 +132,19 @@
         ]
       }
     },
+    "imagePullSecrets" : {
+      "$id": "#/properties/imagePullSecrets",
+      "type": "array",
+      "title": "ImagePull Secrets",
+      "default": [],
+      "maxItems": 3,
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/imagePullSecrets/items",
+        "type": "string",
+        "default": ""
+      }
+    },
     "replicas": {
       "$id": "#/properties/replicas",
       "type": "integer",

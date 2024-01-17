@@ -3,6 +3,7 @@
     "schemaIDs": [
       "#/properties/image",
       "#/properties/containerPort",
+      "#/properties/imagePullSecrets",
       "#/properties/replicas"
     ],
     "uiSchema": {
