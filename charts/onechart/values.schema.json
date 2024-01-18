@@ -137,7 +137,7 @@
       "$id": "#/properties/imagePullSecrets",
       "type": "array",
       "title": "ImagePull Secrets",
-      "description": "",
+      "description": "Secrets to pull an image from a private container image registry or repository.",
       "default": [],
       "examples": [
         "regcred"
