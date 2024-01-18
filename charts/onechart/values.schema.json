@@ -142,7 +142,6 @@
       "examples": [
         "regcred"
       ],
-      "maxItems": 3,
       "additionalItems": true,
       "items": {
         "$id": "#/properties/imagePullSecrets/items",
