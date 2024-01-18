@@ -11,6 +11,7 @@
         "repository": "nginx",
         "tag": "latest"
       },
+      "imagePullSecrets" : [],
       "replicas": 1,
       "nameOverride": "",
       "fullnameOverride": "",
