@@ -137,7 +137,7 @@
       "$id": "#/properties/imagePullSecrets",
       "type": "array",
       "title": "ImagePull Secrets",
-      "description": "Secrets to pull an image from a private container image registry or repository.",
+      "description": "The name of the Kubernetes secret to use to pull an image from a private container registry.",
       "default": [],
       "examples": [
         "regcred"
