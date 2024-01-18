@@ -136,7 +136,11 @@
       "$id": "#/properties/imagePullSecrets",
       "type": "array",
       "title": "ImagePull Secrets",
+      "description": "",
       "default": [],
+      "examples": [
+        "regcred"
+      ],
       "maxItems": 3,
       "additionalItems": true,
       "items": {
