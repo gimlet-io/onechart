@@ -11,6 +11,7 @@
         "repository": "nginx",
         "tag": "latest"
       },
+      "imagePullSecrets" : [],
       "replicas": 1,
       "nameOverride": "",
       "fullnameOverride": "",
@@ -130,6 +131,22 @@
             ]
           }
         ]
+      }
+    },
+    "imagePullSecrets" : {
+      "$id": "#/properties/imagePullSecrets",
+      "type": "array",
+      "title": "ImagePull Secrets",
+      "description": "The name of the Kubernetes secret to use to pull an image from a private container registry.",
+      "default": [],
+      "examples": [
+        "regcred"
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/imagePullSecrets/items",
+        "type": "string",
+        "default": ""
       }
     },
     "replicas": {
