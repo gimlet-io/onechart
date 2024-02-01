@@ -1,7 +1,9 @@
 {{- define "common.podSpec.tpl" -}}
 {{- with .Values.imagePullSecrets }}
 imagePullSecrets:
-  {{- toYaml . | nindent 2 }}
+  {{- range . }}  
+  - name: {{ . }}
+  {{- end }}
 {{- end }}
 securityContext:
   {{- toYaml .Values.podSecurityContext | nindent 2 }}
