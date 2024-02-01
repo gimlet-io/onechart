@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   cron-job:
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.042907657Z"
+    created: "2024-02-01T12:25:58.519366557Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -16,7 +16,21 @@ entries:
     - https://chart.onechart.dev/cron-job-0.65.0-rc.1.tgz
     version: 0.65.0-rc.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.042470245Z"
+    created: "2024-02-01T12:25:58.518952519Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.5.1
+    description: One chart to rule them all. A generic Helm chart for your application
+      deployments. Because no-one can remember the Kubernetes yaml syntax.
+    digest: 725333b0a9aa8e7c769d17634cd901bc9a85e81037faf59f91396913c2da9f10
+    name: cron-job
+    type: application
+    urls:
+    - https://chart.onechart.dev/cron-job-0.64.0.tgz
+    version: 0.64.0
+  - apiVersion: v2
+    created: "2024-02-01T12:25:58.518516641Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -30,7 +44,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.64.0-rc.3.tgz
     version: 0.64.0-rc.3
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.042006424Z"
+    created: "2024-02-01T12:25:58.51810104Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -44,7 +58,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.64.0-rc.2.tgz
     version: 0.64.0-rc.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.041518539Z"
+    created: "2024-02-01T12:25:58.517687033Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -58,7 +72,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.63.0.tgz
     version: 0.63.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.040238174Z"
+    created: "2024-02-01T12:25:58.517247848Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -72,7 +86,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.63.0-rc.3.tgz
     version: 0.63.0-rc.3
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.039731563Z"
+    created: "2024-02-01T12:25:58.516825134Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -86,7 +100,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.63.0-rc.2.tgz
     version: 0.63.0-rc.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.03925533Z"
+    created: "2024-02-01T12:25:58.51634838Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -100,7 +114,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.63.0-rc.1.tgz
     version: 0.63.0-rc.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.03882952Z"
+    created: "2024-02-01T12:25:58.515897725Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -114,7 +128,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.62.0.tgz
     version: 0.62.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.038412105Z"
+    created: "2024-02-01T12:25:58.515423996Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -128,7 +142,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.62.0-rc.3.tgz
     version: 0.62.0-rc.3
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.037987507Z"
+    created: "2024-02-01T12:25:58.514936212Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -142,7 +156,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.61.0.tgz
     version: 0.61.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.037568289Z"
+    created: "2024-02-01T12:25:58.513739152Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -156,7 +170,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.60.0.tgz
     version: 0.60.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.03714848Z"
+    created: "2024-02-01T12:25:58.513336385Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -170,7 +184,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.59.0.tgz
     version: 0.59.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.036703034Z"
+    created: "2024-02-01T12:25:58.512934169Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -184,7 +198,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.58.0.tgz
     version: 0.58.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.03628631Z"
+    created: "2024-02-01T12:25:58.512516585Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -198,7 +212,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.57.0.tgz
     version: 0.57.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.035869467Z"
+    created: "2024-02-01T12:25:58.512091266Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -212,7 +226,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.56.0.tgz
     version: 0.56.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.035415364Z"
+    created: "2024-02-01T12:25:58.511690323Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -226,7 +240,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.55.0.tgz
     version: 0.55.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.034996557Z"
+    created: "2024-02-01T12:25:58.511286324Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -240,7 +254,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.54.0.tgz
     version: 0.54.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.034558755Z"
+    created: "2024-02-01T12:25:58.510867307Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -254,7 +268,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.53.0.tgz
     version: 0.53.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.034079696Z"
+    created: "2024-02-01T12:25:58.510454742Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -268,7 +282,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.52.0.tgz
     version: 0.52.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.033609734Z"
+    created: "2024-02-01T12:25:58.5100281Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -282,7 +296,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.51.0.tgz
     version: 0.51.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.03254558Z"
+    created: "2024-02-01T12:25:58.509554092Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -296,7 +310,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.50.0.tgz
     version: 0.50.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.032116604Z"
+    created: "2024-02-01T12:25:58.509080223Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -310,7 +324,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.49.0.tgz
     version: 0.49.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.031650248Z"
+    created: "2024-02-01T12:25:58.508447199Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -324,7 +338,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.48.0.tgz
     version: 0.48.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.031206004Z"
+    created: "2024-02-01T12:25:58.502123411Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -338,7 +352,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.47.0.tgz
     version: 0.47.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.030500876Z"
+    created: "2024-02-01T12:25:58.501696609Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -352,7 +366,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.46.0.tgz
     version: 0.46.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.029855688Z"
+    created: "2024-02-01T12:25:58.501294965Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -366,7 +380,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.45.0.tgz
     version: 0.45.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.029442682Z"
+    created: "2024-02-01T12:25:58.500883752Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -380,7 +394,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.44.0.tgz
     version: 0.44.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.029017834Z"
+    created: "2024-02-01T12:25:58.500430973Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -394,7 +408,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.43.0.tgz
     version: 0.43.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.028598446Z"
+    created: "2024-02-01T12:25:58.500021423Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -408,7 +422,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.42.0.tgz
     version: 0.42.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.028180891Z"
+    created: "2024-02-01T12:25:58.499603007Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -422,7 +436,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.41.0.tgz
     version: 0.41.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.027756183Z"
+    created: "2024-02-01T12:25:58.499207764Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -436,7 +450,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.40.0.tgz
     version: 0.40.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.027308873Z"
+    created: "2024-02-01T12:25:58.498799016Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -450,7 +464,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.39.0.tgz
     version: 0.39.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.026766316Z"
+    created: "2024-02-01T12:25:58.498398123Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -464,7 +478,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.38.0.tgz
     version: 0.38.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.026327021Z"
+    created: "2024-02-01T12:25:58.497989696Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -478,7 +492,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.37.0.tgz
     version: 0.37.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.02511919Z"
+    created: "2024-02-01T12:25:58.49756071Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -492,7 +506,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.36.0.tgz
     version: 0.36.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.024713106Z"
+    created: "2024-02-01T12:25:58.496424505Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -506,7 +520,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.35.0.tgz
     version: 0.35.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.024286304Z"
+    created: "2024-02-01T12:25:58.4960176Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -520,7 +534,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.34.0.tgz
     version: 0.34.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.023680009Z"
+    created: "2024-02-01T12:25:58.495612199Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -534,7 +548,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.33.0.tgz
     version: 0.33.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.023268776Z"
+    created: "2024-02-01T12:25:58.495200004Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -548,7 +562,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.32.0.tgz
     version: 0.32.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.022828078Z"
+    created: "2024-02-01T12:25:58.49479315Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -562,7 +576,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.2.2.tgz
     version: 0.2.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.022394924Z"
+    created: "2024-02-01T12:25:58.494375005Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -576,7 +590,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.2.1.tgz
     version: 0.2.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.02194499Z"
+    created: "2024-02-01T12:25:58.493933816Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -590,7 +604,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.021500375Z"
+    created: "2024-02-01T12:25:58.493490565Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 02a23d8b4177290a518ee5de6a5e1f557f7409f94b2e04f23fedea193464188f
@@ -600,7 +614,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.021279395Z"
+    created: "2024-02-01T12:25:58.493278271Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: afab9ba533a4686827b54b0dad64f5bbf76f7fbc075e35fb1034689db9ab9dda
@@ -610,7 +624,7 @@ entries:
     - https://chart.onechart.dev/cron-job-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.021068463Z"
+    created: "2024-02-01T12:25:58.493067109Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 01f9fa40c1c4085d7688474ab00c9e9d21bd1d0793db6b75f2edda0e18456282
@@ -621,16 +635,16 @@ entries:
     version: 0.1.0
   namespaces:
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.043780436Z"
+    created: "2024-02-01T12:25:58.520791648Z"
     description: Chart to create namespaces and their defaults
-    digest: 5dfe73f6f164e42c2db0042b545e6c1d2c8c536bcd7680a8d4590c35d1a83122
+    digest: 80f1ebcdbf45872a839c1eca2937ea1023dc80cae704da8a7a61def11b3a3f92
     name: namespaces
     type: application
     urls:
     - https://chart.onechart.dev/namespaces-0.3.0.tgz
     version: 0.3.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.043611002Z"
+    created: "2024-02-01T12:25:58.520433325Z"
     description: Chart to create namespaces and their defaults
     digest: a8e28dab9dc1a0044e75fbf8dd6d89c760c6fe9caa76bf16076cf5ecb311e808
     name: namespaces
@@ -639,7 +653,7 @@ entries:
     - https://chart.onechart.dev/namespaces-0.2.1.tgz
     version: 0.2.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.043345429Z"
+    created: "2024-02-01T12:25:58.519785213Z"
     description: Chart to create namespaces and their defaults
     digest: 9539bfd2fde6d8f2b36ffec99c8a3a3eb7887462e98ee740b0ae0ea2b16b96b6
     name: namespaces
@@ -648,7 +662,7 @@ entries:
     - https://chart.onechart.dev/namespaces-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.043074887Z"
+    created: "2024-02-01T12:25:58.519529309Z"
     description: Chart to create namespaces and their defaults
     digest: 88b06d78a9d1bda6f2ee15b1fad7f25399ac25c2320fb9a8dfa1a4fd14afdf6e
     name: namespaces
@@ -658,7 +672,7 @@ entries:
     version: 0.1.0
   onechart:
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.090834367Z"
+    created: "2024-02-01T12:25:58.56576306Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -672,7 +686,21 @@ entries:
     - https://chart.onechart.dev/onechart-0.65.0-rc.1.tgz
     version: 0.65.0-rc.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.090154195Z"
+    created: "2024-02-01T12:25:58.565117944Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.5.1
+    description: One chart to rule them all. A generic Helm chart for your application
+      deployments. Because no-one can remember the Kubernetes yaml syntax.
+    digest: 8d48bf5b80be305d8caf18f4a9f59d86aec7580bd75c77aee9e8166b654539fb
+    name: onechart
+    type: application
+    urls:
+    - https://chart.onechart.dev/onechart-0.64.0.tgz
+    version: 0.64.0
+  - apiVersion: v2
+    created: "2024-02-01T12:25:58.564390605Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -686,7 +714,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.64.0-rc.3.tgz
     version: 0.64.0-rc.3
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.088633843Z"
+    created: "2024-02-01T12:25:58.563713188Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -700,7 +728,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.64.0-rc.2.tgz
     version: 0.64.0-rc.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.087966355Z"
+    created: "2024-02-01T12:25:58.562400599Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -714,7 +742,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.63.0.tgz
     version: 0.63.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.08726325Z"
+    created: "2024-02-01T12:25:58.561754301Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -728,7 +756,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.63.0-rc.3.tgz
     version: 0.63.0-rc.3
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.086608345Z"
+    created: "2024-02-01T12:25:58.561107151Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -742,7 +770,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.63.0-rc.2.tgz
     version: 0.63.0-rc.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.085954992Z"
+    created: "2024-02-01T12:25:58.56043235Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -756,7 +784,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.63.0-rc.1.tgz
     version: 0.63.0-rc.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.08529084Z"
+    created: "2024-02-01T12:25:58.559800328Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -770,7 +798,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.62.0.tgz
     version: 0.62.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.084623051Z"
+    created: "2024-02-01T12:25:58.559164268Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -784,7 +812,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.62.0-rc.3.tgz
     version: 0.62.0-rc.3
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.083939232Z"
+    created: "2024-02-01T12:25:58.55851807Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -798,7 +826,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.61.0.tgz
     version: 0.61.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.083216732Z"
+    created: "2024-02-01T12:25:58.557867624Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -812,7 +840,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.60.0.tgz
     version: 0.60.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.08135027Z"
+    created: "2024-02-01T12:25:58.556070618Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -826,7 +854,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.59.0.tgz
     version: 0.59.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.080697067Z"
+    created: "2024-02-01T12:25:58.555431593Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -840,7 +868,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.58.0.tgz
     version: 0.58.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.080070364Z"
+    created: "2024-02-01T12:25:58.554823826Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -854,7 +882,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.57.0.tgz
     version: 0.57.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.079406052Z"
+    created: "2024-02-01T12:25:58.554194259Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -868,7 +896,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.56.0.tgz
     version: 0.56.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.07878511Z"
+    created: "2024-02-01T12:25:58.553598605Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -882,7 +910,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.55.0.tgz
     version: 0.55.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.078160611Z"
+    created: "2024-02-01T12:25:58.552992701Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -896,7 +924,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.54.0.tgz
     version: 0.54.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.077526554Z"
+    created: "2024-02-01T12:25:58.552354267Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -910,7 +938,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.53.0.tgz
     version: 0.53.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.076877089Z"
+    created: "2024-02-01T12:25:58.551747121Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -924,7 +952,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.52.0.tgz
     version: 0.52.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.07605335Z"
+    created: "2024-02-01T12:25:58.551135217Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -938,7 +966,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.51.0.tgz
     version: 0.51.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.074708255Z"
+    created: "2024-02-01T12:25:58.550507222Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -952,7 +980,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.50.0.tgz
     version: 0.50.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.073612902Z"
+    created: "2024-02-01T12:25:58.548932395Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -966,7 +994,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.49.0.tgz
     version: 0.49.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.072986019Z"
+    created: "2024-02-01T12:25:58.548303228Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -980,7 +1008,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.48.0.tgz
     version: 0.48.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.072329551Z"
+    created: "2024-02-01T12:25:58.547708215Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -994,7 +1022,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.47.0.tgz
     version: 0.47.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.071662543Z"
+    created: "2024-02-01T12:25:58.547113041Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1008,7 +1036,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.46.0.tgz
     version: 0.46.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.070993802Z"
+    created: "2024-02-01T12:25:58.546528367Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1022,7 +1050,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.45.0.tgz
     version: 0.45.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.07027577Z"
+    created: "2024-02-01T12:25:58.545943202Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1036,7 +1064,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.44.0.tgz
     version: 0.44.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.069547078Z"
+    created: "2024-02-01T12:25:58.545343019Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1050,7 +1078,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.43.0.tgz
     version: 0.43.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.068802386Z"
+    created: "2024-02-01T12:25:58.544748817Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1064,7 +1092,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.42.0.tgz
     version: 0.42.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.067943803Z"
+    created: "2024-02-01T12:25:58.544118799Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1078,7 +1106,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.41.0.tgz
     version: 0.41.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.066556529Z"
+    created: "2024-02-01T12:25:58.542813764Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1092,7 +1120,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.40.0.tgz
     version: 0.40.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.065771092Z"
+    created: "2024-02-01T12:25:58.542052473Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1106,7 +1134,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.39.0.tgz
     version: 0.39.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.065200673Z"
+    created: "2024-02-01T12:25:58.541495279Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1120,7 +1148,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.38.0.tgz
     version: 0.38.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.064641586Z"
+    created: "2024-02-01T12:25:58.540947504Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1134,7 +1162,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.37.0.tgz
     version: 0.37.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.06407756Z"
+    created: "2024-02-01T12:25:58.540348883Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1148,7 +1176,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.36.0.tgz
     version: 0.36.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.063476334Z"
+    created: "2024-02-01T12:25:58.539798122Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1162,7 +1190,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.35.0.tgz
     version: 0.35.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.062917206Z"
+    created: "2024-02-01T12:25:58.539250096Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1176,7 +1204,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.34.0.tgz
     version: 0.34.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.062352929Z"
+    created: "2024-02-01T12:25:58.538695117Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1190,7 +1218,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.33.0.tgz
     version: 0.33.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.061803289Z"
+    created: "2024-02-01T12:25:58.538132233Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1204,7 +1232,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.32.0.tgz
     version: 0.32.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.06122181Z"
+    created: "2024-02-01T12:25:58.536965004Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1218,7 +1246,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.31.0.tgz
     version: 0.31.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.060464745Z"
+    created: "2024-02-01T12:25:58.536401499Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1232,7 +1260,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.30.0.tgz
     version: 0.30.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.058674503Z"
+    created: "2024-02-01T12:25:58.53532894Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1246,7 +1274,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.29.0.tgz
     version: 0.29.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.058160409Z"
+    created: "2024-02-01T12:25:58.534829303Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1260,7 +1288,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.28.0.tgz
     version: 0.28.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.057633581Z"
+    created: "2024-02-01T12:25:58.534300012Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1274,7 +1302,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.27.0.tgz
     version: 0.27.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.057112474Z"
+    created: "2024-02-01T12:25:58.533795035Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1288,7 +1316,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.27.0-rc3.tgz
     version: 0.27.0-rc3
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.056562143Z"
+    created: "2024-02-01T12:25:58.533286162Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1302,7 +1330,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.27.0-rc2.tgz
     version: 0.27.0-rc2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.056028803Z"
+    created: "2024-02-01T12:25:58.532760728Z"
     dependencies:
     - name: common
       repository: file://../common
@@ -1316,7 +1344,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.27.0-rc1.tgz
     version: 0.27.0-rc1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.055454207Z"
+    created: "2024-02-01T12:25:58.532162789Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 3563a30dba0b6a9c7a1a3df358ca5c41e952882fd2f1bbe33c8103536870d651
@@ -1326,7 +1354,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.26.0.tgz
     version: 0.26.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.055055808Z"
+    created: "2024-02-01T12:25:58.531370001Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: efcbabde8193f1c3ecb34e4ede8f5efead1f77d8096180f4e8640ff94df07461
@@ -1336,7 +1364,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.25.0.tgz
     version: 0.25.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.05465775Z"
+    created: "2024-02-01T12:25:58.530739672Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 59f1389268efb3d970f84cae968e3ecbde57015df1201411f9f46becb4b09844
@@ -1346,7 +1374,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.24.1.tgz
     version: 0.24.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.054254622Z"
+    created: "2024-02-01T12:25:58.530359807Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 74b6fdf49a9fa5327fc0639f1d97f0cf553f89030c01379f3c91a5adb6f8a0f1
@@ -1356,7 +1384,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.24.0.tgz
     version: 0.24.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.053825606Z"
+    created: "2024-02-01T12:25:58.52998342Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: f8e444c2d5c5a4e73b76a971effda5246d3200427be45c2fb546bc990f197ecc
@@ -1366,7 +1394,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.23.0.tgz
     version: 0.23.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.052777808Z"
+    created: "2024-02-01T12:25:58.529612161Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: dfad2865c3eb54f0366300ef63b8ba1863ca69aa27e5ca5d3512c0d799d004d3
@@ -1376,7 +1404,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.22.0.tgz
     version: 0.22.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.052389408Z"
+    created: "2024-02-01T12:25:58.529234821Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 1b837cdefcb7025c40bffdd620a0f116df5ccb9023ac6a8c538bd8e77b3eb80a
@@ -1386,7 +1414,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.21.0.tgz
     version: 0.21.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.05199757Z"
+    created: "2024-02-01T12:25:58.528859465Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: a4f5741b46b89cd4328fbd96f96d85d53bae64b526730de5097ec33639c9c54f
@@ -1396,7 +1424,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.20.0.tgz
     version: 0.20.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.051383441Z"
+    created: "2024-02-01T12:25:58.528259483Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 59dd16db4f8519d3922da349aabcc2daec8385fc8a98d0f3163a84b98cc12f61
@@ -1406,7 +1434,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.19.0.tgz
     version: 0.19.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.050987596Z"
+    created: "2024-02-01T12:25:58.527871223Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 74c4c6a448e66929dfcafc5a641b5bdbaa8af6832c6065b02ce756dfeb3fc438
@@ -1416,7 +1444,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.18.0.tgz
     version: 0.18.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.050583076Z"
+    created: "2024-02-01T12:25:58.527478585Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: e1ba0bb54c3a3e13b661bb608839c7013d12e24d0437581ebfdbf5ce4a283d4d
@@ -1426,7 +1454,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.17.0.tgz
     version: 0.17.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.050189235Z"
+    created: "2024-02-01T12:25:58.527077291Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 596350a4977b305e4d5aae16dd8dcca62a17ea5cec9f444aacd82a12d6b3dcfe
@@ -1436,7 +1464,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.16.0.tgz
     version: 0.16.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.04978782Z"
+    created: "2024-02-01T12:25:58.526631053Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: d1a5a9e9bff274f32f6849bc58b201c7886240b94dd6b70b5cf3411d9ad03393
@@ -1446,7 +1474,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.15.3.tgz
     version: 0.15.3
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.049390553Z"
+    created: "2024-02-01T12:25:58.525603912Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 626410479f67bbbfa7e7fc94f6dfd8aae50a2bdf9fc72ec395c835dacbd5dbe7
@@ -1456,7 +1484,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.15.2.tgz
     version: 0.15.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.048999387Z"
+    created: "2024-02-01T12:25:58.525226271Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: e6d237aff4abedee6deb5ba57e8183c7598b255d40afdd04c03f73014f706aa3
@@ -1466,7 +1494,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.15.1.tgz
     version: 0.15.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.048606358Z"
+    created: "2024-02-01T12:25:58.52484795Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: d45fc4cc214bc94e4c2c10d6432562d7e65ee5e55226f677aafdfe101d7f6e7f
@@ -1476,7 +1504,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.15.0.tgz
     version: 0.15.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.048197739Z"
+    created: "2024-02-01T12:25:58.524439152Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 7e61a72a3400e09c44539094558a2084621239015132d20551c4593be3b5bede
@@ -1486,7 +1514,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.14.0.tgz
     version: 0.14.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.047780185Z"
+    created: "2024-02-01T12:25:58.524075888Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 743a9b552233770713f0c22edbe8cf4f55c890a59106e1f33055c1cb31be5a27
@@ -1496,7 +1524,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.13.2.tgz
     version: 0.13.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.046668164Z"
+    created: "2024-02-01T12:25:58.523719457Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 02bf9537e13cea0da9dc3bfbcdd45d51576354cb18b7c1c7cec76f829e20105f
@@ -1506,7 +1534,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.13.1.tgz
     version: 0.13.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.04631558Z"
+    created: "2024-02-01T12:25:58.523373125Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 5183ed825c4f255ca5a4f0ffeb8c92bbad3c43b42fc1b798f1f1fc6de2a30bef
@@ -1516,7 +1544,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.13.0.tgz
     version: 0.13.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.045958918Z"
+    created: "2024-02-01T12:25:58.52302535Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: e131a502d12a6b074453f1da8d0d1ca7145e80a025f31252b24cc3d62375a4c1
@@ -1526,7 +1554,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.12.2.tgz
     version: 0.12.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.045631891Z"
+    created: "2024-02-01T12:25:58.522706379Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 8e1a25d18a546c4ec5e970991301a08e38495a964a8f6e0a2ee97f92c41c9691
@@ -1536,7 +1564,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.12.1.tgz
     version: 0.12.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.045299354Z"
+    created: "2024-02-01T12:25:58.522380114Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: f38a6f2fbf5c847b00a9140ecd004e0bf667d859aa83d8dac4a2d0eecd1a361f
@@ -1546,7 +1574,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.12.0.tgz
     version: 0.12.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.044966557Z"
+    created: "2024-02-01T12:25:58.522055441Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 75c16f84b5e99aad5aa7203f5c1ce2a9589d85b89afec4e161a2e0344a522c17
@@ -1556,7 +1584,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.11.0.tgz
     version: 0.11.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.044651603Z"
+    created: "2024-02-01T12:25:58.521744905Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 40f1166e858d35cb237debd1390187884641b0e8c29a80aaa195b66b0ee73516
@@ -1566,7 +1594,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.10.0.tgz
     version: 0.10.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.092577351Z"
+    created: "2024-02-01T12:25:58.567351265Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: cb42b08b463b401f6718bba7c171ee55c173021c5101ea1b3068ef3899a6e164
@@ -1576,7 +1604,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.9.0.tgz
     version: 0.9.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.092270201Z"
+    created: "2024-02-01T12:25:58.567061417Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: ce046d209a9e8fa07766712492cc896451473fafca129dbc9c675107d0e39c52
@@ -1586,7 +1614,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.8.2.tgz
     version: 0.8.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.091975634Z"
+    created: "2024-02-01T12:25:58.566800443Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 422d7e6ea1bed530d4cd5e23417b229772a6fe2e835828ca282a3e6c9b646b2b
@@ -1596,7 +1624,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.8.1.tgz
     version: 0.8.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.091643468Z"
+    created: "2024-02-01T12:25:58.56653974Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 8001bd02fc90ad66da7941c136ee8d0e665ea90b6e1ac27d82b048f2b12b3964
@@ -1606,7 +1634,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.8.0.tgz
     version: 0.8.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.091363609Z"
+    created: "2024-02-01T12:25:58.566268617Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: d1454b430eb7131d0d450f7c0a8a6698278893c61e03d48649a8112dfcf42b72
@@ -1616,7 +1644,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.7.1.tgz
     version: 0.7.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.091103306Z"
+    created: "2024-02-01T12:25:58.566019636Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 4bf90835f287917671ec40b5b395da9332cf18e70f248d250f8d5a72360dcb4e
@@ -1626,7 +1654,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.7.0.tgz
     version: 0.7.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.081801617Z"
+    created: "2024-02-01T12:25:58.556971689Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 0cade489fc74a040f5e7f71d01c6fa00d3f68b4752a4d8234ccf2c1504b4c0a1
@@ -1636,7 +1664,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.6.1.tgz
     version: 0.6.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.08157676Z"
+    created: "2024-02-01T12:25:58.556294804Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: d607820a7e104eaaa88c153c1f2f7f409ef4c612ad747caeb3a671cf3fce03d4
@@ -1646,7 +1674,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.6.0.tgz
     version: 0.6.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.074051626Z"
+    created: "2024-02-01T12:25:58.549349989Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: ddf7cf87402095d62855898744b805115fdf86c4b295e0a4def0c50408fd9138
@@ -1656,7 +1684,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.5.1.tgz
     version: 0.5.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.073830316Z"
+    created: "2024-02-01T12:25:58.549143316Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: adf3c2cf3a27e58ec75620599e0e1c2031a7410a061a590317beeff6d8a9ad69
@@ -1666,7 +1694,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.5.0.tgz
     version: 0.5.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.065984318Z"
+    created: "2024-02-01T12:25:58.542263674Z"
     description: One chart to rule them all. A generic Helm chart for your application
       deployments. Because no-one can remember the Kubernetes yaml syntax.
     digest: 8dab33263c4e632aeb4656c666871440b589497b70e76a1d6c3a5e3db1a30bba
@@ -1676,7 +1704,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.4.0.tgz
     version: 0.4.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.059235714Z"
+    created: "2024-02-01T12:25:58.535874822Z"
     description: A generic Helm chart for your application deployments
     digest: fbaf6139e0ef8ad9a87cc1e41a97c7d25fdcf7ea17fa6364952f1a851a87480a
     name: onechart
@@ -1685,7 +1713,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.3.2.tgz
     version: 0.3.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.059046994Z"
+    created: "2024-02-01T12:25:58.53569572Z"
     description: A generic Helm chart for your application deployments
     digest: bd6f5b1865ab9b05fc6925c163ab8045235bd2723dba31f09d5083d24322d1f8
     name: onechart
@@ -1694,7 +1722,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.3.1.tgz
     version: 0.3.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.058862561Z"
+    created: "2024-02-01T12:25:58.535513221Z"
     description: A generic Helm chart for your application deployments
     digest: c79cef21eceab948144a289298cdf1e20e77a0782a883d7d65f9e709ccbbc271
     name: onechart
@@ -1703,7 +1731,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.3.0.tgz
     version: 0.3.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.051573374Z"
+    created: "2024-02-01T12:25:58.528445698Z"
     description: A generic Helm chart for your application deployments
     digest: dd814ac5d08d5e6163a1b769df6803f5cb0f09d906045086dfcc5be522bb1ec3
     name: onechart
@@ -1712,7 +1740,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.044347458Z"
+    created: "2024-02-01T12:25:58.52144008Z"
     description: A generic Helm chart for your application deployments
     digest: e46062df8053840cbfbba26c0a66a843a79f15a0b43a145ed019327513bd5098
     name: onechart
@@ -1721,7 +1749,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.044158457Z"
+    created: "2024-02-01T12:25:58.521252853Z"
     description: A generic Helm chart for your application deployments
     digest: a7bbc8b7dcc008e89156cd1830282b7d39c0592e82ccdcefb77a25a42eca2a3d
     name: onechart
@@ -1730,7 +1758,7 @@ entries:
     - https://chart.onechart.dev/onechart-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.043974627Z"
+    created: "2024-02-01T12:25:58.521062711Z"
     description: A generic Helm chart for your application deployments
     digest: 1ed8c0645abdae6c950526e9c5410dc056847a11700dc7def5f1c55eb7de0cd4
     name: onechart
@@ -1740,7 +1768,16 @@ entries:
     version: 0.1.0
   static-site:
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.099048719Z"
+    created: "2024-02-01T12:25:58.573957021Z"
+    description: Chart to build and deploy static sites
+    digest: 8b47812556f59a5e0fc8f6fe3ca4663461e67dad15137442a6a32dc2d5edea9e
+    name: static-site
+    type: application
+    urls:
+    - https://chart.onechart.dev/static-site-0.64.0.tgz
+    version: 0.64.0
+  - apiVersion: v2
+    created: "2024-02-01T12:25:58.573659719Z"
     description: Chart to build and deploy static sites
     digest: 939cbef93d8e09f370c37c73fd95efc99d28361975ce1b859625044240ed2807
     name: static-site
@@ -1749,7 +1786,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.64.0-rc.2.tgz
     version: 0.64.0-rc.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.098740567Z"
+    created: "2024-02-01T12:25:58.573366917Z"
     description: Chart to build and deploy static sites
     digest: 8af89841d8184856b1e6843c20a14fce51bf46e784c9f2a3140a334cd5932608
     name: static-site
@@ -1758,7 +1795,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.63.0.tgz
     version: 0.63.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.098430703Z"
+    created: "2024-02-01T12:25:58.573072581Z"
     description: Chart to build and deploy static sites
     digest: dc108e075e2ba579b30d68bc5364adaecbc4b8c11535861d962c5787f9ed198a
     name: static-site
@@ -1767,7 +1804,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.63.0-rc.3.tgz
     version: 0.63.0-rc.3
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.09812179Z"
+    created: "2024-02-01T12:25:58.572769419Z"
     description: Chart to build and deploy static sites
     digest: 87b850c57a52b7fc9d025ccf1d390557728355d8874c0a1f8efcfafd9f7c87c3
     name: static-site
@@ -1776,7 +1813,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.63.0-rc.2.tgz
     version: 0.63.0-rc.2
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.0978043Z"
+    created: "2024-02-01T12:25:58.572423187Z"
     description: Chart to build and deploy static sites
     digest: fffcc8edac47cc87244bdf7325c6ac880f4bddab5e22b8aeba90b92f51425c22
     name: static-site
@@ -1785,7 +1822,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.63.0-rc.1.tgz
     version: 0.63.0-rc.1
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.097486731Z"
+    created: "2024-02-01T12:25:58.572120035Z"
     description: Chart to build and deploy static sites
     digest: c63bc30ae3acbc4bf3bcfe22d8255c4f8fb593b4d07dac5aad678668d9555e2b
     name: static-site
@@ -1794,7 +1831,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.62.0.tgz
     version: 0.62.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.097166176Z"
+    created: "2024-02-01T12:25:58.571821391Z"
     description: Chart to build and deploy static sites
     digest: 2ed116159a2412d6063d863e9e59ba4e136a0115ca98298019703248c3ddeac0
     name: static-site
@@ -1803,7 +1840,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.62.0-rc.3.tgz
     version: 0.62.0-rc.3
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.096658163Z"
+    created: "2024-02-01T12:25:58.571519441Z"
     description: Chart to build and deploy static sites
     digest: 8ebb73b0ac8be45cbce8e77061e14c9d0b7619d127137d748345097ebd233ac6
     name: static-site
@@ -1812,7 +1849,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.61.0.tgz
     version: 0.61.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.095817062Z"
+    created: "2024-02-01T12:25:58.571192154Z"
     description: Chart to build and deploy static sites
     digest: 8d50d5c10503d3180ebf6e00bef8136833efcd47ea57d51e768b34183897585d
     name: static-site
@@ -1821,7 +1858,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.60.0.tgz
     version: 0.60.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.095437208Z"
+    created: "2024-02-01T12:25:58.570864496Z"
     description: Chart to build and deploy static sites
     digest: d485011b302792860258c4abba2273f74165ea491bf3ccb28e1e49d784e230a4
     name: static-site
@@ -1830,7 +1867,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.59.0.tgz
     version: 0.59.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.09513133Z"
+    created: "2024-02-01T12:25:58.570506783Z"
     description: Chart to build and deploy static sites
     digest: f62fd4d04967e7f4a55c6edb42cde98811d6dd3165d5a00414df02627a32e0a0
     name: static-site
@@ -1839,7 +1876,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.58.0.tgz
     version: 0.58.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.094831133Z"
+    created: "2024-02-01T12:25:58.569901414Z"
     description: Chart to build and deploy static sites
     digest: 02c948ac12e84aa9f4dbfc04c707a696bf9fe906a526b64498af9f788f1f1c08
     name: static-site
@@ -1848,7 +1885,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.57.0.tgz
     version: 0.57.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.094527339Z"
+    created: "2024-02-01T12:25:58.569282506Z"
     description: Chart to build and deploy static sites
     digest: b6f8780c07f25f0673ac3657ac7da2f2311d6a054a4ad085b2bc1de55a715d14
     name: static-site
@@ -1857,7 +1894,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.56.0.tgz
     version: 0.56.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.094222013Z"
+    created: "2024-02-01T12:25:58.568985164Z"
     description: Chart to build and deploy static sites
     digest: 996d067a5e569764e824cabeee040b6786512ddcb90760c495c67e48c2d8f613
     name: static-site
@@ -1866,7 +1903,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.55.0.tgz
     version: 0.55.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.093912148Z"
+    created: "2024-02-01T12:25:58.568686421Z"
     description: Chart to build and deploy static sites
     digest: daa3189dd1ee1cc328227ec11a59359876da8c29f28b50a36e0bd57fb12fe1ce
     name: static-site
@@ -1875,7 +1912,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.54.0.tgz
     version: 0.54.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.093585432Z"
+    created: "2024-02-01T12:25:58.568328847Z"
     description: Chart to build and deploy static sites
     digest: e9c0c056470f40fc97119ca4c4a9b1b0c84f19c98792fee0b55c91cb57f93671
     name: static-site
@@ -1884,7 +1921,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.53.0.tgz
     version: 0.53.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.093254127Z"
+    created: "2024-02-01T12:25:58.568003374Z"
     description: Chart to build and deploy static sites
     digest: ef72c7cc95bbf6c123bb2f6a80ced12a3e6f09c866b2ff9057caa6692e16c2e1
     name: static-site
@@ -1893,7 +1930,7 @@ entries:
     - https://chart.onechart.dev/static-site-0.52.0.tgz
     version: 0.52.0
   - apiVersion: v2
-    created: "2023-12-20T09:33:36.092915509Z"
+    created: "2024-02-01T12:25:58.567682048Z"
     description: Chart to build and deploy static sites
     digest: d26cef52a3aace6285173de55981375086aec3b4b52027bc2e42d16632190497
     name: static-site
@@ -1901,4 +1938,4 @@ entries:
     urls:
     - https://chart.onechart.dev/static-site-0.1.0.tgz
     version: 0.1.0
-generated: "2023-12-20T09:33:36.02072705Z"
+generated: "2024-02-01T12:25:58.492670744Z"
