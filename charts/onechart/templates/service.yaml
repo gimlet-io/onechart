@@ -64,7 +64,7 @@ spec:
       {{- end }}
     {{- else }}
     {{- range .Values.ports }}
-    - name: {{ if .name }}{{ .name }}{{ else if .svcPort }}{{ printf "tcp-%g" .svcPort }}{{ end }}
+    - name: {{ if .name }}{{ .name }}{{ else if .svcPort }}{{ printf "tcp-%g" .svcPort }}{{ else if .containerPort }}{{ printf "tcp-%g" .containerPort }}{{ end }}
       port: {{ if .svcPort }}{{ .svcPort }}{{ else }}{{ .containerPort }}{{ end }}
       {{- if .nodePort }}
       nodePort: {{ .nodePort }}
