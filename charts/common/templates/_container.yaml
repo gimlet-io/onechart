@@ -17,7 +17,7 @@ ports:
     protocol: TCP
   {{- else }}
   {{- range .Values.ports }}
-  - name: {{ .name }}
+  - name: {{ if .name }}{{ .name }}{{ else if .containerPort }}{{ printf "tcp-%g" .containerPort}}{{ end }}
     containerPort: {{ .containerPort }}
     protocol: TCP
   {{- end }}

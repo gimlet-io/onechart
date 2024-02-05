@@ -27,6 +27,19 @@ tests:
             - name: passive-2
               containerPort: 3002
               protocol: TCP
+  - it: Should set port definition if name is not set
+    set:
+      ports:
+        - containerPort: 21
+    asserts:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
+          path: spec.template.spec.containers[0].ports
+          value:
+            - name: tcp-21
+              containerPort: 21
+              protocol: TCP
   - it: Should set default port
     asserts:
       - template: deployment.yaml

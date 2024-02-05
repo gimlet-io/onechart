@@ -64,12 +64,12 @@ spec:
       {{- end }}
     {{- else }}
     {{- range .Values.ports }}
-    - name: {{ .name }}
+    - name: {{ if .name }}{{ .name }}{{ else if .svcPort }}{{ printf "tcp-%g" .svcPort }}{{ end }}
       port: {{ if .svcPort }}{{ .svcPort }}{{ else }}{{ .containerPort }}{{ end }}
       {{- if .nodePort }}
       nodePort: {{ .nodePort }}
       {{- end }}
-      targetPort: {{ .name }}
+      targetPort: {{ if .name }}{{ .name }}{{ else if .containerPort }}{{ printf "tcp-%g" .containerPort}}{{ end }}
       protocol: TCP
     {{- end }}
     {{- end }}

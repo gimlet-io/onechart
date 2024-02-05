@@ -55,6 +55,19 @@ tests:
               port: 3002
               targetPort: passive-2
               protocol: TCP
+  - it: Should set port definition if name is not set
+    set:
+      ports:
+        - svcPort: 445
+          containerPort: 21
+    asserts:
+      - equal:
+          path: spec.ports
+          value:
+            - name: tcp-445
+              port: 445
+              targetPort: tcp-21
+              protocol: TCP
   - it: Should set default port
     asserts:
       - equal:
