@@ -119,3 +119,16 @@ tests:
             - hosts:
                 - chart-example.local
               secretName: tls-release-name-chart-example-local
+  - it: Should set Ingress secret name if provided
+    set:
+      ingress:
+        host: chart-example.local
+        tlsEnabled: true
+        secretName: tls-internal
+    asserts:
+      - equal:
+          path: spec.tls
+          value:
+            - hosts:
+                - chart-example.local
+              secretName: tls-internal
