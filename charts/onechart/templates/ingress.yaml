@@ -38,11 +38,7 @@ spec:
   tls:
     - hosts:
         - {{ .ingress.host | quote }}
-      {{- if .ingress.secretName }}
-      secretName: {{ .ingress.secretName }}
-      {{ else }}
-      secretName: {{ printf "tls-%s" $resourceName }}
-      {{- end }}
+      secretName: {{ .ingress.secretName | default (printf "tls-%s" $resourceName) }}
   {{- end }}
   rules:
     - host: {{ .ingress.host | quote }}
