@@ -69,7 +69,7 @@ spec:
       {{- if .nodePort }}
       nodePort: {{ .nodePort }}
       {{- end }}
-      targetPort: {{ if .name }}{{ .name }}{{ else if .containerPort }}{{ printf "tcp-%g" .containerPort}}{{ end }}
+      targetPort: {{ .name | default (printf "tcp-%g" .containerPort) }}
       protocol: TCP
     {{- end }}
     {{- end }}
