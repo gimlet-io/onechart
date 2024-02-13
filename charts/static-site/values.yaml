@@ -18,6 +18,8 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
+gitCloneUrlSecretName: git-creds
+
 securityContext: 
   # capabilities:
   #   drop:
