@@ -53,16 +53,16 @@ spec:
         - sh 
         - -c 
         - |
-           {{- if .Values.gitCloneUrlSecretName }}
-           git clone $gitCloneUrl &&
-           cd $(echo $gitCloneUrl | sed 's|.*/||' | cut -d "."  -f1) &&
-           {{- else }}
-           git clone {{ .Values.gitCloneUrl }} &&
-           cd {{ regexFind "([^\\/]+$)" .Values.gitCloneUrl | replace ".git" "" }} &&
-           {{- end }}
-           {{ .Values.buildScript | nindent 10}}
-           mkdir -p /usr/share/nginx/html &&
-           cp -r ./{{ .Values.builtAssets }}. /usr/share/nginx/html
+          {{- if .Values.gitCloneUrlSecretName }}
+          git clone $gitCloneUrl &&
+          cd $(echo $gitCloneUrl | sed 's|.*/||' | cut -d "."  -f1) &&
+          {{- else }}
+          git clone {{ .Values.gitCloneUrl }} &&
+          cd {{ regexFind "([^\\/]+$)" .Values.gitCloneUrl | replace ".git" "" }} &&
+          {{- end }}
+          {{ .Values.buildScript | nindent 10}}
+          mkdir -p /usr/share/nginx/html &&
+          cp -r ./{{ .Values.builtAssets }}. /usr/share/nginx/html
         {{- end }}
         volumeMounts:
         - name: static-files
