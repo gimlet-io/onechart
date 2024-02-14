@@ -18,8 +18,6 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-gitCloneUrlSecretName: git-creds
-
 securityContext: 
   # capabilities:
   #   drop:
@@ -59,4 +57,4 @@ gitCloneUrl: https://github.com/gimlet-io/reactjs-test-app.git
 buildImage: "node:latest"
 buildScript: |
   npm install && npm run build
-builtAssets: build/ 
+builtAssets: build/
