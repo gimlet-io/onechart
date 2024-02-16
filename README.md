@@ -6,20 +6,44 @@ Because no-one can remember the Kubernetes yaml syntax.
 
 https://gimlet.io/docs/onechart-reference
 
+
 ## Getting started
-Check the generated Kubernetes yaml:
+
+OneChart is a generic Helm Chart for web applications. The idea is that most Kubernetes manifest look alike, only very few parts actually change.
+
+Add the Onechart Helm repository:
+
+```bash
+helm repo add onechart https://chart.onechart.dev
+```
+
+Set your image name and version, the boilerplate is generated.
+
 ```bash
 helm template my-release onechart/onechart \
   --set image.repository=nginx \
   --set image.tag=1.19.3
 ```
-Deploy with Helm:
+
+The example below deploys your application image, sets environment variables and configures the Kubernetes Ingress domain name:
 
 ```bash
-helm install my-release onechart/onechart \
-  --set image.repository=nginx \
-  --set image.tag=1.19.3
+helm repo add onechart https://chart.onechart.dev
+helm template my-release onechart/onechart -f values.yaml
+
+# values.yaml
+image:
+  repository: my-app
+  tag: fd803fc
+vars:
+  VAR_1: "value 1"
+  VAR_2: "value 2"
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  host: my-app.mycompany.com
 ```
+
 ### Alternative: using an OCI repository
 You can also template and install onechart from an OCI repository as follows:
 
