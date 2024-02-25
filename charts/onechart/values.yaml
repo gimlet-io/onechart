@@ -16,6 +16,10 @@ image:
 # vars:
 #   MY_VAR: "value"
 
+# commonLabels:
+#   label1: value1
+#   label2: value2
+
 replicas: 1
 
 nameOverride: ""
@@ -80,3 +84,4 @@ monitor:
 
 container: {}
 podSpec: {}
+

@@ -34,6 +34,9 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "staticSite.labels" -}}
+{{- range $key, $value := .Values.commonLabels }}
+{{ $key }}: {{ $value | quote }}
+{{- end }}
 helm.sh/chart: {{ include "staticSite.chart" . }}
 {{ include "staticSite.selectorLabels" . }}
 {{- if .Chart.AppVersion }}

@@ -15,3 +15,7 @@ volumes:
     path: /data
     size: 10Gi
     storageClass: default
+
+commonLabels:
+  label1: value1
+  label2: value2
