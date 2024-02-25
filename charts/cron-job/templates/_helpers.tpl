@@ -35,6 +35,9 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "helm-chart.labels" -}}
+{{- range $key, $value := .Values.commonLabels }}
+{{ $key }}: {{ $value | quote }}
+{{- end }}
 helm.sh/chart: {{ include "helm-chart.chart" . }}
 {{ include "helm-chart.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
