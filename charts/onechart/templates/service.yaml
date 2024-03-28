@@ -70,7 +70,7 @@ spec:
       nodePort: {{ .nodePort }}
       {{- end }}
       targetPort: {{ .name }}
-      protocol: TCP
+      protocol: {{ if .protocol }}{{ .protocol }}{{ else }}TCP{{ end }}
     {{- end }}
     {{- end }}
   selector:
