@@ -23,62 +23,12 @@
   },
   {
     "schemaIDs": [
-      "#/properties/resources"
+      "#/properties/ingress"
     ],
     "uiSchema": {},
     "metaData": {
-      "name": "Resources",
-      "icon": "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-    }
-  },
-  {
-    "schemaIDs": [
-      "#/properties/probe",
-      "#/properties/livenessProbe"
-    ],
-    "uiSchema": {
-      "#/properties/probe": {
-        "settings": {
-          "initialDelaySeconds": {
-            "ui:widget": "range"
-          },
-          "periodSeconds": {
-            "ui:widget": "range"
-          },
-          "successThreshold": {
-            "ui:widget": "range"
-          },
-          "timeoutSeconds": {
-            "ui:widget": "range"
-          },
-          "failureThreshold": {
-            "ui:widget": "range"
-          }
-        }
-      },
-      "#/properties/livenessProbe": {
-        "settings": {
-          "initialDelaySeconds": {
-            "ui:widget": "range"
-          },
-          "periodSeconds": {
-            "ui:widget": "range"
-          },
-          "successThreshold": {
-            "ui:widget": "range"
-          },
-          "timeoutSeconds": {
-            "ui:widget": "range"
-          },
-          "failureThreshold": {
-            "ui:widget": "range"
-          }
-        }
-      }
-    },
-    "metaData": {
-      "name": "Health",
-      "icon": "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+      "name": "Ingress",
+      "icon": "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
     }
   },
   {
@@ -116,6 +66,16 @@
   },
   {
     "schemaIDs": [
+      "#/properties/resources"
+    ],
+    "uiSchema": {},
+    "metaData": {
+      "name": "Resources",
+      "icon": "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+    }
+  },
+  {
+    "schemaIDs": [
       "#/properties/volumes"
     ],
     "uiSchema": {
@@ -133,16 +93,6 @@
     "metaData": {
       "name": "Volumes",
       "icon": "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
-    }
-  },
-  {
-    "schemaIDs": [
-      "#/properties/ingress"
-    ],
-    "uiSchema": {},
-    "metaData": {
-      "name": "Ingress",
-      "icon": "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
     }
   },
   {
