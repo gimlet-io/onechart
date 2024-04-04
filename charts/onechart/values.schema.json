@@ -704,6 +704,14 @@
         }
       }
     },
+    "secretName": {
+      "$id": "#/properties/secretName",
+      "type": "string",
+      "title": "Existing Secret",
+      "description": "Reference an existing secret from your web application.",
+      "default": "",
+      "examples": []
+    },
     "secret": {
       "$id": "#/properties/secret",
       "type": "object",

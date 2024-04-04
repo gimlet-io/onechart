@@ -43,7 +43,7 @@
   },
   {
     "schemaIDs": [
-      "#/properties/secretEnabled",
+      "#/properties/secretName",
       "#/properties/sealedSecrets"
     ],
     "uiSchema": {
