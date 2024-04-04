@@ -340,7 +340,7 @@
       "$id": "#/properties/containerPort",
       "type": "integer",
       "title": "Port",
-      "description": "The port your app is listening on",
+      "description": "The port your application is listening on",
       "default": 80,
       "examples": [
         80
