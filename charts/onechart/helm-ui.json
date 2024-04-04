@@ -3,17 +3,11 @@
     "schemaIDs": [
       "#/properties/image",
       "#/properties/containerPort",
-      "#/properties/imagePullSecrets",
       "#/properties/replicas"
     ],
     "uiSchema": {
       "#/properties/replicas": {
         "ui:widget": "range"
-      },
-      "#/properties/imagePullSecrets": {
-        "additionalProperties": {
-          "type": "string"
-        }
       }
     },
     "metaData": {
