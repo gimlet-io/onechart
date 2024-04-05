@@ -792,7 +792,7 @@
     "ingress": {
       "$id": "#/properties/ingress",
       "type": "object",
-      "title": "Domains",
+      "title": "",
       "description": "",
       "default": {},
       "examples": [
