@@ -18,7 +18,7 @@
   {
     "schemaIDs": [
       "#/properties/ingress/properties/host",
-      "#/properties/ingress/properties/path"
+      "#/properties/ingress/properties/ingressPath"
     ],
     "uiSchema": {},
     "metaData": {
