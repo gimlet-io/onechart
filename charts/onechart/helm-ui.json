@@ -47,7 +47,6 @@
   },
   {
     "schemaIDs": [
-      "#/properties/secretName",
       "#/properties/sealedSecrets"
     ],
     "uiSchema": {

@@ -766,13 +766,6 @@
       "properties": {},
       "additionalProperties": true
     },
-    "secretEnabled": {
-      "$id": "#/properties/secretEnabled",
-      "type": "boolean",
-      "title": "Existing secret",
-      "description": "If enabled, a secret will be referenced from the deployment whose name matches the deployment name",
-      "default": false
-    },
     "sealedSecrets": {
       "$id": "#/properties/sealedSecrets",
       "type": "object",
