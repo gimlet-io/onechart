@@ -776,7 +776,7 @@
     "sealedSecrets": {
       "$id": "#/properties/sealedSecrets",
       "type": "object",
-      "title": "Sealed secrets",
+      "title": "Encrypted secrets",
       "description": "",
       "default": {},
       "examples": [
