@@ -20,7 +20,9 @@
       "#/properties/ingress"
     ],
     "uiSchema": {
-      "ui:order": ["host", "path", "tlsEnabled"]
+      "#/properties/ingress": {
+        "ui:order": ["host", "path", "tlsEnabled, annotations"]
+      }
     },
     "metaData": {
       "name": "Domain",
