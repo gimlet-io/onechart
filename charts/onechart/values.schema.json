@@ -816,16 +816,6 @@
             "my-release.mycompany.com"
           ]
         },
-        "path": {
-          "$id": "#/properties/ingress/properties/ingressPath",
-          "type": "string",
-          "title": "Path",
-          "description": "The API path where your service is accessible",
-          "default": "/",
-          "examples": [
-            "/api/myservice"
-          ]
-        },
         "tlsEnabled": {
           "$id": "#/properties/ingress/properties/tlsEnabled",
           "type": "boolean",
