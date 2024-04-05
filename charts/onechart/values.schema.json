@@ -792,7 +792,7 @@
     "ingress": {
       "$id": "#/properties/ingress",
       "type": "object",
-      "title": "",
+      "title": "Domain",
       "description": "",
       "default": {},
       "examples": [
@@ -809,7 +809,7 @@
         "host": {
           "$id": "#/properties/ingress/properties/host",
           "type": "string",
-          "title": "Domain",
+          "title": "",
           "description": "Where your application will be accessible",
           "default": "",
           "examples": [
