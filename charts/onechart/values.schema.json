@@ -840,7 +840,7 @@
           "$id": "#/properties/ingress/properties/annotations",
           "type": "object",
           "title": "Annotations",
-          "description": "",
+          "description": "Annotations are used to control ingress behavior. See the full list for the Ingress Nginx project at https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/. Use the `cert-manager.io/cluster-issuer:\"letsencrypt\"` one to request TLS certificates, `kubernetes.io/ingress.class: \"nginx\"` to select an ingress controller.",
           "default": {},
           "examples": [
             {
