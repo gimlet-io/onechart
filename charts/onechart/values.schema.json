@@ -390,7 +390,7 @@
           "$id": "#/properties/resources/properties/requests",
           "type": "object",
           "title": "Requests",
-          "description": "The typical resources your app uses",
+          "description": "The typical resources your app uses. The values help the Kubernetes to place your application optimally.",
           "default": {},
           "examples": [
             {
@@ -429,7 +429,7 @@
           "$id": "#/properties/resources/properties/limits",
           "type": "object",
           "title": "Limits",
-          "description": "The maximum resources your app may use",
+          "description": "The maximum resources your app may use. Reaching the limits impact your application health.",
           "default": {},
           "examples": [
             {
