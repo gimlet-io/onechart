@@ -895,7 +895,7 @@
               "name": {
                 "type": "string",
                 "title": "Name",
-                "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
+                "description": "The name of the volume. A unique identifier that also signals the intent of the volume.",
                 "default": "data"
               },
               "path": {
@@ -907,7 +907,7 @@
               "size": {
                 "type": "string",
                 "title": "Size",
-                "description": "eg: 10Gi"
+                "default": "10Gi"
               },
               "storageClass": {
                 "type": "string",
@@ -947,7 +947,8 @@
               "existingClaim": {
                 "type": "string",
                 "title": "Existing Claim",
-                "description": "Use an existing PersistentVolumeClaim"
+                "description": "Use an existing PersistentVolumeClaim",
+                "default": "my-pvc"
               },
               "path": {
                 "type": "string",
@@ -981,7 +982,8 @@
                   "path": {
                     "type": "string",
                     "title": "Path on Host",
-                    "description": "Use a physical path on the host machine"
+                    "description": "Use a physical path on the host machine",
+                    "default": "/somewhere/over/the/rainbow"
                   },
                   "type": {
                     "type": "string",
@@ -1079,11 +1081,13 @@
             "properties": {
               "fileName": {
                 "type": "string",
-                "title": "File name"
+                "title": "File name",
+                "default": "credentials.json"
               },
               "fileContent": {
                 "type": "string",
-                "title": "File content"
+                "title": "File content",
+                "default": "mysecretjsoncontent"
               },
               "path": {
                 "type": "string",
