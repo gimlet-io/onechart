@@ -390,7 +390,7 @@
           "$id": "#/properties/resources/properties/requests",
           "type": "object",
           "title": "Requests",
-          "description": "The typical resources your app uses. The values help the Kubernetes to place your application optimally.",
+          "description": "The typical resources your app uses. The values help Kubernetes to place your application optimally.",
           "default": {},
           "examples": [
             {
@@ -429,7 +429,7 @@
           "$id": "#/properties/resources/properties/limits",
           "type": "object",
           "title": "Limits",
-          "description": "The maximum resources your app may use. Reaching the limits impact your application health.",
+          "description": "The maximum resources your app may use. Reaching the limits impact your application's health.",
           "default": {},
           "examples": [
             {
@@ -446,7 +446,7 @@
               "$id": "#/properties/resources/properties/limits/properties/cpu",
               "type": "string",
               "title": "CPU",
-              "description": "The hard ceiling for the app's CPU usage. The app will be throttled to this limit. 1000m or 1000 CPU shares = 1 CPU core",
+              "description": "The hard ceiling for your app's CPU usage. The app will be throttled to this limit. 1000m = 1 CPU core",
               "default": "200m",
               "examples": [
                 "200m"
@@ -456,7 +456,7 @@
               "$id": "#/properties/resources/properties/limits/properties/memory",
               "type": "string",
               "title": "Memory",
-              "description": "The hard ceiling for the app's memory usage. The app will be RESTARTED if it reaches this limit",
+              "description": "The hard ceiling for your app's memory usage. The app will be RESTARTED if it reaches this limit",
               "default": "200Mi",
               "examples": [
                 "200mi"
