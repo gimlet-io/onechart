@@ -390,7 +390,7 @@
           "$id": "#/properties/resources/properties/requests",
           "type": "object",
           "title": "Requests",
-          "description": "The typical resources your app uses. The values help Kubernetes to place your application optimally.",
+          "description": "The typical resources your app uses. The values help Kubernetes placing your application optimally.",
           "default": {},
           "examples": [
             {
