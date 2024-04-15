@@ -7,14 +7,12 @@
   "default": {},
   "examples": [
     {
-      "gitCloneUrl": "https://github.com/gimlet-io/hugo-site.git",
       "buildImage": "node:latest",
       "buildScript": "npm install && npm install -g gatsby-cli && gatsby build",
       "builtAssets": "public/"
     }
   ],
   "required": [
-    "gitCloneUrl",
     "buildImage",
     "buildScript",
     "builtAssets"
