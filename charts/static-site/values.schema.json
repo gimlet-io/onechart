@@ -7,17 +7,26 @@
   "default": {},
   "examples": [
     {
+      "gitCloneUrl": "https://github.com/gimlet-io/hugo-site.git",
       "buildImage": "node:latest",
       "buildScript": "npm install && npm install -g gatsby-cli && gatsby build",
       "builtAssets": "public/"
     }
   ],
   "required": [
+    "gitCloneUrl",
     "buildImage",
     "buildScript",
     "builtAssets"
   ],
   "properties": {
+    "gitCloneUrl": {
+      "$id": "#/properties/gitCloneUrl",
+      "type": "string",
+      "title": "Repo url",
+      "description": "The static site's git repository",
+      "default": "https://github.com/gimlet-io/reactjs-test-app.git"
+    },
     "buildImage": {
       "$id": "#/properties/buildImage",
       "type": "string",
