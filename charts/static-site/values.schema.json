@@ -20,13 +20,6 @@
     "builtAssets"
   ],
   "properties": {
-    "gitCloneUrl": {
-      "$id": "#/properties/gitCloneUrl",
-      "type": "string",
-      "title": "Repo url",
-      "description": "The static site's git repository",
-      "default": "https://github.com/gimlet-io/reactjs-test-app.git"
-    },
     "buildImage": {
       "$id": "#/properties/buildImage",
       "type": "string",
@@ -58,9 +51,6 @@
       "examples": [
         {
           "tlsEnabled": false,
-          "annotations": {
-            "kubernetes.io/ingress.class": "nginx"
-          },
           "host": "my-release.mycompany.com"
         }
       ],
@@ -76,16 +66,6 @@
             "my-release.mycompany.com"
           ]
         },
-        "path": {
-          "$id": "#/properties/ingress/properties/ingressPath",
-          "type": "string",
-          "title": "Path",
-          "description": "The API path where your service is accessible",
-          "default": "/",
-          "examples": [
-            "/api/myservice"
-          ]
-        },
         "tlsEnabled": {
           "$id": "#/properties/ingress/properties/tlsEnabled",
           "type": "boolean",
@@ -95,19 +75,6 @@
           "examples": [
             false
           ]
-        },
-        "annotations": {
-          "$id": "#/properties/ingress/properties/annotations",
-          "type": "object",
-          "title": "Annotations",
-          "description": "Annotations are used to control ingress behavior. See the full list for the Ingress Nginx project at https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/. Use the `cert-manager.io/cluster-issuer:\"letsencrypt\"` one to request TLS certificates, `kubernetes.io/ingress.class: \"nginx\"` to select an ingress controller.",
-          "default": {},
-          "examples": [
-            {
-              "kubernetes.io/ingress.class": "nginx"
-            }
-          ],
-          "additionalProperties": true
         }
       }
     }
