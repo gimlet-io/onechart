@@ -5,13 +5,17 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "staticSite.labels" . | nindent 4 }}
-  {{- if or .Values.gitRepository .Values.gitSha }}
+  {{- if or (or .Values.gitRepository .Values.gitSha) .Values.gitBranch }}
   annotations:
     {{- if .Values.gitRepository }}
     gimlet.io/git-repository: {{ .Values.gitRepository }}
     {{- end }}
     {{- if .Values.gitSha }}
     gimlet.io/git-sha: {{ .Values.gitSha }}
+    {{- end }}
+    {{- if .Values.gitBranch }}
+    gimlet.io/git-branch: {{ .Values.gitBranch }}
+    v1alpha1.opensca.dev/version.branch: {{ .Values.gitBranch }}
     {{- end }}
   {{- end }}
 spec:
