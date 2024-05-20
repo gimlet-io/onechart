@@ -10,12 +10,17 @@ tests:
       - equal:
           path: spec.rules[0].http.paths[0].path
           value: "/"
-  - it: Should use path
+  - it: Should use paths
     set:
       ingress:
         host: chart-example.local
-        path: "/mypath"
+        paths: 
+          - path: /mypath
+          - path: /mypath2
     asserts:
       - equal:
           path: spec.rules[0].http.paths[0].path
           value: "/mypath"
+      - equal:
+          path: spec.rules[0].http.paths[1].path
+          value: "/mypath2"
