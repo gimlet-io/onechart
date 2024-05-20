@@ -59,7 +59,7 @@ spec:
         paths:
           {{- range .ingress.paths }}
           - path: {{ .path | quote }}
-            pathType: {{ .ingress.pathType | default "Prefix" | quote }}
+            pathType: {{ .pathType | default "Prefix" | quote }}
             backend:
               service:
                 name: {{ $robustName }}
