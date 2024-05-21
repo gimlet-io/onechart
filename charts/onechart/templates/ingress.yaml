@@ -5,6 +5,9 @@
 {{- if .longName }}
 {{- $resourceName = printf "%s-%s" $robustName (include "robustName" .ingress.host) -}}
 {{- end }}
+{{- $svcPort := .root.Values.svcPort -}}
+{{- $containerPort := .root.Values.containerPort -}}
+
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -43,6 +46,7 @@ spec:
   rules:
     - host: {{ .ingress.host | quote }}
       http:
+        {{- if not .ingress.paths }}
         paths:
           - path: {{ .ingress.path | default "/" | quote }}
             pathType: {{ .ingress.pathType | default "Prefix" | quote }}
@@ -50,7 +54,19 @@ spec:
               service:
                 name: {{ $robustName }}
                 port:
-                  number: {{ if .root.Values.svcPort }}{{ .root.Values.svcPort }}{{ else }}{{ .root.Values.containerPort }}{{ end }}
+                  number: {{ if $svcPort }}{{ $svcPort }}{{ else }}{{ $containerPort }}{{ end }}
+        {{- else }}
+        paths:
+          {{- range .ingress.paths }}
+          - path: {{ .path | quote }}
+            pathType: {{ .pathType | default "Prefix" | quote }}
+            backend:
+              service:
+                name: {{ $robustName }}
+                port:
+                  number: {{ if $svcPort }}{{ $svcPort }}{{ else }}{{ $containerPort }}{{ end }}
+          {{- end }}
+        {{- end }}
 {{- end }}
 
 {{- with .Values.ingress }}

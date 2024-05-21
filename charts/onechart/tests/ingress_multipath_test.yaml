@@ -1,0 +1,26 @@
+suite: test ingress
+templates:
+  - ingress.yaml
+tests:
+  - it: Should default
+    set:
+      ingress:
+        host: chart-example.local
+    asserts:
+      - equal:
+          path: spec.rules[0].http.paths[0].path
+          value: "/"
+  - it: Should use paths
+    set:
+      ingress:
+        host: chart-example.local
+        paths: 
+          - path: /mypath
+          - path: /mypath2
+    asserts:
+      - equal:
+          path: spec.rules[0].http.paths[0].path
+          value: "/mypath"
+      - equal:
+          path: spec.rules[0].http.paths[1].path
+          value: "/mypath2"
