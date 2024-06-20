@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "helm-chart.labels" . | nindent 4 }}
-  {{- if or (or (or (or (or .Values.gitRepository .Values.gitSha) .Values.serviceName) .Values.serviceDescription) .Values.ownerName) .Values.ownerIm }}
+  {{- if or (or (or (or (or (or .Values.gitRepository .Values.gitSha) .Values.serviceName) .Values.serviceDescription) .Values.ownerName) .Values.ownerIm) .Values.serviceAnnotations }}
   annotations:
     {{- if .Values.gitRepository }}
     gimlet.io/git-repository: {{ .Values.gitRepository }}
@@ -43,6 +43,11 @@ metadata:
     {{- end }}
     {{- if .Values.traces }}
     v1alpha1.opensca.dev/traces: {{ .Values.traces | quote }}
+    {{- end }}
+    {{- if .Values.serviceAnnotations }}
+      {{- with .Values.serviceAnnotations }}
+        {{- toYaml . | nindent 4 }}
+      {{- end }}
     {{- end }}
   {{- end }}
 spec:
