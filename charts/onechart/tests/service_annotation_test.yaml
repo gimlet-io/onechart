@@ -1,0 +1,13 @@
+suite: test deployment
+templates:
+  - service.yaml
+tests:
+  - it: Should set annotations if it is defined
+    set:
+      serviceAnnotations:
+        gimlet.io/test: example
+    asserts:
+      - equal:
+          path: metadata.annotations
+          value:
+            gimlet.io/test: example
