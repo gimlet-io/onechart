@@ -1106,6 +1106,35 @@
               "fileContent",
               "path"
             ]
+          },
+          {
+            "id": "#/properties/volumes/oneOf/6",
+            "title": "Mount an existing secret as a file",
+            "type": "object",
+            "properties": {
+              "existingSecret": {
+                "type": "string",
+                "title": "Name",
+                "description": "The name of the secret to mount",
+                "default": "data"
+              },
+              "path": {
+                "type": "string",
+                "title": "Path",
+                "description": "The mount path inside the container",
+                "default": "/data/dummy.conf"
+              },
+              "subPath": {
+                "type": "string",
+                "title": "subPath",
+                "description": "Mount single file",
+                "default": "dummy.conf"
+              }
+            },
+            "required": [
+              "existingSecret",
+              "path"
+            ]
           }
         ]
       }

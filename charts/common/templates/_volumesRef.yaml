@@ -8,6 +8,9 @@ volumes:
     {{- else if .existingConfigMap }}
     configMap:
       name: {{ .existingConfigMap }}
+    {{- else if .existingSecret }}
+    secret:
+      secretName: {{ .existingSecret }}
     {{- else if .fileName }}
     configMap:
       name: {{ template "common.robustName" (printf "%s-%s" $.Release.Name .name) }}
