@@ -1034,10 +1034,24 @@
                 "default": "ephemeral-volume"
               },
               "emptyDir": {
-                "type": "boolean",
+                "type": "object",
                 "title": "ephemeral volume (emptyDir)",
                 "description": "Enable to use a non-persistent disk",
-                "default": true
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "title": "enabled",
+                    "default": true
+                  },
+                  "sizeLimit": {
+                    "type": "string",
+                    "title": "Size Limit"
+                  },
+                  "medium": {
+                    "type": "string",
+                    "title": "enabled"
+                  }
+                 }
               },
               "path": {
                 "type": "string",

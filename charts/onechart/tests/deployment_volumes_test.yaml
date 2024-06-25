@@ -86,12 +86,13 @@ tests:
             - name: data
               persistentVolumeClaim:
                 claimName: my-static-claim
-  - it: Should use emptyDir
+  - it: Should use the default emptyDir
     set:
       volumes:
         - name: data
           path: /var/lib/1clickinfra/data
-          emptyDir: true
+          emptyDir:
+            enabled: true
     asserts:
       - template: deployment.yaml
         documentIndex: 0
@@ -100,6 +101,25 @@ tests:
           value:
             - name: data
               emptyDir: {}
+  - it: Should use emptyDir with custom params
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          emptyDir:
+            enabled: true
+            sizeLimit: 500Mi
+            medium: Memory
+    asserts:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: data
+              emptyDir:
+                sizeLimit: 500Mi
+                medium: Memory             
   - it: Should use hostPath
     set:
       volumes:
@@ -134,12 +154,13 @@ tests:
             - name: data
               hostPath:
                 path: /somewhere/over/the/rainbow
-  - it: Should use emptyDir
+  - it: Should use default emptyDir
     set:
       volumes:
         - name: myScratchDisk
           path: /randomPath
-          emptyDir: true
+          emptyDir:
+            enabled: true
     asserts:
       - template: deployment.yaml
         documentIndex: 0
