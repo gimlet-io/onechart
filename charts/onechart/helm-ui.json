@@ -67,7 +67,7 @@
     ],
     "uiSchema": {
       "#/properties/resources": {
-        "ui:order": ["requests", "limits", "ignoreLimits", "ignore"]
+        "ui:order": ["ignore", "requests", "limits", "ignoreLimits"]
       }
     },
     "metaData": {
