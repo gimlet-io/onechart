@@ -819,11 +819,37 @@
             false
           ]
         },
+        "nginxBasicAuth": {
+          "$id": "#/properties/ingress/properties/nginxBasicAuth",
+          "type": "object",
+          "title": "Protect with Nginx Basic Auth",
+          "description": "",
+          "default": {},
+          "required": [],
+          "properties": {
+            "user": {
+              "$id": "#/properties/ingress/properties/nginxBasicAuth/properties/user",
+              "type": "string",
+              "title": "Username",
+              "description": "",
+              "default": "",
+              "examples": []
+            },
+            "password": {
+              "$id": "#/properties/ingress/properties/nginxBasicAuth/properties/password",
+              "type": "string",
+              "title": "Password",
+              "description": "",
+              "default": "",
+              "examples": []
+            }
+          }
+        },
         "annotations": {
           "$id": "#/properties/ingress/properties/annotations",
           "type": "object",
           "title": "Annotations",
-          "description": "Annotations are used to control ingress behavior. See the full list for the Ingress Nginx project at https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/.",
+          "description": "",
           "default": {},
           "examples": [
             {
