@@ -171,14 +171,30 @@ tests:
             - name: volume-name
               configMap:
                 name: my-configmap
+  - it: Should use an existing secret as volume
+    set:
+      volumes:
+        - existingSecret: my-secret
+          name: volume-name
+          path: /randomPath/app.creds
+          subPath: app.creds
+    asserts:
+      - template: deployment.yaml
+        documentIndex: 0
+        equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: volume-name
+              secret:
+                secretName: my-secret
       - template: deployment.yaml
         documentIndex: 0
         equal:
           path: spec.template.spec.containers[0].volumeMounts
           value:
             - name: volume-name
-              mountPath: /randomPath/app.conf
-              subPath: app.conf
+              mountPath: /randomPath/app.creds
+              subPath: app.creds
   - it: Should use a configmap with custom value
     set:
       volumes:
