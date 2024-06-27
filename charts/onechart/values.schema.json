@@ -349,8 +349,8 @@
     "resources": {
       "$id": "#/properties/resources",
       "type": "object",
-      "title": "",
-      "description": "",
+      "title": "Resources",
+      "description": "Your apps resources requirements",
       "default": {},
       "examples": [
         {
