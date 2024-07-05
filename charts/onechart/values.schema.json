@@ -59,10 +59,7 @@
           "tag": "latest"
         }
       ],
-      "required": [
-        "repository",
-        "tag"
-      ],
+      "required": [],
       "properties": {
         "repository": {
           "$id": "#/properties/image/properties/repository",
