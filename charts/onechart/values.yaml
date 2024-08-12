@@ -80,3 +80,6 @@ monitor:
 
 container: {}
 podSpec: {}
+
+httpRoute:
+  enabled: true
