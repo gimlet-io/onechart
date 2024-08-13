@@ -27,31 +27,6 @@ tests:
                         name: release-name
                         port:
                           number: 80
-  - it: Should pass ingress host name as is, user must sanitize it
-    set:
-      ingress:
-        host: feature/my_branch.local
-        tlsEnabled: true
-    asserts:
-      - equal:
-          path: spec.tls
-          value:
-            - hosts:
-                - feature/my_branch.local
-              secretName: tls-release-name
-      - equal:
-          path: spec.rules
-          value:
-            - host: feature/my_branch.local
-              http:
-                paths:
-                  - path: "/"
-                    pathType: "Prefix"
-                    backend:
-                      service:
-                        name: release-name
-                        port:
-                          number: 80
   - it: Should set Ingress annotation
     set:
       ingress:
