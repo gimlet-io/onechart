@@ -45,37 +45,31 @@ spec:
       volumes:
       - name: static-files
         emptyDir: {}
-      {{- if or .Values.vars .Values.sealedSecrets }}
-      envFrom:
-      {{- if .Values.vars }}
-        - configMapRef:
-            name: {{ template "common.robustName" .Release.Name }}
-      {{- end }}
-      {{- if .Values.sealedSecrets }}
-        - secretRef:
-            name: {{ template "common.robustName" .Release.Name }}
-      {{- end }}
-      {{- end }}
       initContainers:
       - name: init-con
         image: {{ .Values.buildImage }}
-        {{- if .Values.gitCloneUrlSecretName }}
+        {{- if or (or .Values.vars .Values.sealedSecrets) .Values.gitCloneUrlSecretName }}
         envFrom:
+        {{- if .Values.vars }}
+        - configMapRef:
+            name: {{ template "common.robustName" .Release.Name }}
+        {{- end }}
+        {{- if .Values.sealedSecrets }}
+        - secretRef:
+            name: {{ template "common.robustName" .Release.Name }}
+        {{- end }}
+        {{- if .Values.gitCloneUrlSecretName }}
         - secretRef:
             name: {{ .Values.gitCloneUrlSecretName }}
+        {{- end }}
         {{- end }}
         {{- if .Values.buildScript }}
         command:
         - sh 
         - -c 
         - |
-          {{- if .Values.gitCloneUrlSecretName }}
-          git clone $gitCloneUrl &&
-          cd $(echo $gitCloneUrl | sed 's|.*/||' | cut -d "."  -f1) &&
-          {{- else }}
-          git clone {{ .Values.gitCloneUrl }} &&
-          cd {{ regexFind "([^\\/]+$)" .Values.gitCloneUrl | replace ".git" "" }} &&
-          {{- end }}
+          git clone {{ .Values.gitCloneUrl }} src &&
+          cd src &&
           {{- if .Values.gitBranch }}
           git checkout {{ .Values.gitBranch }}
           {{- end }}

@@ -62,6 +62,6 @@ builtAssets: build/
 vars:
   hello: hi
 
-sealedSecrets:
-  secret1: ccc
-  secret2: xxxx
+# sealedSecrets:
+#   secret1: ccc
+#   secret2: xxxx
