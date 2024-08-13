@@ -14,6 +14,13 @@
   ],
   "required": [],
   "properties": {
+    "gitCloneUrl": {
+      "$id": "#/properties/gitCloneUrl",
+      "type": "string",
+      "title": "Git Clone URL",
+      "description": "HTTP git clone URL",
+      "default": "https://github.com/gimlet-io/reactjs-test-app.git"
+    },
     "buildImage": {
       "$id": "#/properties/buildImage",
       "type": "string",

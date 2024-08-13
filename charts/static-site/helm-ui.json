@@ -1,6 +1,7 @@
 [
   {
     "schemaIDs": [
+      "#/properties/gitCloneUrl",
       "#/properties/buildImage",
       "#/properties/buildScript",
       "#/properties/builtAssets"
