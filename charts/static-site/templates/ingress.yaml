@@ -12,7 +12,7 @@ metadata:
   name: {{ $resourceName }}
   namespace: {{ .root.Release.Namespace }}
   labels:
-    {{- include "staticSite.labels" .root | nindent 4 }}
+    {{- include "helm-chart.labels" .root | nindent 4 }}
   {{- if or (or .root.Values.gitSha .ingress.annotations) .root.Values.gitRepository }}
   annotations:
     {{- if .ingress.annotations }}

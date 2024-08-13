@@ -4,9 +4,10 @@ metadata:
   name: {{ template "robustName" .Release.Name }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "staticSite.labels" . | nindent 4 }}
+    {{- include "helm-chart.labels" . | nindent 4 }}
   {{- if or (or .Values.gitRepository .Values.gitSha) .Values.gitBranch }}
   annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     {{- if .Values.gitRepository }}
     gimlet.io/git-repository: {{ .Values.gitRepository }}
     {{- end }}
@@ -22,7 +23,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "staticSite.selectorLabels" . | nindent 6 }}
+      {{- include "helm-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -30,7 +31,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "staticSite.selectorLabels" . | nindent 8 }}
+        {{- include "helm-chart.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -44,6 +45,17 @@ spec:
       volumes:
       - name: static-files
         emptyDir: {}
+      {{- if or .Values.vars .Values.sealedSecrets }}
+      envFrom:
+      {{- if .Values.vars }}
+        - configMapRef:
+            name: {{ template "common.robustName" .Release.Name }}
+      {{- end }}
+      {{- if .Values.sealedSecrets }}
+        - secretRef:
+            name: {{ template "common.robustName" .Release.Name }}
+      {{- end }}
+      {{- end }}
       initContainers:
       - name: init-con
         image: {{ .Values.buildImage }}

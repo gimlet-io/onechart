@@ -16,3 +16,7 @@ type: application
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
 version: 0.70.0
 
+dependencies:
+  - name: common
+    version: 0.6.0
+    repository: file://../common

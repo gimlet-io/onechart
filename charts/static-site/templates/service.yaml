@@ -4,7 +4,7 @@ metadata:
   name: {{ template "robustName" .Release.Name  }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "staticSite.labels" . | nindent 4 }}
+    {{- include "helm-chart.labels" . | nindent 4 }}
   {{- if or .Values.gitRepository .Values.gitSha }}
   annotations:
     {{- if .Values.gitRepository }}
@@ -22,4 +22,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "staticSite.selectorLabels" . | nindent 4 }}
+    {{- include "helm-chart.selectorLabels" . | nindent 4 }}
