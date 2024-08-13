@@ -12,11 +12,7 @@
       "builtAssets": "public/"
     }
   ],
-  "required": [
-    "buildImage",
-    "buildScript",
-    "builtAssets"
-  ],
+  "required": [],
   "properties": {
     "buildImage": {
       "$id": "#/properties/buildImage",
