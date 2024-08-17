@@ -1,0 +1,67 @@
+# Default values for static-site.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: 
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  runAsUser: 0
+
+service:
+  type: ClusterIP
+  port: 80
+
+# ingress:
+#   host: dummyapp.127.0.0.1.nip.io
+#   ingressClassName: nginx
+#   tlsEnabled: false
+#   annotations:
+#     cert-manager.io/cluster-issuer: letsencrypt-staging
+
+
+resources: 
+  requests:
+    cpu: 200m
+    memory: 200Mi
+  limits:
+    cpu: 200m
+    memory: 200Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# values to build and deploy static sites
+gitCloneUrl: https://github.com/gimlet-io/reactjs-test-app.git
+buildImage: "node:latest"
+buildScript: |
+  npm install && npm run build
+builtAssets: build/
+
+vars:
+  hello: hi
+
+# sealedSecrets:
+#   secret1: ccc
+#   secret2: xxxx

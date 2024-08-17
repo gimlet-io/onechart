@@ -7,24 +7,18 @@
   "default": {},
   "examples": [
     {
-      "gitCloneUrl": "https://github.com/gimlet-io/hugo-site.git",
       "buildImage": "node:latest",
       "buildScript": "npm install && npm install -g gatsby-cli && gatsby build",
       "builtAssets": "public/"
     }
   ],
-  "required": [
-    "gitCloneUrl",
-    "buildImage",
-    "buildScript",
-    "builtAssets"
-  ],
+  "required": [],
   "properties": {
     "gitCloneUrl": {
       "$id": "#/properties/gitCloneUrl",
       "type": "string",
-      "title": "Repo url",
-      "description": "The static site's git repository",
+      "title": "Git Clone URL",
+      "description": "HTTP git clone URL",
       "default": "https://github.com/gimlet-io/reactjs-test-app.git"
     },
     "buildImage": {
@@ -40,7 +34,6 @@
       "title": "Build script",
       "description": "Commands required for the build to be completed",
       "default": "# !/usr/bin/env bash\n\nnpm install\nnpm run build"
-
     },
     "builtAssets": {
       "$id": "#/properties/builtAssets",
@@ -58,9 +51,6 @@
       "examples": [
         {
           "tlsEnabled": false,
-          "annotations": {
-            "kubernetes.io/ingress.class": "nginx"
-          },
           "host": "my-release.mycompany.com"
         }
       ],
@@ -76,16 +66,6 @@
             "my-release.mycompany.com"
           ]
         },
-        "path": {
-          "$id": "#/properties/ingress/properties/ingressPath",
-          "type": "string",
-          "title": "Path",
-          "description": "The API path where your service is accessible",
-          "default": "/",
-          "examples": [
-            "/api/myservice"
-          ]
-        },
         "tlsEnabled": {
           "$id": "#/properties/ingress/properties/tlsEnabled",
           "type": "boolean",
@@ -95,21 +75,40 @@
           "examples": [
             false
           ]
-        },
-        "annotations": {
-          "$id": "#/properties/ingress/properties/annotations",
-          "type": "object",
-          "title": "Annotations",
-          "description": "Annotations are used to control ingress behavior. See the full list for the Ingress Nginx project at https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/. Use the `cert-manager.io/cluster-issuer:\"letsencrypt\"` one to request TLS certificates, `kubernetes.io/ingress.class: \"nginx\"` to select an ingress controller.",
-          "default": {},
-          "examples": [
-            {
-              "kubernetes.io/ingress.class": "nginx"
-            }
-          ],
-          "additionalProperties": true
         }
       }
+    },
+    "vars": {
+      "$id": "#/properties/vars",
+      "type": "object",
+      "title": "Environment variables",
+      "description": "",
+      "default": {},
+      "examples": [
+        {
+          "VAR_1": "value 1",
+          "VAR_2": "value 2"
+        }
+      ],
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
+    },
+    "sealedSecrets": {
+      "$id": "#/properties/sealedSecrets",
+      "type": "object",
+      "title": "Encrypted secrets",
+      "description": "",
+      "default": {},
+      "examples": [
+        {
+          "VAR_1": "value 1",
+          "VAR_2": "value 2"
+        }
+      ],
+      "required": [],
+      "properties": {},
+      "additionalProperties": true
     }
   },
   "additionalProperties": true

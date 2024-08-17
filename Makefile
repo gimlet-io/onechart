@@ -6,7 +6,6 @@ all: lint kubeval test package
 lint:
 	helm lint charts/onechart/
 	helm lint charts/cron-job/
-	helm lint charts/namespaces/
 	helm lint charts/static-site
 
 kubeval:
@@ -24,12 +23,6 @@ kubeval:
 
 	rm -rf manifests && true
 	mkdir manifests
-	helm template charts/namespaces --output-dir manifests -f charts/namespaces/fixture.yaml
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.20.0
-	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.24.0
-
-	rm -rf manifests && true
-	mkdir manifests
 	helm template charts/static-site --output-dir manifests
 	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.20.0
 	find manifests/ -name '*.yaml' | xargs kubeval --ignore-missing-schemas -v 1.24.0
@@ -41,8 +34,7 @@ test:
 	helm dependency update charts/cron-job
 	helm unittest charts/cron-job
 
-	helm unittest charts/namespaces
-
+	helm dependency update charts/static-site
 	helm unittest charts/static-site
 
 package:
@@ -54,9 +46,7 @@ package:
 	helm package charts/cron-job
 	mv cron-job*.tgz docs
 
-	helm package charts/namespaces
-	mv namespaces*.tgz docs
-
+	helm dependency update charts/static-site
 	helm package charts/static-site
 	mv static-site*.tgz docs
 
@@ -69,7 +59,3 @@ debug:
 debug-cron-job:
 	helm dependency update charts/cron-job
 	helm template charts/cron-job/ -f values-cron-job.yaml --debug
-
-debug-ui:
-	#gimlet chart configure -s charts/onechart/values.schema.json -u charts/onechart/helm-ui.json onechart/onechart
-	/home/laszlo/projects/gimlet-cli/build/gimlet chart configure -s charts/onechart/values.schema.json -u charts/onechart/helm-ui.json onechart/onechart

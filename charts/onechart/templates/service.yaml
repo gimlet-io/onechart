@@ -17,6 +17,10 @@ metadata:
     gimlet.io/git-sha: {{ .Values.gitSha }}
     v1alpha1.opensca.dev/version.sha: {{ .Values.gitSha }}
     {{- end }}
+    {{- if .Values.gitBranch }}
+    gimlet.io/git-branch: {{ .Values.gitBranch }}
+    v1alpha1.opensca.dev/version.branch: {{ .Values.gitBranch }}
+    {{- end }}
     {{- if .Values.serviceName }}
     v1alpha1.opensca.dev/name: {{ .Values.serviceName | quote }}
     {{- end }}

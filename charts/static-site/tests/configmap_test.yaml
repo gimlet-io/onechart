@@ -1,0 +1,15 @@
+suite: test deployment
+templates:
+  - configmap.yaml
+tests:
+  - it: Should put vars in ConfigMap
+    set:
+      vars:
+        var1: value1
+        var2: value2
+    asserts:
+      - equal:
+          path: data
+          value:
+            var1: value1
+            var2: value2

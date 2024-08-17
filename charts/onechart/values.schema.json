@@ -59,10 +59,7 @@
           "tag": "latest"
         }
       ],
-      "required": [
-        "repository",
-        "tag"
-      ],
+      "required": [],
       "properties": {
         "repository": {
           "$id": "#/properties/image/properties/repository",
@@ -340,7 +337,7 @@
       "$id": "#/properties/containerPort",
       "type": "integer",
       "title": "Port",
-      "description": "The port your app is listening on",
+      "description": "The port your application is listening on",
       "default": 80,
       "examples": [
         80
@@ -349,7 +346,7 @@
     "resources": {
       "$id": "#/properties/resources",
       "type": "object",
-      "title": "",
+      "title": "Resources",
       "description": "",
       "default": {},
       "examples": [
@@ -390,7 +387,7 @@
           "$id": "#/properties/resources/properties/requests",
           "type": "object",
           "title": "Requests",
-          "description": "The typical resources your app uses",
+          "description": "The typical resources your app uses. The values help Kubernetes placing your application optimally.",
           "default": {},
           "examples": [
             {
@@ -429,7 +426,7 @@
           "$id": "#/properties/resources/properties/limits",
           "type": "object",
           "title": "Limits",
-          "description": "The maximum resources your app may use",
+          "description": "The maximum resources your app may use. Reaching the limits impact your application's health.",
           "default": {},
           "examples": [
             {
@@ -446,7 +443,7 @@
               "$id": "#/properties/resources/properties/limits/properties/cpu",
               "type": "string",
               "title": "CPU",
-              "description": "The hard ceiling for the app's CPU usage. The app will be throttled to this limit. 1000m or 1000 CPU shares = 1 CPU core",
+              "description": "The hard ceiling for your app's CPU usage. The app will be throttled to this limit. 1000m = 1 CPU core",
               "default": "200m",
               "examples": [
                 "200m"
@@ -456,7 +453,7 @@
               "$id": "#/properties/resources/properties/limits/properties/memory",
               "type": "string",
               "title": "Memory",
-              "description": "The hard ceiling for the app's memory usage. The app will be RESTARTED if it reaches this limit",
+              "description": "The hard ceiling for your app's memory usage. The app will be RESTARTED if it reaches this limit",
               "default": "200Mi",
               "examples": [
                 "200mi"
@@ -704,6 +701,14 @@
         }
       }
     },
+    "secretName": {
+      "$id": "#/properties/secretName",
+      "type": "string",
+      "title": "Existing Secret",
+      "description": "Reference an existing secret from your web application.",
+      "default": "",
+      "examples": []
+    },
     "secret": {
       "$id": "#/properties/secret",
       "type": "object",
@@ -758,17 +763,10 @@
       "properties": {},
       "additionalProperties": true
     },
-    "secretEnabled": {
-      "$id": "#/properties/secretEnabled",
-      "type": "boolean",
-      "title": "Existing secret",
-      "description": "If enabled, a secret will be referenced from the deployment whose name matches the deployment name",
-      "default": false
-    },
     "sealedSecrets": {
       "$id": "#/properties/sealedSecrets",
       "type": "object",
-      "title": "Sealed secrets",
+      "title": "Encrypted secrets",
       "description": "",
       "default": {},
       "examples": [
@@ -784,7 +782,7 @@
     "ingress": {
       "$id": "#/properties/ingress",
       "type": "object",
-      "title": "Incoming traffic",
+      "title": "Domain",
       "description": "",
       "default": {},
       "examples": [
@@ -801,21 +799,12 @@
         "host": {
           "$id": "#/properties/ingress/properties/host",
           "type": "string",
-          "title": "Host Name",
+          "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
+          "title": "Domain",
           "description": "Where your application will be accessible",
           "default": "",
           "examples": [
             "my-release.mycompany.com"
-          ]
-        },
-        "path": {
-          "$id": "#/properties/ingress/properties/ingressPath",
-          "type": "string",
-          "title": "Path",
-          "description": "The API path where your service is accessible",
-          "default": "/",
-          "examples": [
-            "/api/myservice"
           ]
         },
         "tlsEnabled": {
@@ -828,11 +817,37 @@
             false
           ]
         },
+        "nginxBasicAuth": {
+          "$id": "#/properties/ingress/properties/nginxBasicAuth",
+          "type": "object",
+          "title": "Protect with Nginx Basic Auth",
+          "description": "",
+          "default": {},
+          "required": [],
+          "properties": {
+            "user": {
+              "$id": "#/properties/ingress/properties/nginxBasicAuth/properties/user",
+              "type": "string",
+              "title": "Username",
+              "description": "",
+              "default": "",
+              "examples": []
+            },
+            "password": {
+              "$id": "#/properties/ingress/properties/nginxBasicAuth/properties/password",
+              "type": "string",
+              "title": "Password",
+              "description": "",
+              "default": "",
+              "examples": []
+            }
+          }
+        },
         "annotations": {
           "$id": "#/properties/ingress/properties/annotations",
           "type": "object",
           "title": "Annotations",
-          "description": "Annotations are used to control ingress behavior. See the full list for the Ingress Nginx project at https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/. Use the `cert-manager.io/cluster-issuer:\"letsencrypt\"` one to request TLS certificates, `kubernetes.io/ingress.class: \"nginx\"` to select an ingress controller.",
+          "description": "",
           "default": {},
           "examples": [
             {
@@ -904,7 +919,7 @@
               "name": {
                 "type": "string",
                 "title": "Name",
-                "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
+                "description": "The name of the volume. A unique identifier that also signals the intent of the volume.",
                 "default": "data"
               },
               "path": {
@@ -916,7 +931,7 @@
               "size": {
                 "type": "string",
                 "title": "Size",
-                "description": "eg: 10Gi"
+                "default": "10Gi"
               },
               "storageClass": {
                 "type": "string",
@@ -956,7 +971,8 @@
               "existingClaim": {
                 "type": "string",
                 "title": "Existing Claim",
-                "description": "Use an existing PersistentVolumeClaim"
+                "description": "Use an existing PersistentVolumeClaim",
+                "default": "my-pvc"
               },
               "path": {
                 "type": "string",
@@ -990,7 +1006,8 @@
                   "path": {
                     "type": "string",
                     "title": "Path on Host",
-                    "description": "Use a physical path on the host machine"
+                    "description": "Use a physical path on the host machine",
+                    "default": "/somewhere/over/the/rainbow"
                   },
                   "type": {
                     "type": "string",
@@ -1088,11 +1105,13 @@
             "properties": {
               "fileName": {
                 "type": "string",
-                "title": "File name"
+                "title": "File name",
+                "default": "credentials.json"
               },
               "fileContent": {
                 "type": "string",
-                "title": "File content"
+                "title": "File content",
+                "default": "mysecretjsoncontent"
               },
               "path": {
                 "type": "string",

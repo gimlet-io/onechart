@@ -4,21 +4,26 @@ metadata:
   name: {{ template "robustName" .Release.Name }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "staticSite.labels" . | nindent 4 }}
-  {{- if or .Values.gitRepository .Values.gitSha }}
+    {{- include "helm-chart.labels" . | nindent 4 }}
+  {{- if or (or .Values.gitRepository .Values.gitSha) .Values.gitBranch }}
   annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     {{- if .Values.gitRepository }}
     gimlet.io/git-repository: {{ .Values.gitRepository }}
     {{- end }}
     {{- if .Values.gitSha }}
     gimlet.io/git-sha: {{ .Values.gitSha }}
     {{- end }}
+    {{- if .Values.gitBranch }}
+    gimlet.io/git-branch: {{ .Values.gitBranch }}
+    v1alpha1.opensca.dev/version.branch: {{ .Values.gitBranch }}
+    {{- end }}
   {{- end }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "staticSite.selectorLabels" . | nindent 6 }}
+      {{- include "helm-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -26,7 +31,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "staticSite.selectorLabels" . | nindent 8 }}
+        {{- include "helm-chart.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -43,22 +48,30 @@ spec:
       initContainers:
       - name: init-con
         image: {{ .Values.buildImage }}
-        {{- if .Values.gitCloneUrlSecretName }}
+        {{- if or (or .Values.vars .Values.sealedSecrets) .Values.gitCloneUrlSecretName }}
         envFrom:
+        {{- if .Values.vars }}
+        - configMapRef:
+            name: {{ template "common.robustName" .Release.Name }}
+        {{- end }}
+        {{- if .Values.sealedSecrets }}
+        - secretRef:
+            name: {{ template "common.robustName" .Release.Name }}
+        {{- end }}
+        {{- if .Values.gitCloneUrlSecretName }}
         - secretRef:
             name: {{ .Values.gitCloneUrlSecretName }}
+        {{- end }}
         {{- end }}
         {{- if .Values.buildScript }}
         command:
         - sh 
         - -c 
         - |
-          {{- if .Values.gitCloneUrlSecretName }}
-          git clone $gitCloneUrl &&
-          cd $(echo $gitCloneUrl | sed 's|.*/||' | cut -d "."  -f1) &&
-          {{- else }}
-          git clone {{ .Values.gitCloneUrl }} &&
-          cd {{ regexFind "([^\\/]+$)" .Values.gitCloneUrl | replace ".git" "" }} &&
+          git clone {{ .Values.gitCloneUrl }} src &&
+          cd src &&
+          {{- if .Values.gitBranch }}
+          git checkout {{ .Values.gitBranch }}
           {{- end }}
           {{ .Values.buildScript | nindent 10}}
           mkdir -p /usr/share/nginx/html &&
