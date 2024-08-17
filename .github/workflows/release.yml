@@ -36,11 +36,6 @@ jobs:
         echo $CHART_VERSION
         echo ::set-output name=cron_job_chart_version::$CHART_VERSION
 
-        CHART_VERSION=$(cat charts/namespaces/Chart.yaml | grep ^version:)
-        CHART_VERSION=${CHART_VERSION#version: }
-        echo $CHART_VERSION
-        echo ::set-output name=namespaces_chart_version::$CHART_VERSION
-
         CHART_VERSION=$(cat charts/static-site/Chart.yaml | grep ^version:)
         CHART_VERSION=${CHART_VERSION#version: }
         echo $CHART_VERSION
