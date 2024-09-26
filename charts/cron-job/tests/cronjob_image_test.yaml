@@ -16,7 +16,7 @@ tests:
   - it: Should set an ImagePullSecret
     set:
       imagePullSecrets:
-        - name: regcred
+        - regcred
     asserts:
       - template: cronJob.yaml
         documentIndex: 0
