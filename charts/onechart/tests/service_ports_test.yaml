@@ -67,29 +67,29 @@ tests:
   - it: Should set default protocol to TCP
     set:
       ports:
-        - name: null
-          port: null
-          targetPort: null
+        - containerPort: 8080
+          svcPort: 80
+          name: default
     asserts:
       - equal:
           path: spec.ports
           value:
-          - name: null
-            port: null
-            targetPort: null
+          - name: default
             protocol: TCP
+            port: 80
+            targetPort: default
   - it: Should set protocol
     set:
       ports:
-        - name: null
-          port: null
-          targetPort: null
-          protocol: UDP
+      - containerPort: 2021
+        svcPort: 21
+        name: ftp
+        protocol: ftp
     asserts:
       - equal:
           path: spec.ports
           value:
-          - name: null
-            port: null
-            targetPort: null
-            protocol: UDP
+          - name: ftp
+            protocol: ftp
+            port: 21
+            targetPort: ftp
