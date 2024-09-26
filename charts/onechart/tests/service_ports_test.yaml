@@ -64,3 +64,32 @@ tests:
               targetPort: http
               protocol: TCP
               name: http
+  - it: Should set default protocol to TCP
+    set:
+      ports:
+        - name: null
+          port: null
+          targetPort: null
+    asserts:
+      - equal:
+          path: spec.ports
+          value:
+          - name: null
+            port: null
+            targetPort: null
+            protocol: TCP
+  - it: Should set protocol
+    set:
+      ports:
+        - name: null
+          port: null
+          targetPort: null
+          protocol: UDP
+    asserts:
+      - equal:
+          path: spec.ports
+          value:
+          - name: null
+            port: null
+            targetPort: null
+            protocol: UDP
