@@ -13,6 +13,11 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          annotations:
+            {{- with .Values.podAnnotations }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
         spec:
           {{- with .Values.imagePullSecrets }}
           imagePullSecrets:

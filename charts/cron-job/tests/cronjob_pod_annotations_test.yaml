@@ -1,0 +1,17 @@
+suite: test cron job
+templates:
+  - cronJob.yaml
+tests:
+  - it: Should set pod annotations
+    set:
+      podAnnotations:
+        annotation-one: no-such-annotation
+        annotation-two: no-such-annotation
+    asserts:
+      - template: cronJob.yaml
+        documentIndex: 0
+        equal:
+          path: spec.jobTemplate.spec.template.metadata.annotations
+          value:
+            annotation-one: no-such-annotation
+            annotation-two: no-such-annotation
