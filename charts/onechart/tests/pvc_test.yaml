@@ -46,3 +46,12 @@ tests:
     asserts:
       - hasDocuments:
           count: 0
+  - it: Should not generate a claim when using existingSecret
+    set:
+      volumes:
+        - name: data
+          path: /var/lib/1clickinfra/data
+          existingSecret: my-existing-secret
+    asserts:
+      - hasDocuments:
+          count: 0          
