@@ -3,8 +3,16 @@
 volumes:
   {{- range .Values.volumes }}
   - name: {{ .name }}
-    {{- if .emptyDir }}
+    {{- if and (and (not .emptyDir.medium) (not .emptyDir.sizeLimit)) .emptyDir.enabled }}
     emptyDir: {}
+    {{- else if and (or (.emptyDir.medium) (.emptyDir.sizeLimit)) .emptyDir.enabled }}
+    emptyDir:
+      {{- if .emptyDir.medium }}
+      medium: {{ .emptyDir.medium }}
+      {{- end }}
+      {{- if .emptyDir.sizeLimit }}
+      sizeLimit: {{ .emptyDir.sizeLimit }}
+      {{- end }}
     {{- else if .existingConfigMap }}
     configMap:
       name: {{ .existingConfigMap }}
