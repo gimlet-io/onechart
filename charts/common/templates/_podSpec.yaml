@@ -15,6 +15,9 @@ initContainers:
   - name:  {{ .name }}
     image: "{{ .image }}:{{ .tag }}"
     imagePullPolicy: {{ .imagePullPolicy | default "IfNotPresent" }}
+    {{- if .restartPolicy }}
+    restartPolicy: "{{ .restartPolicy }}"
+    {{- end }}
     {{- include "common.envFromRef.tpl" $ | nindent 4 }}
     {{- if .command }}
     command:
