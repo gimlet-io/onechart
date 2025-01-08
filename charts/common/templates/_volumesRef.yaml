@@ -20,6 +20,11 @@ volumes:
       {{- if .hostPath.type }}
       type: {{ .hostPath.type }}
       {{- end }}
+    {{- else if .ephemeral }}
+    ephemeral:
+      volumeClaimTemplate:
+        spec:
+          {{- include "common.volumeClaimSpec.tpl" . | nindent 10 }}
     {{- else }}
     persistentVolumeClaim:
       {{- if .existingClaim }}

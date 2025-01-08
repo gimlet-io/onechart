@@ -1,0 +1,13 @@
+{{- define "common.volumeClaimSpec.tpl" -}}
+accessModes:
+  - {{ .accessMode | default "ReadWriteOnce" }}
+{{- with .storageClass }}
+storageClassName: {{ . }}
+{{- end }}
+resources:
+  requests:
+    storage: {{ .size | default "1Gi" }}
+{{- with .volumeMode }}
+volumeMode: {{ . }}
+{{- end }}
+{{- end -}}
