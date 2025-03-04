@@ -19,7 +19,7 @@ ports:
   {{- range .Values.ports }}
   - name: {{ .name }}
     containerPort: {{ .containerPort }}
-    protocol: TCP
+    protocol: {{ if .protocol }}{{ .protocol }}{{ else }}TCP{{ end }}
   {{- end }}
   {{- end }}
 {{- if .Values.probe.enabled }}
